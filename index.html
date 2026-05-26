@@ -308,6 +308,8 @@ a { color: var(--color-primary); }
   background: var(--color-accent);
   opacity: 0.55;
 }
+.tile-status.active { color: var(--color-ok); font-weight: 600; }
+.tile-status.active .dot { background: var(--color-ok); opacity: 1; }
 .tile.tier-1 { border-top: 3px solid var(--color-warn); }
 .tile.tier-2 { border-top: 3px solid var(--color-accent); }
 
@@ -467,7 +469,7 @@ footer .footer-version {
       <div class="tile-when">當你遇到：教育局要看個資保護企劃書</div>
       <h3>我要交個資保護企劃書</h3>
       <p class="tile-desc">2025/5 起全國 18,000 家補習班集體焦慮，教育局抽查個資保護企劃書、家長同意書、員工保密切結書。線上問卷 → 自動產生 docx 三件套。</p>
-      <span class="tile-status"><span class="dot"></span>即將推出</span>
+      <span class="tile-status active"><span class="dot"></span>立即使用</span>
     </a>
 
     <a class="tile tier-1" href="./labor-check.html">
