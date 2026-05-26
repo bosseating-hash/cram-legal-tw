@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補習班退費試算器——依桃園市短期補習班退費管理自治條例 §3 五階段公式即時計算應退金額，並產出回覆家長話術。純前端工具，資料不上傳。">
+<title>退費試算器｜補教業法務支援站</title>
+
+<meta property="og:title" content="退費試算器">
+<meta property="og:description" content="依桃園市自治條例 §3 五階段公式，1 秒算出應退金額 + 回覆話術。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c;
+  --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e;
+  --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c;
+  --color-warn-bg: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-test: #92400e;
+  --color-test-bg: #fef3c7;
+  --color-info: #1d4ed8;
+  --color-info-bg: #eff6ff;
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--color-primary); }
+
+.test-banner {
+  background: var(--color-test-bg);
+  color: var(--color-test);
+  border-bottom: 1px solid #f1d77a;
+  padding: 8px 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.navbar {
+  position: sticky; top: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 14px 24px;
+}
+.navbar-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand .brand-mark {
+  display: inline-block; width: 6px; height: 18px;
+  background: var(--color-accent); margin-right: 10px; vertical-align: -3px;
+}
+.nav-links { display: flex; gap: 20px; font-size: 14px; color: var(--color-text-muted); }
+.nav-links a { text-decoration: none; color: inherit; transition: color 0.15s; }
+.nav-links a:hover { color: var(--color-primary); }
+
+.subhero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  color: white; padding: 56px 24px 48px; text-align: center;
+}
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag {
+  display: inline-block; background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 16px; border-radius: 999px;
+  font-size: 12.5px; letter-spacing: 0.15em;
+  margin-bottom: 18px; font-weight: 500;
+}
+.subhero h1 {
+  font-family: var(--font-serif); font-size: 36px; font-weight: 900;
+  line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em;
+}
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 640px; margin: 0 auto; }
+
+/* form */
+.form-section { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
+.form-title {
+  font-family: var(--font-serif); font-size: 24px; color: var(--color-primary);
+  font-weight: 700; margin-bottom: 6px; letter-spacing: 0.01em;
+}
+.form-sub { font-size: 14px; color: var(--color-text-muted); margin-bottom: 28px; }
+.form-card {
+  background: white; border: 1px solid var(--color-border); border-radius: 12px;
+  padding: 32px 32px; box-shadow: var(--shadow-md);
+}
+.form-group { margin-bottom: 22px; }
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+}
+.form-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) {
+  .form-row, .form-row3 { grid-template-columns: 1fr; }
+}
+.form-label {
+  display: block; font-size: 13.5px; font-weight: 500;
+  color: var(--color-text); margin-bottom: 6px; letter-spacing: 0.02em;
+}
+.form-label .required { color: var(--color-warn); margin-left: 3px; }
+.form-label .hint { font-size: 12px; color: var(--color-text-muted); font-weight: 400; margin-left: 6px; }
+.form-input, .form-select {
+  width: 100%; padding: 10px 14px; font-size: 14.5px; font-family: var(--font-sans);
+  color: var(--color-text); background: white;
+  border: 1px solid var(--color-border); border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-input:focus, .form-select:focus {
+  outline: none; border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12);
+}
+.form-section-label {
+  font-family: var(--font-serif); font-size: 16px; color: var(--color-primary);
+  font-weight: 700; margin-bottom: 18px; padding-left: 12px;
+  border-left: 3px solid var(--color-accent);
+}
+.form-divider { height: 1px; background: var(--color-border); margin: 28px 0; }
+
+.calc-btn {
+  display: block; width: 100%; margin-top: 8px;
+  background: var(--color-primary); color: white;
+  border: none; border-radius: 10px;
+  padding: 16px 22px;
+  font-family: var(--font-sans); font-size: 16px; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.05em;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow-sm);
+}
+.calc-btn:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* result */
+.result-section { max-width: 880px; margin: 0 auto; padding: 32px 24px 0; }
+.result-card {
+  background: white; border: 2px solid var(--color-primary);
+  border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md);
+  display: none;
+}
+.result-card.show { display: block; }
+.result-card.no-refund { border-color: var(--color-warn); }
+.result-card.full-refund { border-color: var(--color-ok); }
+
+.result-stage {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 13px; letter-spacing: 0.05em; font-weight: 600;
+  background: var(--color-info-bg); color: var(--color-info);
+  margin-bottom: 14px;
+}
+.result-card.no-refund .result-stage { background: var(--color-warn-bg); color: var(--color-warn); }
+.result-card.full-refund .result-stage { background: var(--color-ok-bg); color: var(--color-ok); }
+
+.result-amount {
+  font-family: var(--font-serif); font-size: 42px; font-weight: 900;
+  color: var(--color-primary); line-height: 1.2; margin-bottom: 6px;
+}
+.result-card.no-refund .result-amount { color: var(--color-warn); }
+.result-card.full-refund .result-amount { color: var(--color-ok); }
+.result-amount-label { font-size: 13px; color: var(--color-text-muted); letter-spacing: 0.05em; margin-bottom: 24px; }
+
+.result-detail {
+  background: var(--color-bg); border-radius: 8px;
+  padding: 18px 22px; margin-bottom: 18px; font-size: 14.5px; line-height: 1.85;
+}
+.result-detail-label {
+  font-size: 12px; color: var(--color-text-muted);
+  letter-spacing: 0.15em; font-weight: 700; margin-bottom: 8px;
+}
+.result-detail strong { color: var(--color-primary); font-weight: 700; }
+.result-formula {
+  font-family: 'Cascadia Mono', 'Courier New', monospace; font-size: 13.5px;
+  background: white; padding: 10px 14px; border-radius: 6px;
+  border: 1px dashed var(--color-border); margin-top: 6px;
+}
+
+.deadline-alert {
+  background: var(--color-warn-bg); border: 1px solid #fecaca;
+  border-radius: 8px; padding: 14px 18px; margin: 18px 0;
+  font-size: 14px; line-height: 1.7; color: var(--color-warn);
+}
+.deadline-alert strong { font-weight: 700; }
+
+.script-section {
+  margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--color-border);
+}
+.script-title { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 12px; }
+.script-box {
+  background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: 8px; padding: 22px 24px;
+  font-family: var(--font-sans); font-size: 14.5px;
+  line-height: 1.95; white-space: pre-wrap; color: var(--color-text);
+  position: relative;
+}
+.copy-btn {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--color-primary); color: white;
+  border: none; border-radius: 6px;
+  padding: 6px 12px; font-size: 12px; cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: var(--color-primary-dark); }
+.copy-btn.copied { background: var(--color-ok); }
+
+/* law section */
+.law-section { max-width: 880px; margin: 0 auto; padding: 40px 24px 0; }
+.law-card {
+  background: white; border: 1px solid var(--color-border);
+  border-radius: 12px; padding: 28px 32px; box-shadow: var(--shadow-sm);
+}
+.law-title { font-family: var(--font-serif); font-size: 18px; color: var(--color-primary); font-weight: 700; margin-bottom: 14px; }
+.law-text {
+  font-size: 14px; line-height: 1.95; color: var(--color-text);
+  background: var(--color-bg); padding: 18px 22px;
+  border-radius: 8px; border-left: 3px solid var(--color-accent);
+}
+.law-text strong { color: var(--color-primary); font-weight: 700; }
+
+.disclaimer { max-width: 820px; margin: 40px auto 0; padding: 0 24px; }
+.disclaimer-inner {
+  background: var(--color-test-bg); border: 1px solid #f1d77a;
+  border-radius: 10px; padding: 22px 26px;
+  font-size: 13.5px; line-height: 1.85; color: var(--color-test);
+}
+.disclaimer-inner strong { font-weight: 700; }
+
+.footer {
+  margin-top: 64px; background: #1a1a1a; color: #999;
+  padding: 36px 24px 32px; text-align: center;
+  font-size: 13px; line-height: 1.85;
+}
+.footer a { color: #ddd; text-decoration: none; }
+.footer-row { max-width: 720px; margin: 0 auto; }
+.footer-meta { margin-top: 14px; font-size: 12px; opacity: 0.65; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<div class="test-banner">
+  <strong>測試版</strong>　·　純前端工具，資料不上傳　·　產出結果僅供參考，正式退費請依貴補習班契約條款執行
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>補教業法務支援站</a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="privacy-plan.html">個資企劃書</a>
+      <a href="refund-calc.html" style="color:var(--color-primary);font-weight:600;">退費試算</a>
+      <a href="labor-check.html">勞檢應變</a>
+    </div>
+  </div>
+</nav>
+
+<section class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第一梯隊　·　日常工具</div>
+    <h1>家長要求退費　<span class="accent">該退多少？</span></h1>
+    <p class="lead">依「桃園市短期補習班退費管理自治條例」第三條 5 階段公式，輸入 6 欄即時算出應退金額、補習班可保留金額、法定 7 日處理時限，並產出回覆家長的話術範本（可一鍵複製）。</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="form-title">退費試算</h2>
+  <p class="form-sub">適用縣市：桃園市（多縣市切換預計於 W83e 加入）。所有計算僅在您的瀏覽器處理。</p>
+
+  <div class="form-card">
+    <div class="form-section-label">繳費資訊</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="total_fee">繳費總額<span class="required">*</span><span class="hint">新臺幣元</span></label>
+        <input type="number" id="total_fee" class="form-input" placeholder="例：30000" min="0" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="student_name">學員姓名<span class="hint">話術用，可選填</span></label>
+        <input type="text" id="student_name" class="form-input" placeholder="例：王小華">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">課程資訊</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="course_start">實際開課日<span class="required">*</span></label>
+        <input type="date" id="course_start" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="refund_request">退費請求日<span class="required">*</span><span class="hint">家長正式提出退費的日期</span></label>
+        <input type="date" id="refund_request" class="form-input" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="total_hours">總課程時數<span class="required">*</span><span class="hint">小時</span></label>
+        <input type="number" id="total_hours" class="form-input" placeholder="例：100" min="0" step="0.5" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="attended_hours">已上課時數<span class="hint">小時（未開課填 0）</span></label>
+        <input type="number" id="attended_hours" class="form-input" placeholder="例：20" min="0" step="0.5" value="0">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">退費類型</div>
+    <div class="form-group">
+      <label class="form-label" for="refund_reason">退費原因<span class="required">*</span></label>
+      <select id="refund_reason" class="form-select" required>
+        <option value="個人因素">學員個人因素（依本條例 §3 五階段）</option>
+        <option value="補習班停業" disabled>補習班停業（W83e 加入，按賸餘比例退）</option>
+        <option value="教師更換" disabled>教師更換超過 1/3（W83e 加入）</option>
+        <option value="教室列為危險建築" disabled>教室列為危險建築（W83e 加入）</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" type="button" id="calc-btn">計算應退金額</button>
+  </div>
+</section>
+
+<section class="result-section">
+  <div class="result-card" id="result-card">
+    <div class="result-stage" id="result-stage">　</div>
+    <div class="result-amount" id="result-amount">　</div>
+    <div class="result-amount-label">應退金額（新臺幣）</div>
+
+    <div class="result-detail">
+      <div class="result-detail-label">計算明細</div>
+      <div id="result-detail-content"></div>
+      <div class="result-formula" id="result-formula"></div>
+    </div>
+
+    <div class="result-detail">
+      <div class="result-detail-label">補習班可保留金額</div>
+      <div id="result-retain"></div>
+    </div>
+
+    <div class="deadline-alert" id="deadline-alert"></div>
+
+    <div class="script-section">
+      <div class="script-title">📋 回覆家長話術範本</div>
+      <div class="script-box">
+        <button class="copy-btn" id="copy-btn">複製話術</button>
+        <span id="script-content"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="law-section">
+  <div class="law-card">
+    <h2 class="law-title">法源依據</h2>
+    <div class="law-text">
+      <strong>桃園市短期補習班退費管理自治條例第三條</strong>（中華民國 105 年 7 月 1 日制定公布）<br><br>
+      補習班學生於繳納費用後因個人因素離班者，補習班應於其要求退費之日起<strong>七日內</strong>，依下列規定辦理退費：<br><br>
+      一、學生於實際開課日前之第三十日以前要求退費者，應退還當期開班依約繳納費用之總額。<br>
+      二、學生於實際開課日前之第一日至第二十九日要求退費者，應退還當期開班依約繳納費用總額之百分之九十。<strong>但所收取金額以新臺幣一千元為限，超過部分仍應退還。</strong><br>
+      三、學生於實際開課日起五日內要求退費者，應退還當期開班依約繳納費用總額之百分之八十。<br>
+      四、學生於實際開課日起之第六日，至全期或總課程時數之三分之一期間內要求退費者，應退還當期開班依約繳納費用總額之百分之五十。<br>
+      五、學生要求退費時，已逾全期或總課程時數之三分之一者，所收取之當期開班依約繳納費用，得全數不予退還。<br><br>
+      <span style="font-size:13px;color:var(--color-text-muted);">查詢全文：<a href="https://law.tycg.gov.tw/" target="_blank">桃園市政府主管法規共用系統</a>　·　<a href="https://busiban.tyc.edu.tw/" target="_blank">桃園市短期補習班全球資訊網</a></span>
+    </div>
+  </div>
+</section>
+
+<section class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>免責聲明｜</strong>本工具僅就「學員個人因素」之退費情形依桃園市自治條例 §3 試算。補習班停業、教師更換、危險建築等其他退費情形涉及不同公式，請另諮詢律師。本工具計算結果為通用試算，實際退費仍應依貴補習班與學員間之契約條款執行。如遇爭議，請另行諮詢執業律師。本工具所有資料處理均在使用者瀏覽器內進行，不會傳送或儲存於任何伺服器。
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-row">
+    <a href="index.html">回首頁</a>　·　<a href="privacy-plan.html">個資企劃書</a>　·　<a href="labor-check.html">勞檢應變</a>　·　補教業法務支援站
+    <div class="footer-meta">© 2026　·　測試版 v0.1　·　使用前請與律師確認</div>
+  </div>
+</footer>
+
+<script>
+const fmt = n => Math.round(n).toLocaleString('zh-TW');
+const minguoDate = iso => {
+  const d = new Date(iso);
+  return `${d.getFullYear() - 1911} 年 ${d.getMonth() + 1} 月 ${d.getDate()} 日`;
+};
+const addDays = (iso, days) => {
+  const d = new Date(iso);
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
+};
+
+function calculate() {
+  const total = Number(document.getElementById('total_fee').value);
+  const courseStart = document.getElementById('course_start').value;
+  const refundRequest = document.getElementById('refund_request').value;
+  const totalHours = Number(document.getElementById('total_hours').value);
+  const attendedHours = Number(document.getElementById('attended_hours').value) || 0;
+  const studentName = document.getElementById('student_name').value.trim() || '○○○';
+
+  // 驗證
+  const missing = [];
+  if (!total || total <= 0) missing.push('繳費總額');
+  if (!courseStart) missing.push('實際開課日');
+  if (!refundRequest) missing.push('退費請求日');
+  if (!totalHours || totalHours <= 0) missing.push('總課程時數');
+  if (missing.length > 0) {
+    alert('還有必填欄位未填：' + missing.join('、'));
+    return;
+  }
+  if (attendedHours > totalHours) {
+    alert('已上課時數不能超過總時數');
+    return;
+  }
+
+  // 核心邏輯：計算階段
+  const startDate = new Date(courseStart);
+  const requestDate = new Date(refundRequest);
+  const diffMs = requestDate - startDate;
+  const diffDays = Math.floor(diffMs / 86400000); // 退費請求日 - 開課日；負值代表開課前
+
+  const attendedRatio = attendedHours / totalHours;
+
+  let stage, ratio, refundAmount, retainAmount, formula, stageDesc;
+  let cardClass = '';
+
+  if (diffDays <= -30) {
+    // 階段一：開課前 30 日以前
+    stage = '一';
+    stageDesc = '開課日前第 30 日（含）以前';
+    ratio = 1.0;
+    refundAmount = total;
+    retainAmount = 0;
+    formula = `${fmt(total)} × 100% = ${fmt(refundAmount)} 元`;
+    cardClass = 'full-refund';
+  } else if (diffDays < 0) {
+    // 階段二：開課前 1-29 日（90%，但保留 ≤ 1000）
+    stage = '二';
+    stageDesc = `開課日前第 ${Math.abs(diffDays)} 日`;
+    ratio = 0.9;
+    const naiveRetain = total * 0.1;
+    retainAmount = Math.min(naiveRetain, 1000);
+    refundAmount = total - retainAmount;
+    if (naiveRetain > 1000) {
+      formula = `${fmt(total)} × 90% = ${fmt(total * 0.9)} 元，補習班依約可保留 ${fmt(naiveRetain)} 元，但條例上限新臺幣 1,000 元，故補習班保留 1,000 元，應退 ${fmt(refundAmount)} 元`;
+    } else {
+      formula = `${fmt(total)} × 90% = ${fmt(refundAmount)} 元（補習班保留 ${fmt(retainAmount)} 元未超過 1,000 元上限）`;
+    }
+  } else if (diffDays <= 4) {
+    // 階段三：開課起 1-5 日
+    stage = '三';
+    stageDesc = `開課日起第 ${diffDays + 1} 日（5 日內）`;
+    ratio = 0.8;
+    refundAmount = total * 0.8;
+    retainAmount = total - refundAmount;
+    formula = `${fmt(total)} × 80% = ${fmt(refundAmount)} 元`;
+  } else if (attendedRatio < 1 / 3) {
+    // 階段四：開課起第 6 日，且已上課時數 < 1/3
+    stage = '四';
+    stageDesc = `開課日起第 ${diffDays + 1} 日，已上課 ${fmt(attendedHours)} / ${fmt(totalHours)} 小時（佔 ${(attendedRatio * 100).toFixed(1)}%，未逾 1/3）`;
+    ratio = 0.5;
+    refundAmount = total * 0.5;
+    retainAmount = total - refundAmount;
+    formula = `${fmt(total)} × 50% = ${fmt(refundAmount)} 元`;
+  } else {
+    // 階段五：已上課時數 ≥ 1/3
+    stage = '五';
+    stageDesc = `已上課 ${fmt(attendedHours)} / ${fmt(totalHours)} 小時（佔 ${(attendedRatio * 100).toFixed(1)}%，已逾 1/3）`;
+    ratio = 0;
+    refundAmount = 0;
+    retainAmount = total;
+    formula = `已逾全期 / 總時數 1/3，依條例不予退還`;
+    cardClass = 'no-refund';
+  }
+
+  // 7 日內處理時限
+  const deadline = addDays(refundRequest, 7);
+  const deadlineText = `本補習班應於收到退費請求日（${minguoDate(refundRequest)}）起 <strong>7 日內</strong> 完成退費，<strong>最遲於 ${minguoDate(deadline)}</strong>（中華民國 ${new Date(deadline).getFullYear() - 1911} 年 ${new Date(deadline).getMonth() + 1} 月 ${new Date(deadline).getDate()} 日）。`;
+
+  // 渲染結果
+  const card = document.getElementById('result-card');
+  card.className = 'result-card show ' + cardClass;
+  document.getElementById('result-stage').textContent = `適用第${stage}款（${stageDesc}）　·　退費比例 ${(ratio * 100).toFixed(0)}%`;
+  document.getElementById('result-amount').textContent = `NT$ ${fmt(refundAmount)}`;
+  document.getElementById('result-detail-content').innerHTML = `繳費總額 <strong>${fmt(total)}</strong> 元　·　退費比例 <strong>${(ratio * 100).toFixed(0)}%</strong>`;
+  document.getElementById('result-formula').textContent = formula;
+  document.getElementById('result-retain').innerHTML = `補習班可保留 <strong>${fmt(retainAmount)}</strong> 元（繳費總額 ${fmt(total)} 元 − 應退 ${fmt(refundAmount)} 元）`;
+  document.getElementById('deadline-alert').innerHTML = `⏰ 法定處理時限：${deadlineText}`;
+
+  // 話術範本
+  const refundMethod = '匯款';
+  const script = ratio === 0
+    ? `${studentName} 家長您好：
+
+謹覆貴方就 ${studentName} 學員（繳費總額新臺幣 ${fmt(total)} 元）申請退費乙事。
+
+依「桃園市短期補習班退費管理自治條例」第三條第五款規定，學生要求退費時已逾全期或總課程時數三分之一者，本補習班所收取之費用得全數不予退還。
+
+${studentName} 學員已上課時數為 ${fmt(attendedHours)} 小時，超過總時數 ${fmt(totalHours)} 小時之三分之一，故本補習班依法不予退還已繳費用。
+
+如有任何疑義，請與本補習班聯繫，本補習班亦樂意配合主管機關依職權所為之查詢。
+
+OOO 短期補習班 敬上
+中華民國 ${minguoDate(refundRequest)}`
+    : `${studentName} 家長您好：
+
+謹覆貴方就 ${studentName} 學員（繳費總額新臺幣 ${fmt(total)} 元）申請退費乙事。
+
+依「桃園市短期補習班退費管理自治條例」第三條第${stage}款規定，本補習班核算如下：
+
+  ・適用階段：第${stage}款（${stageDesc}）
+  ・退費比例：${(ratio * 100).toFixed(0)}%
+  ・應退金額：新臺幣 ${fmt(refundAmount)} 元
+  ・計算方式：${formula}
+
+本補習班將依條例第三條規定，於 ${minguoDate(deadline)} 前完成退費。退費方式擬以 ${refundMethod} 為之，敬請提供匯款帳戶資料（戶名／銀行／帳號），俾利辦理。
+
+如有任何疑義或退費方式之偏好，歡迎與本補習班聯繫。
+
+OOO 短期補習班 敬上
+中華民國 ${minguoDate(refundRequest)}`;
+
+  document.getElementById('script-content').textContent = script;
+
+  // 捲到結果
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  saveForm();
+}
+
+document.getElementById('calc-btn').addEventListener('click', calculate);
+
+// 複製話術
+document.getElementById('copy-btn').addEventListener('click', () => {
+  const txt = document.getElementById('script-content').textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ 已複製';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '複製話術';
+      btn.classList.remove('copied');
+    }, 2200);
+  });
+});
+
+// localStorage 暫存
+const STORAGE_KEY = 'cram-legal-refund-calc-form';
+function saveForm() {
+  const data = {};
+  document.querySelectorAll('.form-card input, .form-card select').forEach(el => {
+    data[el.id] = el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function loadForm() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    document.querySelectorAll('.form-card input, .form-card select').forEach(el => {
+      if (data[el.id] !== undefined) el.value = data[el.id];
+    });
+  } catch (e) {}
+}
+document.querySelectorAll('.form-card input, .form-card select').forEach(el => {
+  el.addEventListener('change', saveForm);
+  if (el.tagName === 'INPUT' && el.type !== 'checkbox') el.addEventListener('input', saveForm);
+});
+loadForm();
+</script>
+
+</body>
+</html>
