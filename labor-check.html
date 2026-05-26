@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補習班勞檢突襲應變 SOP + 七大文件包——勞動局來電/來訪時 5 分鐘內該做什麼、七份必備文件、突襲後 24 小時/7 天/30 天行動清單。">
+<title>我被勞檢／勞動局訪查｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c;
+  --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e;
+  --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c;
+  --color-warn-bg: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-test: #92400e;
+  --color-test-bg: #fef3c7;
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--color-primary); }
+
+.test-banner {
+  background: var(--color-test-bg);
+  color: var(--color-test);
+  border-bottom: 1px solid #f1d77a;
+  padding: 8px 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.test-banner strong { font-weight: 700; }
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 14px 24px;
+}
+.navbar-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand .brand-mark {
+  display: inline-block;
+  width: 6px;
+  height: 18px;
+  background: var(--color-accent);
+  margin-right: 10px;
+  vertical-align: -3px;
+}
+.nav-back {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--color-primary); }
+
+/* 子頁 hero */
+.subhero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  color: white;
+  padding: 64px 24px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.subhero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(176, 141, 62, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.subhero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+.subhero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.subhero h1 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead {
+  font-size: 16px;
+  line-height: 1.85;
+  opacity: 0.92;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* placeholder 警示 */
+.dev-notice {
+  max-width: 780px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+}
+.dev-notice-inner {
+  background: var(--color-warn-bg);
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: var(--color-warn);
+  font-size: 14.5px;
+  line-height: 1.75;
+}
+.dev-notice-inner strong { font-weight: 700; }
+
+/* 主內容 */
+main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.chapter { margin: 56px 0 32px; }
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.chapter-num {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  color: var(--color-accent);
+  line-height: 1;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.chapter-divider {
+  width: 64px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 18px 0 24px;
+}
+
+.placeholder {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 22px 26px;
+  margin: 16px 0;
+  color: var(--color-text-muted);
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+.placeholder .ph-label {
+  display: inline-block;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.placeholder ul { margin: 8px 0 0 18px; }
+.placeholder li { margin-bottom: 4px; }
+
+.urgent-box {
+  background: var(--color-warn-bg);
+  border-left: 4px solid var(--color-warn);
+  border-radius: 0 8px 8px 0;
+  padding: 22px 26px;
+  margin: 20px 0;
+}
+.urgent-box h3 {
+  font-family: var(--font-serif);
+  color: var(--color-warn);
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.urgent-box p { font-size: 14.5px; line-height: 1.8; color: #6b1d1d; }
+
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.doc-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.doc-card .doc-num {
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.doc-card h4 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.doc-card p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.timeline-item {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 12px 0;
+  box-shadow: var(--shadow-sm);
+}
+.timeline-item .when {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.timeline-item p { font-size: 14.5px; line-height: 1.8; margin: 0; color: var(--color-text); }
+
+/* 免責 */
+.disclaimer {
+  background: #fef9e7;
+  border: 1px solid #f1d77a;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 56px 0 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #715a13;
+}
+.disclaimer strong { color: #5e4a0e; }
+.disclaimer-title {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #9ca3af;
+  padding: 36px 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 64px;
+}
+footer .footer-brand {
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+footer .footer-version {
+  margin-top: 8px;
+  opacity: 0.55;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .subhero { padding: 48px 20px 44px; }
+  .subhero h1 { font-size: 26px; }
+  .chapter-header { gap: 14px; }
+  .chapter-num { font-size: 36px; }
+  .chapter-title { font-size: 21px; }
+  .doc-grid { grid-template-columns: 1fr; }
+  main { padding: 36px 16px 48px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第一梯隊　·　勞動法</div>
+    <h1>我被勞檢／勞動局訪查<br><span class="accent">下一步要做什麼</span></h1>
+    <p class="lead">勞動局來電、來訪、寄詢問函——這頁告訴你 5 分鐘內、24 小時內、7 天內各自要做的事，以及七大必備文件清單。</p>
+  </div>
+</header>
+
+<div class="dev-notice">
+  <div class="dev-notice-inner">
+    <strong>本頁為章節骨架（v0.1）</strong>——正式內容尚未撰寫，下列各段僅為骨架占位。實際處理勞檢爭議請逕洽執業律師進行個案分析，勿憑本頁占位文字行動。
+  </div>
+</div>
+
+<main>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">1</div>
+    <div class="chapter-title">5 分鐘內：勞動局打來了</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="urgent-box">
+    <h3>占位：緊急應變三件事</h3>
+    <p>正式版將寫入：(1) 來電身分核實話術　(2) 暫不書面承諾任何事項的應對句　(3) 24 小時內聯絡法律顧問的時點與材料準備。</p>
+  </div>
+
+  <div class="placeholder">
+    <span class="ph-label">內容開發中</span>
+    <p>本段將整合補教業真實事件（勞檢突襲 32 條 + 承攬爭議 27 條），萃取出「補習班最常踩坑」的三類應對失誤，並提供逐字話術範本。</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">2</div>
+    <div class="chapter-title">七大文件包總覽</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <p style="color: var(--color-text-muted); margin-bottom: 18px;">勞檢來訪時，這七份文件齊備等於通關護身符。下列為文件清單占位，正式版將提供每份文件的下載範本與填寫教學。</p>
+
+  <div class="doc-grid">
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.1</div>
+      <h4>出勤紀錄</h4>
+      <p>占位：到離班時間逐日記錄＋簽到表範本（紙本/電子皆可）</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.2</div>
+      <h4>薪資清冊</h4>
+      <p>占位：勞基法 §23 應記載項目逐欄範本（含加班費、扣繳）</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.3</div>
+      <h4>變形工時申請書</h4>
+      <p>占位：補習班適用之四週/八週/二週變形工時申請流程與範本</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.4</div>
+      <h4>勞資會議紀錄</h4>
+      <p>占位：每三個月一次勞資會議的議程、紀錄、簽到範本（變形工時前置要件）</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.5</div>
+      <h4>未成年工讀同意書</h4>
+      <p>占位：聘僱 16-18 歲工讀生的法定代理人同意書範本</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.6</div>
+      <h4>勞動契約範本</h4>
+      <p>占位：補習班鐘點教師／全職教師／行政人員三類契約範本（含從屬性風險條款）</p>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-num">DOC.7</div>
+      <h4>勞工保險紀錄</h4>
+      <p>占位：投保資料、保額計算、補申報流程；連動 W83a 補習班雇傭關係學習網 18 項體檢清單</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">3</div>
+    <div class="chapter-title">突襲訪查現場：能說什麼、不能說什麼</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="placeholder">
+    <span class="ph-label">內容開發中</span>
+    <p>本段將整理：(1) 勞檢員出示證件的核實要點　(2) 詢問筆錄簽名前的審閱權　(3) 補習班負責人/老闆娘/櫃台人員「不知為不知」的應對紀律　(4) 攜離原本文件的拒絕權與例外。</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">4</div>
+    <div class="chapter-title">突襲後 24 小時／7 天／30 天行動清單</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="timeline-item">
+    <div class="when">當天 24 小時內</div>
+    <p>占位：(1) 整理筆錄副本　(2) 列出勞檢員詢問之全部議題　(3) 通知法律顧問　(4) 暫停對員工的書面回覆。</p>
+  </div>
+
+  <div class="timeline-item">
+    <div class="when">7 天內</div>
+    <p>占位：(1) 補正可立即補正之文件　(2) 評估是否主動聲請說明　(3) 依法律顧問建議擬覆函稿。</p>
+  </div>
+
+  <div class="timeline-item">
+    <div class="when">30 天內</div>
+    <p>占位：(1) 收到勞動局處分書／改善通知時的回應期限　(2) 申請複查／訴願時點　(3) 建立日後勞檢應變 SOP。</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">5</div>
+    <div class="chapter-title">罰鍰與行政救濟</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="placeholder">
+    <span class="ph-label">內容開發中</span>
+    <p>本段將整理勞基法常見違章罰鍰級距（§79、§79-1、§80）、加重事由、行政救濟（訴願→行政訴訟）時程與成本評估，並對應律師實際處理過的減免成功案例。</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">6</div>
+    <div class="chapter-title">承攬還是雇傭：兩個身分的命運分歧</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="placeholder">
+    <span class="ph-label">內容開發中</span>
+    <p>本段將連動 W83a <a href="https://bosseating-hash.github.io/labor/" target="_blank">補習班雇傭關係學習網</a>——從屬性三大支柱、勞健保強制義務、未投保 4-10 倍罰鍰、18 項體檢清單。本頁不重複該頁內容，僅提供「勞檢情境下的快速判斷小工具」入口。</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="chapter-header">
+    <div class="chapter-num">7</div>
+    <div class="chapter-title">附錄：律師諮詢與深入學習</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="placeholder">
+    <span class="ph-label">內容開發中</span>
+    <p>本段占位：依律師決定是否揭示具體聯絡方式；預設僅提供深入學習資源連結（如 <a href="https://bosseating-hash.github.io/labor/" target="_blank">補習班雇傭關係學習網</a> 等），具體個案請另行諮詢執業律師。</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <span class="disclaimer-title">免責聲明</span>
+  <strong>本頁內容為章節骨架占位，非具體個案之法律意見</strong>。實際勞檢爭議涉及補習班個別運作模式、勞動條件、文件齊備度等諸多因素，請務必另行諮詢執業律師進行個案分析，勿憑本頁占位文字行動。
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <p>補教業者自助法務工具｜本站內容為法律資訊分享，不構成具體個案之法律意見</p>
+  <p class="footer-version">labor-check.html v0.1 章節骨架　·　最後更新 民國一一五年五月二十六日</p>
+</footer>
+
+</body>
+</html>
