@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補教業跨部會合規一站式查照中心——9 大領域 72 個官方資源、桃園市專屬資源、24 小時急救生命線。發生什麼事，跳哪裡。">
+<title>跳查照中心｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c;
+  --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e;
+  --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c;
+  --color-warn-bg: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-test: #92400e;
+  --color-test-bg: #fef3c7;
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--color-primary); }
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 14px 24px;
+}
+.navbar-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand .brand-mark {
+  display: inline-block;
+  width: 6px;
+  height: 18px;
+  background: var(--color-accent);
+  margin-right: 10px;
+  vertical-align: -3px;
+}
+.nav-back {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--color-primary); }
+
+/* 子頁 hero */
+.subhero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  color: white;
+  padding: 64px 24px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.subhero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(176, 141, 62, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.subhero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+.subhero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.subhero h1 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead {
+  font-size: 16px;
+  line-height: 1.85;
+  opacity: 0.92;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* TOC 快速導覽 */
+.toc {
+  background: white;
+  border-bottom: 1px solid var(--color-border);
+  padding: 18px 24px;
+  position: sticky;
+  top: 60px;
+  z-index: 90;
+  box-shadow: var(--shadow-sm);
+}
+.toc-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px 14px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  align-items: center;
+}
+.toc-label {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin-right: 4px;
+}
+.toc a {
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: #fafbfc;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.toc a:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+.toc a.emergency { background: var(--color-warn-bg); color: var(--color-warn); border-color: #fecaca; }
+.toc a.emergency:hover { background: var(--color-warn); color: white; border-color: var(--color-warn); }
+.toc a.tyc { background: #fef9e7; color: #715a13; border-color: #f1d77a; }
+.toc a.tyc:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+/* 主內容 */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* 緊急生命線區塊 */
+.emergency {
+  background: #2a0a0a;
+  background: linear-gradient(135deg, #3a0e0e 0%, #2a0a0a 100%);
+  color: white;
+  padding: 36px 32px;
+  border-radius: 14px;
+  margin-bottom: 48px;
+  box-shadow: 0 8px 24px rgba(185, 28, 28, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+.emergency::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #fca5a5, #ef4444);
+}
+.emergency h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fca5a5;
+  letter-spacing: 0.04em;
+}
+.emergency .sub {
+  font-size: 14px;
+  color: #fecaca;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.emergency-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(252, 165, 165, 0.2);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.emergency-num {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 900;
+  color: #fca5a5;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.emergency-name {
+  font-weight: 700;
+  font-size: 14.5px;
+  margin-bottom: 4px;
+  color: white;
+}
+.emergency-when {
+  font-size: 13px;
+  color: #fecaca;
+  line-height: 1.7;
+}
+
+/* 章節 */
+.chapter { margin: 48px 0 24px; scroll-margin-top: 120px; }
+.chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.chapter-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.chapter-count {
+  display: inline-block;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
+.chapter-divider {
+  width: 56px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 14px 0 20px;
+}
+
+/* 資源卡片 grid */
+.resource-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.resource-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s;
+}
+.resource-card:hover {
+  border-left-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+.resource-card .res-name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 15.5px;
+  margin-bottom: 4px;
+}
+.resource-card .res-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+  transition: border-color 0.15s;
+}
+.resource-card .res-name a:hover {
+  border-bottom-color: var(--color-accent);
+}
+.resource-card .res-url {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+.resource-card .res-purpose {
+  font-size: 13.5px;
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.resource-card .res-when {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  padding: 8px 12px;
+  background: #fafbfc;
+  border-radius: 6px;
+  border-left: 2px solid var(--color-border);
+}
+.resource-card .res-when::before {
+  content: '🎯 ';
+}
+
+/* 桃園專屬區 */
+.tyc-special {
+  background: #fef9e7;
+  border: 1px solid #f1d77a;
+  border-radius: 12px;
+  padding: 28px 30px;
+  margin: 48px 0 24px;
+}
+.tyc-special h2 {
+  font-family: var(--font-serif);
+  color: #5e4a0e;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.tyc-special .sub {
+  color: #715a13;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.tyc-card {
+  background: white;
+  border: 1px solid #f1d77a;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+}
+.tyc-card h4 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.tyc-card p {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+.tyc-card .contact {
+  font-size: 13px;
+  color: #715a13;
+  background: #fef9e7;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+/* 免責 */
+.disclaimer {
+  background: #fef9e7;
+  border: 1px solid #f1d77a;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 56px 0 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #715a13;
+}
+.disclaimer strong { color: #5e4a0e; }
+.disclaimer-title {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #9ca3af;
+  padding: 36px 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 64px;
+}
+footer .footer-brand {
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+footer .footer-version {
+  margin-top: 8px;
+  opacity: 0.55;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .subhero { padding: 48px 20px 44px; }
+  .subhero h1 { font-size: 24px; }
+  .chapter-header { gap: 10px; }
+  .chapter-icon { font-size: 26px; }
+  .chapter-title { font-size: 19px; }
+  main { padding: 24px 14px 48px; }
+  .emergency { padding: 26px 20px; }
+  .emergency h2 { font-size: 20px; }
+  .toc { padding: 12px 16px; top: 56px; }
+  .toc-inner { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">跨部會合規 　·　 一站式查照</div>
+    <h1>跳查照中心<br><span class="accent">發生什麼事，跳哪裡</span></h1>
+    <p class="lead">補教業者 9 大領域 72 個官方資源、桃園市專屬資源、24 小時急救生命線。從教育、勞動、稅務、消防、建管、衛生、警政、個資、消費者保護全面盤點——遇到事，先在這裡找下一步要按哪個按鈕。</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <span class="toc-label">快速跳轉</span>
+    <a href="#emergency" class="emergency">🚨 急救生命線</a>
+    <a href="#edu">📚 教育</a>
+    <a href="#labor">⚖️ 勞動</a>
+    <a href="#tax">💰 稅務</a>
+    <a href="#fire">🚒 消防</a>
+    <a href="#build">🏗️ 建管</a>
+    <a href="#health">🏥 衛生</a>
+    <a href="#police">🚨 警政</a>
+    <a href="#privacy">🔒 個資</a>
+    <a href="#consumer">🤝 消費者</a>
+    <a href="#tyc" class="tyc">🏛️ 桃園專屬</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 急救生命線 -->
+<section class="emergency" id="emergency">
+  <h2>🚨 24 小時急救生命線</h2>
+  <p class="sub">突發事件黃金處理時間僅 15-30 分鐘，未撥打正確號碼可能讓負責人面臨「業務過失」或「未盡法定通報義務」的刑事追訴。以下 5 條專線必須以大字體印製於 A4 表單最高處。</p>
+
+  <div class="emergency-grid">
+    <div class="emergency-card">
+      <div class="emergency-num">113</div>
+      <div class="emergency-name">兒少保護／家暴專線</div>
+      <div class="emergency-when">發現學童異常外傷／精神恍惚／聽聞遭家暴 → 24 小時內必須通報，知情不報重罰並可吊銷補教資格。提供 5 種語言通譯。</div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-num">1955</div>
+      <div class="emergency-name">勞工諮詢申訴專線</div>
+      <div class="emergency-when">外籍教師合約爭議、稅務扣繳爭議、就醫語言不通時 → 立即啟動即時通譯，降溫勞資衝突的跨國公關緩衝。</div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-num">119</div>
+      <div class="emergency-name">火警／救護</div>
+      <div class="emergency-when">火災、學童氣喘休克、嚴重癲癇。處理完物理危機後，<strong style="color:#fef3c7;">必須補登校安通報網</strong>完成行政通報。</div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-num">110</div>
+      <div class="emergency-name">治安／刑事</div>
+      <div class="emergency-when">恐龍家長持械闖入、精神異常人士徘徊校門。後續同樣必須補登教育部校安通報網。</div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-num">112</div>
+      <div class="emergency-name">急難救助（訊號死角）</div>
+      <div class="emergency-when">移地訓練、戶外教學、山區露營遇土石流或意外。<strong style="color:#fef3c7;">無 SIM 卡或無訊號時的最後底線</strong>，強制切入任何可用網絡。</div>
+    </div>
+    <div class="emergency-card">
+      <div class="emergency-num">165</div>
+      <div class="emergency-name">反詐騙專線（企業防護）</div>
+      <div class="emergency-when">第三方冒名補教機構發送繳費詐騙簡訊給家長 → 第一時間報案留存編號，能切斷補習班的連帶賠償責任。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 教育領域 -->
+<section class="chapter" id="edu">
+  <div class="chapter-header">
+    <div class="chapter-icon">📚</div>
+    <div class="chapter-title">教育領域<span class="chapter-count">10 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">立案、師資查核、教育法規與校安通報。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://bsb.kh.edu.tw/" target="_blank">全國短期補習班資訊管理系統</a></div>
+      <div class="res-url">https://bsb.kh.edu.tw/</div>
+      <div class="res-purpose">查詢全國合法立案補習班資料及列印相關表單。</div>
+      <div class="res-when">家長質疑合法性或同業檢舉未立案，跳這裡展示合法立案編號。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://edu.law.moe.gov.tw/" target="_blank">教育部主管法規查詢系統</a></div>
+      <div class="res-url">https://edu.law.moe.gov.tw/</div>
+      <div class="res-purpose">檢索最新補習教育法、兒少法相關教育條文。</div>
+      <div class="res-when">查核最新「補習班收退費基準」是否修改，跳這裡確認法條。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://unfitinfo.moe.gov.tw/" target="_blank">全國不適任教育人員通報系統</a></div>
+      <div class="res-url">https://unfitinfo.moe.gov.tw/</div>
+      <div class="res-purpose">補習班聘任教職員前之強制性背景查核。</div>
+      <div class="res-when">面試新進外師或輔導老師前，確認有無性侵或違法前科。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://law.moj.gov.tw/" target="_blank">全國法規資料庫</a></div>
+      <div class="res-url">https://law.moj.gov.tw/</div>
+      <div class="res-purpose">跨部會綜合法律條文（民法、刑法、行政法）精確檢索。</div>
+      <div class="res-when">遇到合約糾紛需要引用民法「定型化契約」條文，跳這裡印出法規。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.yda.gov.tw/" target="_blank">青年發展署（志工與工讀規定）</a></div>
+      <div class="res-url">https://www.yda.gov.tw/</div>
+      <div class="res-purpose">規範大專院校學生赴補習班擔任實習或工讀生的指引。</div>
+      <div class="res-when">聘請大學生擔任暑期課輔助理，確認工時與身分規範。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://depart.moe.edu.tw/" target="_blank">教育部學生事務及特殊教育司</a></div>
+      <div class="res-url">https://depart.moe.edu.tw/</div>
+      <div class="res-purpose">特殊需求學生的輔導資源與法規界線。</div>
+      <div class="res-when">班內收托身心障礙學童，需了解是否有設施設備補助或強制規定。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://ws.wda.gov.tw/" target="_blank">外國專業人員工作許可專區</a></div>
+      <div class="res-url">https://ws.wda.gov.tw/</div>
+      <div class="res-purpose">外籍語文教師申請工作證之跨部會審查規定。</div>
+      <div class="res-when">欲聘請美籍外教，卻不知道教育部的學歷採認標準，跳這裡比對。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="http://www.tyc.edu.tw/" target="_blank">桃園市政府教育局</a></div>
+      <div class="res-url">http://www.tyc.edu.tw/</div>
+      <div class="res-purpose">下載地方教育局專屬的表單與民眾常用檔案。</div>
+      <div class="res-when">準備向教育局提報「優質補教、愛心關懷」公益活動資料，跳這裡下載表單。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://csrc.edu.tw/" target="_blank">教育部校園安全通報網</a></div>
+      <div class="res-url">https://csrc.edu.tw/</div>
+      <div class="res-purpose">發生重大校園（含補教機構）安全事件之法定通報窗口。</div>
+      <div class="res-when">學生在班內發生嚴重意外或傳染病群聚感染，跳這裡進行校安通報。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 勞動領域 -->
+<section class="chapter" id="labor">
+  <div class="chapter-header">
+    <div class="chapter-icon">⚖️</div>
+    <div class="chapter-title">勞動領域<span class="chapter-count">10 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">勞檢、勞健保、外勞、加班費試算與工作規則。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://fw.wda.gov.tw/wda-employer/" target="_blank">1955 勞工諮詢申訴專線網</a></div>
+      <div class="res-url">https://fw.wda.gov.tw/wda-employer/</div>
+      <div class="res-purpose">提供移工、雇主與仲介的雙語諮詢與申訴整合服務。</div>
+      <div class="res-when">外籍教師與班主任發生薪資扣減糾紛，需官方介入解釋。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.mol.gov.tw/" target="_blank">勞動部民意信箱與申訴專區</a></div>
+      <div class="res-url">https://www.mol.gov.tw/</div>
+      <div class="res-purpose">處理職場平權、勞保勞退及勞動檢查的官方入口。</div>
+      <div class="res-when">被離職員工惡意向勞工局檢舉未給加班費，需提交說明。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.bli.gov.tw/" target="_blank">勞工保險局（網路 e 指通）</a></div>
+      <div class="res-url">https://www.bli.gov.tw/</div>
+      <div class="res-purpose">辦理員工勞保、就保、職保及勞退提撥加退保。</div>
+      <div class="res-when">新聘兼職輔導老師報到第一天，需立刻辦理加保。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://calc.mol.gov.tw/" target="_blank">加班費試算系統（勞動部）</a></div>
+      <div class="res-url">https://calc.mol.gov.tw/</div>
+      <div class="res-purpose">官方提供的平日、休息日與國定假日加班費精確試算工具。</div>
+      <div class="res-when">考前衝刺班要求導師週末連上 12 小時，需計算合法加班費。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://calc.mol.gov.tw/" target="_blank">特別休假日數試算系統</a></div>
+      <div class="res-url">https://calc.mol.gov.tw/</div>
+      <div class="res-purpose">輸入到職日即可算出符合勞基法的特休天數。</div>
+      <div class="res-when">資深行政老師詢問今年還有幾天特休假未休，跳這裡輸入日期防爭議。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.osha.gov.tw/" target="_blank">職業安全衛生署</a></div>
+      <div class="res-url">https://www.osha.gov.tw/</div>
+      <div class="res-purpose">補習班室內空氣品質、照明標準及職業災害預防規範。</div>
+      <div class="res-when">勞檢員查核補習班是否有訂定「職業安全衛生管理計畫」。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nhi.gov.tw/" target="_blank">中央健康保險署（企業專區）</a></div>
+      <div class="res-url">https://www.nhi.gov.tw/</div>
+      <div class="res-purpose">雇主辦理二代健保補充保費申報與員工健保加退。</div>
+      <div class="res-when">發放外聘名師高額單次演講費，需扣繳二代健保補充保費。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.mol.gov.tw/" target="_blank">工作規則參考範本（勞動部）</a></div>
+      <div class="res-url">https://www.mol.gov.tw/</div>
+      <div class="res-purpose">員工數達 30 人以上機構依法必須核備的工作規則公版範例。</div>
+      <div class="res-when">補習班規模擴大超過 30 人，被要求向當地勞工局核備規章。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://bosseating-hash.github.io/labor/" target="_blank">補習班雇傭關係學習網（本站姊妹站）</a></div>
+      <div class="res-url">https://bosseating-hash.github.io/labor/</div>
+      <div class="res-purpose">承攬 vs 雇傭從屬性三大支柱 + 18 項體檢清單 + 補習班專屬判決見解。</div>
+      <div class="res-when">想評估鐘點教師是否會被認定為僱傭關係，跳這裡完整體檢。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 稅務領域 -->
+<section class="chapter" id="tax">
+  <div class="chapter-header">
+    <div class="chapter-icon">💰</div>
+    <div class="chapter-title">稅務領域<span class="chapter-count">8 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">扣繳憑單、營業稅、地方稅、發票界線與印花稅。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://tax.nat.gov.tw/" target="_blank">財政部電子申報繳稅服務網</a></div>
+      <div class="res-url">https://tax.nat.gov.tw/</div>
+      <div class="res-purpose">辦理各類所得扣繳暨免扣繳憑單、營業稅線上申報。</div>
+      <div class="res-when">每年一月要將全體教職員去年的薪資單申報扣繳憑單，跳這裡下載軟體。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.etax.nat.gov.tw/" target="_blank">財政部稅務入口網</a></div>
+      <div class="res-url">https://www.etax.nat.gov.tw/</div>
+      <div class="res-purpose">申請補發稅單、線上繳稅及查詢最新稅務解釋令。</div>
+      <div class="res-when">房東要求補習班承擔租賃稅金，需查詢租金扣繳規定，跳這裡查解釋函。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.ntbna.gov.tw/" target="_blank">各地區國稅局專區</a></div>
+      <div class="res-url">https://www.ntbna.gov.tw/</div>
+      <div class="res-purpose">處理補習班年度執行業務所得申報與查帳事宜。</div>
+      <div class="res-when">收到國稅局要求提示補習班年度收費帳冊與支出憑證函文，跳這裡找專責窗口。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.tax.ntpc.gov.tw/" target="_blank">各縣市地方稅務局</a></div>
+      <div class="res-url">https://www.tax.ntpc.gov.tw/</div>
+      <div class="res-purpose">處理房屋稅、地價稅、印花稅及娛樂稅。</div>
+      <div class="res-when">補習班立案後，房東的房屋稅率從自用變更為營業用產生糾紛，跳這裡算稅率。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.etax.nat.gov.tw/" target="_blank">統一發票與免發票查詢</a></div>
+      <div class="res-url">https://www.etax.nat.gov.tw/</div>
+      <div class="res-purpose">釐清補習班販售教材、文具是否需開立統一發票的界線。</div>
+      <div class="res-when">單純代收代付的模擬考費被國稅局質疑應開發票，跳這裡查代收代付免稅要件。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.stat.gov.tw/" target="_blank">稅務行業標準代碼查詢</a></div>
+      <div class="res-url">https://www.stat.gov.tw/</div>
+      <div class="res-purpose">確認短期補習班的行業代號以適用正確的費用標準率。</div>
+      <div class="res-when">會計師詢問補習班適用的擴大書審純益率是多少，跳這裡查行業代碼。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.etax.nat.gov.tw/" target="_blank">房地合一稅試算</a></div>
+      <div class="res-url">https://www.etax.nat.gov.tw/</div>
+      <div class="res-purpose">補習班負責人買賣自有產權補習班店面的重稅試算。</div>
+      <div class="res-when">打算賣掉舊補習班搬到新地點，想知道會被課多少稅。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.etax.nat.gov.tw/" target="_blank">印花稅網路申報系統</a></div>
+      <div class="res-url">https://www.etax.nat.gov.tw/</div>
+      <div class="res-purpose">繳納補習班各類銀錢收據（若未開立發票）的印花稅。</div>
+      <div class="res-when">收到大筆學費現金並開立傳統收據給家長，依法須貼印花。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 消防領域 -->
+<section class="chapter" id="fire">
+  <div class="chapter-header">
+    <div class="chapter-icon">🚒</div>
+    <div class="chapter-title">消防領域<span class="chapter-count">7 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">消防安檢、防焰物品、防火管理人與停班停課查詢。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nfa.gov.tw/" target="_blank">內政部消防署全球資訊網</a></div>
+      <div class="res-url">https://www.nfa.gov.tw/</div>
+      <div class="res-purpose">下載最新消防法規、防災演練指引與消防安檢標準。</div>
+      <div class="res-when">消防局通知下週將進行年度突擊安檢，需核對自檢表，跳這裡下載。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nfa.gov.tw/" target="_blank">消防安全設備檢修申報系統</a></div>
+      <div class="res-url">https://www.nfa.gov.tw/</div>
+      <div class="res-purpose">供業者與消防設備師（士）連線上傳年度檢修報告。</div>
+      <div class="res-when">每年規定月份必須申報消防安檢，確認委外廠商是否上傳成功。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nfa.gov.tw/" target="_blank">防焰物品查詢系統</a></div>
+      <div class="res-url">https://www.nfa.gov.tw/</div>
+      <div class="res-purpose">查詢補習班內的窗簾、地毯是否具備合格的防焰標籤。</div>
+      <div class="res-when">新裝潢補習班，需確認採購的隔音地毯是否符合消防標準。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://tyfd.tycg.gov.tw/" target="_blank">桃園市政府消防局</a></div>
+      <div class="res-url">https://tyfd.tycg.gov.tw/</div>
+      <div class="res-purpose">申請辦理自衛消防編組演練、防災宣導與地方安檢業務。</div>
+      <div class="res-when">每半年必須舉辦一次教職員與學生的火災避難演練並通報，跳這裡下載通報表。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nfa.gov.tw/" target="_blank">防火管理人訓練資訊網</a></div>
+      <div class="res-url">https://www.nfa.gov.tw/</div>
+      <div class="res-purpose">查詢初訓與複訓課程開班資訊（補習班必須指派專人）。</div>
+      <div class="res-when">班內的防火管理人證書滿三年即將過期，需要報名複訓。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nfa.gov.tw/" target="_blank">危險物品管理系統</a></div>
+      <div class="res-url">https://www.nfa.gov.tw/</div>
+      <div class="res-purpose">若理化補習班存放大量化學藥劑，需了解管制數量。</div>
+      <div class="res-when">理化實驗課購買了酒精與化學品，擔心超過法定儲存管制量。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.dgpa.gov.tw/" target="_blank">天然災害停止上班上課情形</a></div>
+      <div class="res-url">https://www.dgpa.gov.tw/</div>
+      <div class="res-purpose">查詢颱風、地震等天災時，各縣市政府發布的停班停課指示。</div>
+      <div class="res-when">颱風天家長狂打電話問晚上補習班有沒有開，跳這裡確認官方公告。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 建管領域 -->
+<section class="chapter" id="build">
+  <div class="chapter-header">
+    <div class="chapter-icon">🏗️</div>
+    <div class="chapter-title">建管領域<span class="chapter-count">7 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">使用執照、室內裝修、土地分區與公寓大廈管理。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nlma.gov.tw/" target="_blank">內政部國土管理署</a></div>
+      <div class="res-url">https://www.nlma.gov.tw/</div>
+      <div class="res-purpose">全國建築法規、室內裝修管理辦法與公共安全申報母法。</div>
+      <div class="res-when">房東未經同意在大樓外牆掛巨型廣告被檢舉違建，波及補習班。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://oba.tycg.gov.tw/" target="_blank">桃園市政府建築管理處</a></div>
+      <div class="res-url">https://oba.tycg.gov.tw/</div>
+      <div class="res-purpose">辦理建築物變更使用執照、室內裝修合格證明與違建查報。</div>
+      <div class="res-when">租下新店面，要查這間房子以前的「使用執照」是不是 D-5（補習班類組）。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.cpami.gov.tw/" target="_blank">建築物公安檢查申報系統</a></div>
+      <div class="res-url">https://www.cpami.gov.tw/</div>
+      <div class="res-purpose">補習班依法每年/每兩年必須申報建築物公安檢查。</div>
+      <div class="res-when">收到市府函文警告公安申報已逾期，面臨 6 萬元罰鍰，跳這裡確認申報進度。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nlma.gov.tw/" target="_blank">綠建築與無障礙設施宣導網</a></div>
+      <div class="res-url">https://www.nlma.gov.tw/</div>
+      <div class="res-purpose">查詢現行無障礙坡道、無障礙廁所的設置寬度與面積標準。</div>
+      <div class="res-when">立案科員要求補習班廁所必須改建為無障礙廁所才能過關，跳這裡查尺寸圖。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://luz.tcd.gov.tw/" target="_blank">全國土地使用分區查詢系統</a></div>
+      <div class="res-url">https://luz.tcd.gov.tw/</div>
+      <div class="res-purpose">查詢該地段（如住宅區、商業區）是否容許設立補習班。</div>
+      <div class="res-when">看到一間便宜的民宅想租來當補習班，怕該區禁止設立。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.cpami.gov.tw/" target="_blank">室內裝修合格廠商查詢</a></div>
+      <div class="res-url">https://www.cpami.gov.tw/</div>
+      <div class="res-purpose">查詢裝潢設計公司是否有內政部核可的室修業登記證。</div>
+      <div class="res-when">找統包工程行裝潢，擔心對方無法開立「室修合格證」導致無法立案。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://law.moj.gov.tw/" target="_blank">公寓大廈管理條例查詢區</a></div>
+      <div class="res-url">https://law.moj.gov.tw/</div>
+      <div class="res-purpose">釐清補習班與大樓管委會之間的權利義務（如懸掛招牌）。</div>
+      <div class="res-when">管委會以「學童太吵」為由，禁止補習班學生搭乘大樓電梯，跳這裡找抗辯法條。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 衛生領域 -->
+<section class="chapter" id="health">
+  <div class="chapter-header">
+    <div class="chapter-icon">🏥</div>
+    <div class="chapter-title">衛生領域<span class="chapter-count">7 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">傳染病、食安、噪音、飲水與室內空氣品質。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.cdc.gov.tw/" target="_blank">衛生福利部疾病管制署（CDC）</a></div>
+      <div class="res-url">https://www.cdc.gov.tw/</div>
+      <div class="res-purpose">傳染病防治法規、停課標準與最新疫情通報規定。</div>
+      <div class="res-when">班內一週內出現三名學童確診腸病毒，家長恐慌，跳這裡查「法定停課標準」。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://dph.tycg.gov.tw/" target="_blank">桃園市政府衛生局</a></div>
+      <div class="res-url">https://dph.tycg.gov.tw/</div>
+      <div class="res-purpose">地方公共衛生稽查、傳染病通報窗口與急救訓練。</div>
+      <div class="res-when">衛生局來函要求提供教職員年度胸部 X 光（防結核病）體檢名冊，跳這裡下載格式。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.fda.gov.tw/" target="_blank">食品藥物管理署</a></div>
+      <div class="res-url">https://www.fda.gov.tw/</div>
+      <div class="res-purpose">食品標示規定與「反毒資源專區」防範毒品進入校園。</div>
+      <div class="res-when">補習班提供學童代訂晚餐，需確認供應商的食安登錄字號。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.moenv.gov.tw/" target="_blank">環境部</a></div>
+      <div class="res-url">https://www.moenv.gov.tw/</div>
+      <div class="res-purpose">噪音管制、廢棄物清理與室內空氣品質（IAQ）標準。</div>
+      <div class="res-when">鄰居檢舉補習班廣播與下課鐘聲太大聲違反噪音防制法，跳這裡查分貝標準。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://dwq.moenv.gov.tw/" target="_blank">飲用水管理資訊網（環境部）</a></div>
+      <div class="res-url">https://dwq.moenv.gov.tw/</div>
+      <div class="res-purpose">規範補習班連續供水固定設備（飲水機）保養與檢驗。</div>
+      <div class="res-when">環保局稽查飲水機，要求出示每季保養與大腸桿菌檢驗紀錄卡。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.tydep.gov.tw/" target="_blank">桃園市政府環境保護局</a></div>
+      <div class="res-url">https://www.tydep.gov.tw/</div>
+      <div class="res-purpose">處理宣傳車噪音、傳單亂丟罰單及一般事業廢棄物清運。</div>
+      <div class="res-when">工讀生在路口亂發傳單被環保局依廢清法開單告發，跳這裡繳納罰單或申訴。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://iaq.moenv.gov.tw/" target="_blank">室內空氣品質資訊網</a></div>
+      <div class="res-url">https://iaq.moenv.gov.tw/</div>
+      <div class="res-purpose">針對大型補習班二氧化碳、甲醛濃度的連續監測要求。</div>
+      <div class="res-when">被列管為公告場所的大型補習班，室內 CO2 超標遭家長投訴。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 警政領域 -->
+<section class="chapter" id="police">
+  <div class="chapter-header">
+    <div class="chapter-icon">🚨</div>
+    <div class="chapter-title">警政與社會安全<span class="chapter-count">8 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">兒少保護、反詐騙、良民證、性平調查與交通車監管。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://ecare.mohw.gov.tw/" target="_blank">關懷 e 起來（113 保護專線）</a></div>
+      <div class="res-url">https://ecare.mohw.gov.tw/</div>
+      <div class="res-purpose">衛福部建置之兒少保護、家暴及性侵害線上通報平台。</div>
+      <div class="res-when">導師發現學童身上有嚴重瘀青且不敢回家，依法須在 24H 內通報。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://165.npa.gov.tw/" target="_blank">警政署 165 全民防騙網</a></div>
+      <div class="res-url">https://165.npa.gov.tw/</div>
+      <div class="res-purpose">提供最新反詐騙宣導、詐騙 LINE ID 及涉詐網站查詢。</div>
+      <div class="res-when">家長打來求證「收到簡訊說補習費扣款失敗要重匯？」跳這裡查該號碼是否涉詐。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.npa.gov.tw/" target="_blank">內政部警政署全球資訊網</a></div>
+      <div class="res-url">https://www.npa.gov.tw/</div>
+      <div class="res-purpose">申請警察刑事紀錄證明（良民證）線上系統。</div>
+      <div class="res-when">剛錄取的新老師推託沒空去辦良民證，班主任要幫他線上申請。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.thb.gov.tw/" target="_blank">交通部公路局（交通車監管）</a></div>
+      <div class="res-url">https://www.thb.gov.tw/</div>
+      <div class="res-purpose">規範幼童專用車與補習班學生交通車的車齡與安檢。</div>
+      <div class="res-when">警察臨檢補習班接送小巴，質疑改裝座椅超載違法。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.gender.edu.tw/" target="_blank">性別平等教育全球資訊網</a></div>
+      <div class="res-url">https://www.gender.edu.tw/</div>
+      <div class="res-purpose">規範教育場域的性別平等處理機制及申訴調查流程。</div>
+      <div class="res-when">被投訴有教師言論涉及性別歧視，面臨性平調查，跳這裡查「調查委員會」組成規定。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://dep.mohw.gov.tw/" target="_blank">性騷擾防治專區（衛福部）</a></div>
+      <div class="res-url">https://dep.mohw.gov.tw/</div>
+      <div class="res-purpose">職場防制性騷擾與雇主處理責任。</div>
+      <div class="res-when">補習班行政控訴遭另一名教師言語性騷擾，雇主需立刻糾正，跳這裡查標準作業程序。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.typd.gov.tw/" target="_blank">桃園市政府警察局</a></div>
+      <div class="res-url">https://www.typd.gov.tw/</div>
+      <div class="res-purpose">處理中輟生尋獲、青少年毒品及校園黑幫滲透問題。</div>
+      <div class="res-when">發現班上有青少年攜帶疑似電子煙或毒品咖啡包，跳這裡聯繫少年隊介入輔導。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.dvc.taichung.gov.tw/" target="_blank">各縣市家暴及性侵害防治中心</a></div>
+      <div class="res-url">https://www.dvc.taichung.gov.tw/</div>
+      <div class="res-purpose">地方政府處理兒少保護與性平事件的專責社工機構。</div>
+      <div class="res-when">班內學生間發生嚴重性平事件甚至性騷擾，不知如何處理，跳這裡找專線求助。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 個資保護 -->
+<section class="chapter" id="privacy">
+  <div class="chapter-header">
+    <div class="chapter-icon">🔒</div>
+    <div class="chapter-title">個人資料保護<span class="chapter-count">7 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">個資外洩通報、資安事件、教育產業專屬規範與救濟管道。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.pdpc.gov.tw/" target="_blank">個人資料保護委員會（PDPC）</a></div>
+      <div class="res-url">https://www.pdpc.gov.tw/</div>
+      <div class="res-purpose">主管全國個資法規解讀、政策發布與外洩重大裁罰。</div>
+      <div class="res-when">補習班系統遭駭，幾百筆個資外洩，依法須通報主管機關，跳這裡填寫外洩通報。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.edu.tw/" target="_blank">教育部個資保護專區</a></div>
+      <div class="res-url">https://www.edu.tw/</div>
+      <div class="res-purpose">針對教育產業制定的「個人資料檔案安全維護計畫」指引。</div>
+      <div class="res-when">行政稽查時要求出示「補習班個資安全維護計畫書」，跳這裡下載官方範本填寫。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.nics.nat.gov.tw/" target="_blank">國家資通安全研究院（NICS）</a></div>
+      <div class="res-url">https://www.nics.nat.gov.tw/</div>
+      <div class="res-purpose">協助企業進行資安防護、漏洞修補與勒索軟體應對。</div>
+      <div class="res-when">電腦中了勒索病毒，學生名冊跟成績單被鎖住要比特幣，跳這裡找解密工具或求救。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.tpipas.org.tw/" target="_blank">台灣個資保護與管理制度（TPIPAS）</a></div>
+      <div class="res-url">https://www.tpipas.org.tw/</div>
+      <div class="res-purpose">經濟部推動的個資保護管理制度驗證規範。</div>
+      <div class="res-when">大型連鎖機構想取得個資保護標章以增加家長信任感，跳這裡查認證流程。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://moj.gov.tw/" target="_blank">法務部個資法規資料庫</a></div>
+      <div class="res-url">https://moj.gov.tw/</div>
+      <div class="res-purpose">個資法源解釋、實務判例與常見問答集。</div>
+      <div class="res-when">離職員工偷偷拷貝學生名冊帶去敵對補習班，擬提告違反個資法，跳這裡找刑責法條。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.consumers.org.tw/" target="_blank">消費者文教基金會（集體訴訟觀察）</a></div>
+      <div class="res-url">https://www.consumers.org.tw/</div>
+      <div class="res-purpose">觀察個資外洩引發的消費者集體求償與調解案例。</div>
+      <div class="res-when">家長揚言因接到補習班洩漏名單的詐騙電話，要委託消基會提告，跳這裡研究前車之鑑。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://legal.tycg.gov.tw/" target="_blank">桃園市政府法制局/訴願會</a></div>
+      <div class="res-url">https://legal.tycg.gov.tw/</div>
+      <div class="res-purpose">處理遭行政機關依個資法開罰後的訴願與行政救濟管道。</div>
+      <div class="res-when">不服教育局以「未善盡個資保管責任」開出 20 萬罰單，決定提救濟，跳這裡下載訴願書。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 消費者保護 -->
+<section class="chapter" id="consumer">
+  <div class="chapter-header">
+    <div class="chapter-icon">🤝</div>
+    <div class="chapter-title">消費者保護<span class="chapter-count">8 項</span></div>
+  </div>
+  <div class="chapter-divider"></div>
+  <p style="color: var(--color-text-muted); margin-bottom: 18px; font-size: 14.5px;">退費糾紛、定型化契約、公平交易、小額訴訟與調解管道。</p>
+
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="res-name"><a href="https://cpc.ey.gov.tw/" target="_blank">行政院消費者保護會</a></div>
+      <div class="res-url">https://cpc.ey.gov.tw/</div>
+      <div class="res-purpose">全國消保法規、線上申訴流程及重大消費警訊發布中心。</div>
+      <div class="res-when">家長不滿意教學品質，直接向行政院線上提出消費爭議申訴，跳這裡準備答辯資料。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://cpc.ey.gov.tw/" target="_blank">短期補習服務契約書範本</a></div>
+      <div class="res-url">https://cpc.ey.gov.tw/</div>
+      <div class="res-purpose">主管機關強制規定的補習班定型化契約公版。</div>
+      <div class="res-when">新印製報名表，需確認背面的退費條款有無牴觸今年最新規定。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://dlcg.tycg.gov.tw/" target="_blank">桃園市政府法務局消費者服務中心</a></div>
+      <div class="res-url">https://dlcg.tycg.gov.tw/</div>
+      <div class="res-purpose">召開地方消費爭議調解會議的實體單位。</div>
+      <div class="res-when">收到公文被要求下週二去市府出席「消費爭議調解會」，面對消保官。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.ftc.gov.tw/" target="_blank">公平交易委員會</a></div>
+      <div class="res-url">https://www.ftc.gov.tw/</div>
+      <div class="res-purpose">處理廣告不實、同業惡意毀謗及聯合壟斷收費標準行為。</div>
+      <div class="res-when">競爭對手在傳單上惡意印製「保證考上建中，否則退費」等誇大字眼，跳這裡向公平會檢舉。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="http://www.nacet.org.tw/" target="_blank">中華民國補習教育全國總會</a></div>
+      <div class="res-url">http://www.nacet.org.tw/</div>
+      <div class="res-purpose">全國性補教公會，提供履約保證機制的資訊與協調。</div>
+      <div class="res-when">補習班遇到財務困難即將倒閉，需啟動「補教品保機制」轉介學生。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.judicial.gov.tw/" target="_blank">法院簡易庭/小額訴訟專區</a></div>
+      <div class="res-url">https://www.judicial.gov.tw/</div>
+      <div class="res-purpose">處理學費欠款或退費金額在十萬元以下的民事訴訟管道。</div>
+      <div class="res-when">家長積欠半年補習費避不見面，決定透過法律途徑聲請發「支付命令」。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.zhongli.tycg.gov.tw/" target="_blank">鄉鎮市區公所調解委員會（中壢區為例）</a></div>
+      <div class="res-url">https://www.zhongli.tycg.gov.tw/</div>
+      <div class="res-purpose">提供免費、具法律效力（等同判決）的民事糾紛調解機制。</div>
+      <div class="res-when">學生在班內奔跑摔斷牙齒，家長索賠 10 萬，雙方同意去調解會談。</div>
+    </div>
+    <div class="resource-card">
+      <div class="res-name"><a href="https://www.dot.gov.tw/" target="_blank">財政部賦稅署（消費爭議涉稅）</a></div>
+      <div class="res-url">https://www.dot.gov.tw/</div>
+      <div class="res-purpose">處理消費者藉由檢舉未開發票作為退費談判籌碼的糾紛。</div>
+      <div class="res-when">家長退費不成，轉而向國稅局檢舉補習班未開統一發票要求徹查。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 桃園市專屬資源 -->
+<section class="tyc-special" id="tyc">
+  <h2>🏛️ 桃園市專屬資源（律師主場與地方防護網）</h2>
+  <p class="sub">地方關係往往比中央法規更能決定一次行政稽查的結果。桃園市作為人口移入最快、補教市場最繁榮的直轄市，業者必須掌握以下在地節點。</p>
+
+  <div class="tyc-card">
+    <h4>桃園市補習教育事業協會（業界屏障與資源共享）</h4>
+    <p>定期舉辦勞動法規、消防申報實務講座，提供補教品保履約保證機制、政商協調、優質補教愛心關懷育苗專案。班主任突遭不明黑函攻擊或同業惡性檢舉，第一時間聯繫協會可獲得資深同業指導與熟悉補教法規的專屬律師轉介。</p>
+    <div class="contact">
+      📞 (03) 4276300 ｜ 📠 (03) 2508379<br>
+      📧 chys161013@gmail.com ｜ chys588@yahoo.com.tw<br>
+      📍 桃園市中壢區中央東路 88 號 13 樓（總幹事榮春霖）<br>
+      🌐 <a href="https://taoyuan-sea.com/" target="_blank">https://taoyuan-sea.com/</a>
+    </div>
+  </div>
+
+  <div class="tyc-card">
+    <h4>桃園市議員服務處（地方民意與行政溝通橋樑）</h4>
+    <p>當業者面臨行政機關過度僵化、標準不一或涉嫌濫權的行政裁罰時，議員可召開跨局處協調會，促使基層公務員出面解釋法規適用上的模糊地帶。</p>
+    <p style="margin-top: 8px;"><strong>應用情境：</strong>補習班店面招牌突然被建管處科員認定違建要求拆除，業者下載議員通訊錄 CSV 精準聯繫該選區議員服務處，請求安排市府官員現場會勘，尋求合法改善或展延空間。</p>
+    <div class="contact">
+      🌐 <a href="https://scidm.nchc.org.tw/dataset/best_wish99921/resource/a0158c0c-04a0-4570-8186-8209ea9ed8e4/nchcproxy" target="_blank">桃園市議員開放資料平台</a>（提供本市當屆議員選舉區、姓名、辦公電話、傳真、行動電話、通訊地址）
+    </div>
+  </div>
+
+  <div class="tyc-card">
+    <h4>桃園市各區公所調解委員會（第一線調解與災防中樞）</h4>
+    <p>處理絕大多數未進入地方法院程序的補教退費糾紛與輕微民事損害賠償（例如學生在班內推擠受傷索賠）。<strong>調解委員會所做成之調解筆錄，經法院核定後即等同法院確定判決，具備強制執行力</strong>，能一勞永逸地杜絕後續無休止的糾纏與勒索。</p>
+    <div class="contact">
+      🏛️ <a href="https://www.zhongli.tycg.gov.tw/" target="_blank">中壢區</a> ｜ <a href="https://www.bade.tycg.gov.tw/" target="_blank">八德區</a> ｜ <a href="https://www.xinwu.tycg.gov.tw/" target="_blank">新屋區</a> ｜ <a href="https://www.luzhu.tycg.gov.tw/" target="_blank">蘆竹區</a> 等各區公所
+    </div>
+  </div>
+
+  <div class="tyc-card">
+    <h4>桃園律師公會（法律後援陣地）</h4>
+    <p>勞檢局開出鉅額裁處書、家長正式委託律師提告業務過失傷害、檢察官持搜索票介入調查保全證據時——透過公會迅速媒合到熟稔行政救濟法、教育法規或複雜勞資爭議的在地專業律師，在危機發生的<strong>黃金 72 小時內</strong>穩定法律防線。</p>
+    <div class="contact">
+      📞 03-3396100<br>
+      📍 桃園市桃園區正光路 888 號（鄰近臺灣桃園地方法院）
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <span class="disclaimer-title">免責聲明</span>
+  本頁所列政府資源連結與聯絡資訊係依 2026 年 5 月公開資料整理，<strong>不構成具體個案之法律意見</strong>。官方網址、聯絡電話可能因機關改組而變動，請以該機關當下公告為準。實際面臨稽查、訴訟、爭議時，請務必另行諮詢執業律師進行個案分析。
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <p>補教業者自助法務工具｜本站內容為法律資訊分享，不構成具體個案之法律意見</p>
+  <p class="footer-version">cross-check.html v1.0 一站式跳查照中心　·　最後更新 民國一一五年五月二十七日</p>
+</footer>
+
+</body>
+</html>
