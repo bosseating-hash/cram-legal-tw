@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="八週變形工時同意書產生器——線上填表 1 分鐘，下載依勞基法§30-1 + 桃園勞檢方針製作之同意書 docx。資料純前端處理，不上傳。">
+<title>八週變形工時同意書產生器｜補教業法務支援站</title>
+
+<meta property="og:title" content="八週變形工時同意書產生器">
+<meta property="og:description" content="補教業已正式納入§30-1 八週變形工時適用行業。填表 1 分鐘下載 docx。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c;
+  --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e;
+  --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c;
+  --color-warn-bg: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-test: #92400e;
+  --color-test-bg: #fef3c7;
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--color-primary); }
+
+.test-banner {
+  background: var(--color-test-bg);
+  color: var(--color-test);
+  border-bottom: 1px solid #f1d77a;
+  padding: 8px 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.test-banner strong { font-weight: 700; }
+
+.navbar {
+  position: sticky; top: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 14px 24px;
+}
+.navbar-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand .brand-mark {
+  display: inline-block;
+  width: 6px; height: 18px;
+  background: var(--color-accent);
+  margin-right: 10px;
+  vertical-align: -3px;
+}
+.nav-links {
+  display: flex; gap: 20px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--color-primary); }
+
+.subhero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  letter-spacing: 0.15em;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+.subhero h1 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead {
+  font-size: 16px;
+  line-height: 1.85;
+  opacity: 0.92;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.steps {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.step {
+  background: white;
+  border-radius: 10px;
+  padding: 22px 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.step-num {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.step h3 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.step p {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.form-section {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+.form-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+.form-sub {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+}
+.form-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 32px 32px;
+  box-shadow: var(--shadow-md);
+}
+.form-group {
+  margin-bottom: 22px;
+}
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.form-group-row3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 600px) {
+  .form-group-row, .form-group-row3 { grid-template-columns: 1fr; }
+}
+.form-label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.form-label .required { color: var(--color-warn); margin-left: 3px; }
+.form-label .hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14.5px;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.7;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12);
+}
+.form-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 28px 0;
+}
+.form-section-label {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 18px;
+  padding-left: 12px;
+  border-left: 3px solid var(--color-accent);
+}
+
+/* 法源警示卡 */
+.law-callout {
+  background: #fefaef;
+  border: 1px solid #f1d77a;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: #6b4f11;
+}
+.law-callout strong { color: var(--color-accent); font-weight: 700; }
+
+.download-section {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px 0;
+}
+.download-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+}
+.download-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.download-sub {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 22px;
+}
+.download-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.download-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 22px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow-sm);
+}
+.download-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.download-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+.download-btn .btn-name {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+}
+.download-btn .btn-desc {
+  font-size: 12px;
+  opacity: 0.85;
+  letter-spacing: 0.04em;
+}
+
+.status-msg {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  display: none;
+}
+.status-msg.show { display: block; }
+.status-msg.ok {
+  background: var(--color-ok-bg);
+  color: var(--color-ok);
+  border: 1px solid #bbf7d0;
+}
+.status-msg.err {
+  background: var(--color-warn-bg);
+  color: var(--color-warn);
+  border: 1px solid #fecaca;
+}
+
+.disclaimer {
+  max-width: 820px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+.disclaimer-inner {
+  background: var(--color-test-bg);
+  border: 1px solid #f1d77a;
+  border-radius: 10px;
+  padding: 22px 26px;
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--color-test);
+}
+.disclaimer-inner strong { font-weight: 700; }
+
+.footer {
+  margin-top: 64px;
+  background: #1a1a1a;
+  color: #999;
+  padding: 36px 24px 32px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.footer a { color: #ddd; text-decoration: none; }
+.footer .footer-row {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.footer .footer-meta {
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.65;
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+
+<div class="test-banner">
+  <strong>測試版 v0.1</strong>　·　純前端工具，資料不上傳　·　產出文件為律師審稿前 draft，使用前請與律師確認
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>補教業法務支援站</a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="labor-check.html">勞檢應變</a>
+      <a href="cross-check.html">跳查照</a>
+      <a href="labor-flex-form.html" style="color:var(--color-primary);font-weight:600;">變形工時同意書</a>
+    </div>
+  </div>
+</nav>
+
+<section class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">七大文件包　·　DOC.3</div>
+    <h1>八週變形工時<span class="accent">同意書產生器</span></h1>
+    <p class="lead">補教業（教育輔助業）已正式納入勞基法§30-1 適用行業——這是寒暑假密集排班、考前衝刺班連續授課的<strong style="color:var(--color-accent-light);">法定護身符</strong>。填表 1 分鐘，下載依§30-1 + A2 勞檢方針製作之同意書 docx。</p>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">STEP 1</div>
+      <h3>填寫補習班與週期資訊</h3>
+      <p>機構名稱、八週週期起訖日、勞資會議決議字號或工會同意佐證。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">STEP 2</div>
+      <h3>點擊下載按鈕</h3>
+      <p>瀏覽器即時生成 docx 檔，純前端處理，資料不離開您的電腦。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">STEP 3</div>
+      <h3>律師審稿後存底</h3>
+      <p>建議交律師審閱具體條文後存底，並於主管機關檢查時即時提示。</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="form-title">資訊填寫</h2>
+  <p class="form-sub">標示 <span style="color:var(--color-warn);">*</span> 為必填欄位。所有資料僅在您的瀏覽器處理，不會上傳。</p>
+
+  <div class="form-card">
+
+    <div class="law-callout">
+      <strong>勞基法 §30-1 四大要件</strong><br>
+      ① 明確宣告適用 §30-1　② 載明八週循環起訖日期　③ 排班符合「最多連續 6 天、八週內 16 日休假」　④ 工會或勞資會議同意佐證
+    </div>
+
+    <div class="form-section-label">機構基本資訊</div>
+
+    <div class="form-group">
+      <label class="form-label" for="cram_name">補習班全名<span class="required">*</span><span class="hint">立案核准名稱完整版</span></label>
+      <input type="text" id="cram_name" class="form-input" placeholder="例：私立優秀文理短期補習班" required>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="license_no">立案字號<span class="required">*</span></label>
+        <input type="text" id="license_no" class="form-input" placeholder="例：桃教社字第○○○○○○○○○號" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="owner_name">代表人姓名<span class="required">*</span></label>
+        <input type="text" id="owner_name" class="form-input" placeholder="例：王大明" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="address">補習班地址<span class="required">*</span></label>
+      <input type="text" id="address" class="form-input" placeholder="例：桃園市中壢區中央西路○段○號○樓" required>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">八週循環週期</div>
+
+    <div class="form-group">
+      <label class="form-label" for="cycle_label">本期週期名稱<span class="required">*</span><span class="hint">便於後續存底識別</span></label>
+      <input type="text" id="cycle_label" class="form-input" placeholder="例：一一五年第一期（寒輔期）" required>
+    </div>
+
+    <div class="form-group-row3">
+      <div class="form-group">
+        <label class="form-label" for="start_year">起始年（民國）<span class="required">*</span></label>
+        <input type="number" id="start_year" class="form-input" placeholder="115" min="100" max="200" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="start_month">起始月<span class="required">*</span></label>
+        <input type="number" id="start_month" class="form-input" placeholder="1" min="1" max="12" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="start_day">起始日<span class="required">*</span></label>
+        <input type="number" id="start_day" class="form-input" placeholder="20" min="1" max="31" required>
+      </div>
+    </div>
+
+    <div class="form-group-row3">
+      <div class="form-group">
+        <label class="form-label" for="end_year">結束年（民國）<span class="required">*</span><span class="hint">起始日 +55 天</span></label>
+        <input type="number" id="end_year" class="form-input" placeholder="115" min="100" max="200" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="end_month">結束月<span class="required">*</span></label>
+        <input type="number" id="end_month" class="form-input" placeholder="3" min="1" max="12" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="end_day">結束日<span class="required">*</span></label>
+        <input type="number" id="end_day" class="form-input" placeholder="15" min="1" max="31" required>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">同意佐證</div>
+
+    <div class="form-group">
+      <label class="form-label" for="evidence_type">同意佐證方式<span class="required">*</span></label>
+      <select id="evidence_type" class="form-select" required>
+        <option value="">請選擇</option>
+        <option value="勞資會議決議">勞資會議決議（補教業常見）</option>
+        <option value="工會同意">工會同意（極少數補教業有工會）</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="evidence_detail">佐證細節<span class="required">*</span><span class="hint">勞資會議召開日 + 字號，或工會名稱 + 同意日</span></label>
+      <textarea id="evidence_detail" class="form-textarea" placeholder="例：本機構第八屆第一次勞資會議於民國一一五年一月十日召開，決議字號為「○○補（115）勞資字第 001 號」，決議通過自民國一一五年一月二十日起實施。" required></textarea>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">簽署日期</div>
+
+    <div class="form-group-row3">
+      <div class="form-group">
+        <label class="form-label" for="sign_year">年（民國）<span class="required">*</span></label>
+        <input type="number" id="sign_year" class="form-input" placeholder="115" min="100" max="200" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sign_month">月<span class="required">*</span></label>
+        <input type="number" id="sign_month" class="form-input" placeholder="1" min="1" max="12" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sign_day">日<span class="required">*</span></label>
+        <input type="number" id="sign_day" class="form-input" placeholder="15" min="1" max="31" required>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="download-section">
+  <div class="download-card">
+    <h2 class="download-title">下載</h2>
+    <p class="download-sub">填妥上方表單後，點擊以下按鈕下載 docx。</p>
+    <div class="download-grid">
+      <button class="download-btn" id="btn-flex" type="button">
+        <span class="btn-name">八週變形工時實施同意書（draft 待律師審稿）</span>
+        <span class="btn-desc">依勞基法 §30-1 + A2 勞檢方針製作　·　docx 格式</span>
+      </button>
+    </div>
+    <div id="status-msg" class="status-msg"></div>
+  </div>
+</section>
+
+<section class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>免責聲明｜</strong>本工具產出之文件為映依勞動基準法第三十條之一及 A2 Deep Research 報告組裝之 draft 範本，<strong>尚未經律師霸服審稿</strong>。實際使用前，請依貴補習班具體營運情形補充完整，並務必交由律師審閱具體條文（特別是第三條排班規範與第四條同意佐證之表述）。本工具不構成法律意見，亦不建立律師委任關係。如有具體個案需求或爭議處理，請另行諮詢執業律師。本工具所有資料處理均在使用者瀏覽器內進行，不會傳送或儲存於任何伺服器。
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-row">
+    <a href="index.html">回首頁</a>　·　<a href="labor-check.html">勞檢應變</a>　·　<a href="cross-check.html">跳查照中心</a>　·　補教業法務支援站
+    <div class="footer-meta">
+      © 2026　·　測試版 v0.1　·　使用前請與律師確認
+    </div>
+  </div>
+</footer>
+
+<!-- ========== docxtemplater 相依 ========== -->
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip-utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.50.0/build/docxtemplater.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+<script>
+const TEMPLATE = {
+  url: 'templates/labor-flex-template.docx',
+  filename: '八週變形工時實施同意書.docx',
+  label: '變形工時同意書'
+};
+
+const FIELDS = ['cram_name', 'license_no', 'address', 'owner_name',
+                'cycle_label',
+                'start_year', 'start_month', 'start_day',
+                'end_year', 'end_month', 'end_day',
+                'evidence_type', 'evidence_detail',
+                'sign_year', 'sign_month', 'sign_day'];
+
+const REQUIRED = FIELDS;
+
+function getStatus() { return document.getElementById('status-msg'); }
+function showStatus(msg, type) {
+  const el = getStatus();
+  el.textContent = msg;
+  el.className = 'status-msg show ' + type;
+}
+function clearStatus() { getStatus().className = 'status-msg'; }
+
+function pad2(s) {
+  s = String(s).trim();
+  return s.length === 1 ? '0' + s : s;
+}
+
+function collectData() {
+  const data = {};
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    let v = el ? el.value.trim() : '';
+    if (['start_month','start_day','end_month','end_day','sign_month','sign_day'].includes(id)) {
+      v = pad2(v);
+    }
+    data[id] = v;
+  });
+  return data;
+}
+
+function validate() {
+  const missing = [];
+  REQUIRED.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || !el.value.trim()) {
+      const label = el && el.closest('.form-group') && el.closest('.form-group').querySelector('.form-label')
+        ? el.closest('.form-group').querySelector('.form-label').childNodes[0].textContent.trim().replace(/\*/g, '')
+        : id;
+      missing.push(label);
+    }
+  });
+  return missing;
+}
+
+async function loadTemplate(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('無法載入模板：' + url + '（HTTP ' + res.status + '）');
+  return await res.arrayBuffer();
+}
+
+async function generateAndDownload() {
+  clearStatus();
+  const missing = validate();
+  if (missing.length > 0) {
+    showStatus('還有 ' + missing.length + ' 個必填欄位未填：' + missing.slice(0, 3).join('、') + (missing.length > 3 ? '⋯⋯' : ''), 'err');
+    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  showStatus('正在生成 ' + TEMPLATE.label + ' ⋯⋯', 'ok');
+
+  try {
+    const buf = await loadTemplate(TEMPLATE.url);
+    const zip = new PizZip(buf);
+    const doc = new window.docxtemplater(zip, {
+      paragraphLoop: true,
+      linebreaks: true,
+      delimiters: { start: '{', end: '}' }
+    });
+    doc.render(collectData());
+    const out = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    saveAs(out, TEMPLATE.filename);
+    showStatus('✅ ' + TEMPLATE.label + ' 下載完成（draft 版，建議交律師審稿後存底）', 'ok');
+  } catch (err) {
+    console.error(err);
+    let msg = err.message || String(err);
+    if (err.properties && err.properties.errors) {
+      msg += '｜詳細：' + err.properties.errors.map(e => e.message).join('；');
+    }
+    showStatus('❌ 生成失敗：' + msg, 'err');
+  }
+}
+
+document.getElementById('btn-flex').addEventListener('click', generateAndDownload);
+
+// localStorage 自動暫存
+const STORAGE_KEY = 'cram-legal-labor-flex-form';
+function saveForm() {
+  const data = {};
+  document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+    data[el.id] = el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function loadForm() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+      if (data[el.id] !== undefined) el.value = data[el.id];
+    });
+  } catch (e) { console.warn('loadForm 失敗', e); }
+}
+document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+  el.addEventListener('change', saveForm);
+  if (el.tagName === 'INPUT' && el.type !== 'checkbox') el.addEventListener('input', saveForm);
+  if (el.tagName === 'TEXTAREA') el.addEventListener('input', saveForm);
+});
+loadForm();
+</script>
+
+</body>
+</html>
