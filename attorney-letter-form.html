@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="律師函／存證信函產生器——選擇爭議類型（家長積欠、不實誹謗、退費終結、競業違反、同業挖角），線上填表 1 分鐘下載 docx。資料純前端處理，不上傳。">
+<title>律師函／存證信函產生器｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/form-helpers.css">
+
+<style>
+:root {
+  --color-primary: #1e3a5f; --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
+  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
+  --color-test: #92400e; --color-test-bg: #fef3c7;
+  --color-bg: #fafafa; --color-bg-card: #ffffff;
+  --color-text: #1f2937; --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--color-primary); }
+.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
+.navbar-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
+.nav-back { font-size: 14px; color: var(--color-text-muted); text-decoration: none; }
+.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 56px 24px 48px; text-align: center; }
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 999px; font-size: 12.5px; letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500; }
+.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em; }
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 640px; margin: 0 auto; }
+
+.type-selector { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
+.type-title { font-family: var(--font-serif); font-size: 22px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+.type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.type-card { background: white; border: 2px solid var(--color-border); border-radius: 10px; padding: 18px 20px; cursor: pointer; transition: all 0.15s; }
+.type-card:hover { border-color: var(--color-accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.type-card.active { border-color: var(--color-accent); background: #fefbf3; box-shadow: 0 0 0 4px rgba(176,141,62,0.12); }
+.type-card .type-num { font-family: var(--font-serif); font-size: 11.5px; letter-spacing: 0.12em; font-weight: 700; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.type-card.lv-yellow .type-num { background: #fef3c7; color: #92400e; }
+.type-card.lv-orange .type-num { background: #ffedd5; color: #9a3412; }
+.type-card.lv-red .type-num { background: #fee2e2; color: #991b1b; }
+.type-card.lv-blue .type-num { background: #dbeafe; color: #1e40af; }
+.type-card.lv-purple .type-num { background: #ede9fe; color: #5b21b6; }
+.type-card h3 { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.type-card p { font-size: 13px; line-height: 1.65; color: var(--color-text-muted); }
+
+.form-section { max-width: 880px; margin: 0 auto; padding: 36px 24px 0; }
+.form-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
+.form-group { margin-bottom: 22px; }
+.form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) { .form-group-row, .form-group-row3 { grid-template-columns: 1fr; } }
+.form-label { display: block; font-size: 13.5px; font-weight: 500; color: var(--color-text); margin-bottom: 6px; }
+.form-label .required { color: var(--color-warn); margin-left: 3px; }
+.form-label .hint { font-size: 12px; color: var(--color-text-muted); font-weight: 400; margin-left: 6px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 10px 14px; font-size: 14.5px; font-family: var(--font-sans); color: var(--color-text); background: white; border: 1px solid var(--color-border); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; }
+.form-textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12); }
+.form-divider { height: 1px; background: var(--color-border); margin: 28px 0; }
+.form-section-label { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+
+.dynamic-section { display: none; }
+.dynamic-section.active { display: block; }
+
+.download-section { max-width: 880px; margin: 0 auto; padding: 32px 24px 0; }
+.download-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
+.download-title { font-family: var(--font-serif); font-size: 19px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; }
+.download-sub { font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 22px; }
+.download-btn { display: flex; align-items: center; gap: 12px; background: var(--color-primary); color: white; border: none; border-radius: 10px; padding: 18px 22px; font-family: var(--font-sans); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.15s; box-shadow: var(--shadow-sm); width: 100%; justify-content: center; }
+.download-btn:hover:not(:disabled) { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.download-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.download-msg { margin-top: 16px; padding: 14px 18px; border-radius: 8px; font-size: 14px; line-height: 1.7; }
+.download-msg.ok { background: var(--color-ok-bg); border: 1px solid #bbf7d0; color: var(--color-ok); }
+.download-msg.warn { background: var(--color-warn-bg); border: 1px solid #fecaca; color: var(--color-warn); }
+
+.disclaimer { max-width: 880px; margin: 36px auto 0; padding: 0 24px; }
+.disclaimer-inner { background: #fef9e7; border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; font-size: 14px; line-height: 1.85; color: #715a13; }
+.disclaimer-inner strong { color: #5e4a0e; }
+
+footer { background: #1a1a1a; color: #9ca3af; padding: 36px 24px; text-align: center; font-size: 13px; line-height: 1.8; margin-top: 64px; }
+footer .footer-brand { color: white; font-family: var(--font-serif); font-size: 16px; margin-bottom: 6px; }
+footer .footer-version { margin-top: 8px; opacity: 0.55; font-size: 12px; letter-spacing: 0.08em; }
+
+@media (max-width: 720px) {
+  .subhero { padding: 44px 20px 36px; }
+  .subhero h1 { font-size: 26px; }
+  .form-card { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第二梯隊　·　律師函／存證信函</div>
+    <h1>律師函／存證信函<br><span class="accent">產生器</span></h1>
+    <p class="lead">5 種補教業最常見爭議——家長積欠催繳、不實爆料誹謗、退費終結、教師競業違反、同業惡意挖角。線上填表 1-2 分鐘，下載 docx 後可委請律師審稿或直接至郵局辦理雙掛號存證信函。</p>
+  </div>
+</header>
+
+<section class="type-selector">
+  <div class="type-title">步驟 1　·　選擇爭議類型</div>
+  <div class="type-grid" id="type-grid">
+    <div class="type-card lv-yellow" data-type="overdue">
+      <div class="type-num">類型 ①　·　催繳</div>
+      <h3>家長積欠補習費</h3>
+      <p>催繳並終止服務契約。引民§127(7) 兩年時效中斷、民§229/§233 遲延利息。</p>
+    </div>
+    <div class="type-card lv-orange" data-type="defame">
+      <div class="type-num">類型 ②　·　誹謗</div>
+      <h3>不實爆料／網路誹謗</h3>
+      <p>Dcard、靠北補習班、家長 LINE 群組散布不實貼文。引刑§310 II + 民§184/§195。</p>
+    </div>
+    <div class="type-card lv-yellow" data-type="refund">
+      <div class="type-num">類型 ③　·　退費終結</div>
+      <h3>退費爭議終結與免責</h3>
+      <p>已依縣市自治條例精算並匯款，宣告契約終止、互不相欠。</p>
+    </div>
+    <div class="type-card lv-red" data-type="noncompete">
+      <div class="type-num">類型 ④　·　競業</div>
+      <h3>教師離職競業違反</h3>
+      <p>教師離職後違反競業禁止條款轉至同業。引勞基§9-1 + 違約金 + 假處分。</p>
+    </div>
+    <div class="type-card lv-purple" data-type="poaching">
+      <div class="type-num">類型 ⑤　·　挖角</div>
+      <h3>同業惡意挖角／搶生</h3>
+      <p>同業散布不實傳單、私下承諾佣金教唆教師違約。引公交§21 + §25（最高罰 2,500 萬）。</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="form-card">
+    <!-- 共用：寄件人 -->
+    <div class="form-section-label">步驟 2　·　寄件人資料</div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">補習班名稱<span class="required">*</span></label>
+        <input type="text" class="form-input" id="sender_cram_name" placeholder="例：OO 文理短期補習班">
+      </div>
+      <div>
+        <label class="form-label">負責人<span class="required">*</span></label>
+        <input type="text" class="form-input" id="sender_owner_name" placeholder="例：王大明">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">補習班地址<span class="required">*</span></label>
+      <input type="text" class="form-input" id="sender_address" placeholder="例：桃園市中壢區中正路 100 號 3 樓">
+    </div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">聯絡電話<span class="required">*</span></label>
+        <input type="text" class="form-input" id="sender_phone" placeholder="例：03-1234567">
+      </div>
+      <div>
+        <label class="form-label">委任律師<span class="hint">（選填，自寄存證留空）</span></label>
+        <input type="text" class="form-input" id="lawyer_name" placeholder="例：邱翊庭律師">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- 共用：收件人 -->
+    <div class="form-section-label">步驟 3　·　收件人資料</div>
+    <div class="form-group">
+      <label class="form-label">收件人姓名／名稱<span class="required">*</span></label>
+      <input type="text" class="form-input" id="recipient_name" placeholder="例：陳小華 / 同業 OO 補習班">
+    </div>
+    <div class="form-group">
+      <label class="form-label">收件人地址<span class="required">*</span></label>
+      <input type="text" class="form-input" id="recipient_address" placeholder="例：桃園市中壢區 OO 路 OO 號">
+    </div>
+    <div class="form-group form-group-row3">
+      <div>
+        <label class="form-label">發文民國年<span class="required">*</span></label>
+        <select class="form-select" id="send_year"></select>
+      </div>
+      <div>
+        <label class="form-label">月<span class="required">*</span></label>
+        <select class="form-select" id="send_month"></select>
+      </div>
+      <div>
+        <label class="form-label">日<span class="required">*</span></label>
+        <select class="form-select" id="send_day"></select>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- ============ 動態欄位區 ============ -->
+
+    <!-- 類型 ① 家長積欠 -->
+    <div class="dynamic-section" id="form-overdue">
+      <div class="form-section-label">步驟 4　·　積欠事實</div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">學生姓名<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="student_name" placeholder="例：陳小明">
+        </div>
+        <div>
+          <label class="form-label">學生身分證字號<span class="hint">（可留 OOOOOO 遮罩）</span></label>
+          <input type="text" class="form-input" data-field="student_id" placeholder="例：A123456789">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">課程名稱<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="course_name" placeholder="例：國中數學進階班">
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">報名民國年<span class="required">*</span></label><input type="text" class="form-input" data-field="enroll_year" placeholder="例：113"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="enroll_month" placeholder="例：9"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="enroll_day" placeholder="例：1"></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">總學費<span class="required">*</span></label><input type="text" class="form-input" data-field="total_fee" placeholder="例：60,000"></div>
+        <div><label class="form-label">已繳金額<span class="required">*</span></label><input type="text" class="form-input" data-field="paid_fee" placeholder="例：20,000"></div>
+        <div><label class="form-label">積欠金額<span class="required">*</span></label><input type="text" class="form-input" data-field="owe_fee" placeholder="例：40,000"></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">應繳款年</label><input type="text" class="form-input" data-field="due_year" placeholder="例：113"></div>
+        <div><label class="form-label">月</label><input type="text" class="form-input" data-field="due_month" placeholder="例：12"></div>
+        <div><label class="form-label">日</label><input type="text" class="form-input" data-field="due_day" placeholder="例：31"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">契約條款編號</label>
+        <input type="text" class="form-input" data-field="contract_clause" placeholder="例：5">
+      </div>
+      <div class="form-group">
+        <label class="form-label">指定收款銀行資訊<span class="required">*</span></label>
+        <textarea class="form-textarea" data-field="bank_info" rows="2" placeholder="例：玉山銀行中壢分行（808）/ 戶名：OO 補習班 / 帳號：1234567890"></textarea>
+      </div>
+    </div>
+
+    <!-- 類型 ② 不實誹謗 -->
+    <div class="dynamic-section" id="form-defame">
+      <div class="form-section-label">步驟 4　·　誹謗事實</div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">發文民國年<span class="required">*</span></label><input type="text" class="form-input" data-field="post_year" placeholder="例：115"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="post_month" placeholder="例：5"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="post_day" placeholder="例：20"></div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">發文者帳號名稱<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="post_author_id" placeholder="例：angry_parent_123">
+        </div>
+        <div>
+          <label class="form-label">社群平台<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="post_platform" placeholder="例：Dcard 考試版 / 臉書 OO 社團">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">貼文標題<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="post_title" placeholder="例：千萬不要去 OO 補習班！">
+      </div>
+      <div class="form-group">
+        <label class="form-label">不實內容摘錄<span class="required">*</span><span class="hint">（具體誹謗字句）</span></label>
+        <textarea class="form-textarea" data-field="false_content" rows="3" placeholder="例：榜單嚴重造假/教師惡意體罰學生/濫收各項不明費用"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">求償金額<span class="required">*</span><span class="hint">（萬元）</span></label>
+        <input type="text" class="form-input" data-field="claim_amount" placeholder="例：50（即 50 萬元）">
+      </div>
+    </div>
+
+    <!-- 類型 ③ 退費終結 -->
+    <div class="dynamic-section" id="form-refund">
+      <div class="form-section-label">步驟 4　·　退費結算事實</div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">學生姓名<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="student_name" placeholder="例：林小華">
+        </div>
+        <div>
+          <label class="form-label">課程名稱<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="course_name" placeholder="例：高三衝刺班">
+        </div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">課程總堂數<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="total_lessons" placeholder="例：60">
+        </div>
+        <div>
+          <label class="form-label">實繳總費用<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="paid_fee" placeholder="例：80,000">
+        </div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">開課民國年<span class="required">*</span></label><input type="text" class="form-input" data-field="open_year" placeholder="例：115"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="open_month" placeholder="例：3"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="open_day" placeholder="例：1"></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">申請退費年<span class="required">*</span></label><input type="text" class="form-input" data-field="apply_year" placeholder="例：115"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="apply_month" placeholder="例：4"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="apply_day" placeholder="例：15"></div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">已上課堂數<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="actual_lessons" placeholder="例：15">
+        </div>
+        <div>
+          <label class="form-label">上課進度落點<span class="required">*</span></label>
+          <select class="form-select" data-field="progress_stage">
+            <option value="">請選擇</option>
+            <option value="未逾全期三分之一">未逾全期三分之一</option>
+            <option value="已逾全期三分之一但未逾二分之一">已逾全期三分之一但未逾二分之一</option>
+            <option value="已逾全期二分之一但未逾三分之二">已逾全期二分之一但未逾三分之二</option>
+            <option value="已逾全期三分之二">已逾全期三分之二</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">縣市名稱<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="city" placeholder="例：桃園市">
+        </div>
+        <div>
+          <label class="form-label">自治條例退費條文<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="refund_clause" placeholder="例：第三">
+        </div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">應退還比例<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="refund_ratio" placeholder="例：百分之五十">
+        </div>
+        <div>
+          <label class="form-label">應退還金額<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="refund_amount" placeholder="例：40,000">
+        </div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">匯款年<span class="required">*</span></label><input type="text" class="form-input" data-field="transfer_year" placeholder="例：115"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="transfer_month" placeholder="例：4"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="transfer_day" placeholder="例：20"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">匯款銀行<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="bank_name" placeholder="例：玉山銀行">
+      </div>
+    </div>
+
+    <!-- 類型 ④ 教師競業 -->
+    <div class="dynamic-section" id="form-noncompete">
+      <div class="form-section-label">步驟 4　·　競業違反事實</div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">教師姓名<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="teacher_name" placeholder="例：張小琪">
+        </div>
+        <div>
+          <label class="form-label">教授科目<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="teach_subject" placeholder="例：高中英文">
+        </div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">到職民國年<span class="required">*</span></label><input type="text" class="form-input" data-field="hire_year" placeholder="例：111"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="hire_month" placeholder="例：8"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="hire_day" placeholder="例：1"></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">離職民國年<span class="required">*</span></label><input type="text" class="form-input" data-field="leave_year" placeholder="例：115"></div>
+        <div><label class="form-label">月<span class="required">*</span></label><input type="text" class="form-input" data-field="leave_month" placeholder="例：2"></div>
+        <div><label class="form-label">日<span class="required">*</span></label><input type="text" class="form-input" data-field="leave_day" placeholder="例：28"></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div>
+          <label class="form-label">競業條款編號<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="noncompete_clause" placeholder="例：12">
+        </div>
+        <div>
+          <label class="form-label">限制年限<span class="hint">（≤2）</span><span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="noncompete_period_years" placeholder="例：1">
+        </div>
+        <div>
+          <label class="form-label">限制公里數<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="limit_km" placeholder="例：5">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">月補償金<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="compensation_amount" placeholder="例：15,000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">違規區域<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="restricted_area_zone" placeholder="例：中壢車站方圓 5 公里內">
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">對手補習班名稱<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="opponent_school_name" placeholder="例：OO 補習班中壢分校">
+        </div>
+        <div>
+          <label class="form-label">實際距離（公里）<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="actual_distance_km" placeholder="例：2.5">
+        </div>
+      </div>
+      <div class="form-group form-group-row">
+        <div>
+          <label class="form-label">違約金條款編號<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="penalty_clause" placeholder="例：14">
+        </div>
+        <div>
+          <label class="form-label">違約金總額<span class="required">*</span></label>
+          <input type="text" class="form-input" data-field="penalty_amount" placeholder="例：500,000">
+        </div>
+      </div>
+    </div>
+
+    <!-- 類型 ⑤ 同業挖角 -->
+    <div class="dynamic-section" id="form-poaching">
+      <div class="form-section-label">步驟 4　·　挖角事實</div>
+      <div class="form-group">
+        <label class="form-label">商圈／學區名稱<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="commercial_zone" placeholder="例：中壢中正路國中學區">
+      </div>
+      <div class="form-group">
+        <label class="form-label">對手補習班名稱<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="target_school_name" placeholder="例：OO 文理補習班">
+      </div>
+      <div class="form-group">
+        <label class="form-label">不實宣傳具體內容<span class="required">*</span></label>
+        <textarea class="form-textarea" data-field="false_propaganda_content" rows="3" placeholder="例：本班某王牌名師即將離開本班轉至貴班任教 / 抹黑本班之升學榜單造假"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">被挖角教師姓名<span class="required">*</span></label>
+        <input type="text" class="form-input" data-field="target_teacher_name" placeholder="例：李大華">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="download-section">
+  <div class="download-card">
+    <div class="download-title">步驟 5　·　產生律師函／存證信函</div>
+    <p class="download-sub">點下按鈕後立即下載 docx 檔案。本工具於瀏覽器端執行，您填寫的資料不會上傳到任何伺服器。下載後可委請律師審稿，或直接攜帶至郵局以「雙掛號（附回執聯）」辦理。</p>
+    <button class="download-btn" id="download-btn" disabled>
+      <span>📥</span>
+      <span>請先於步驟 1 選擇爭議類型</span>
+    </button>
+    <div id="download-msg"></div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>⚠️ 法律免責聲明</strong>——本產生器之 5 種範本係依據 A6 深度研究報告與律師實務見解整理而成的<strong>一般性參考模板</strong>，<strong>不構成個案法律意見</strong>。寄發前強烈建議委請律師審稿；如涉及 (1) 重大刑事告訴（如教師帶走營業秘密涉營業秘密法 §13-1 重罪）(2) 跨境侵權 (3) 求償金額龐大需聲請假扣押假處分 (4) 已引發媒體公關危機等紅線情境，請勿自行寄發，務必委由律師處理。
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <div>律師函／存證信函產生器 v1.0</div>
+  <div class="footer-version">2026-05　·　5 種爭議類型（家長積欠 / 不實誹謗 / 退費終結 / 教師競業 / 同業挖角）</div>
+</footer>
+
+<script src="https://unpkg.com/pizzip@3.1.6/dist/pizzip.min.js"></script>
+<script src="https://unpkg.com/pizzip@3.1.6/dist/pizzip-utils.min.js"></script>
+<script src="https://unpkg.com/docxtemplater@3.50.0/build/docxtemplater.js"></script>
+<script src="assets/form-helpers.js"></script>
+<script>
+// ============ 民國年/月/日下拉填充 ============
+const yearSel = document.getElementById('send_year');
+const monthSel = document.getElementById('send_month');
+const daySel = document.getElementById('send_day');
+const ROC = new Date().getFullYear() - 1911;
+[yearSel].forEach(s => {
+  s.innerHTML = '<option value="">請選擇</option>';
+  for (let y = ROC + 1; y >= ROC - 5; y--) s.innerHTML += `<option value="${y}"${y===ROC?' selected':''}>${y}</option>`;
+});
+monthSel.innerHTML = '<option value="">請選擇</option>';
+for (let m = 1; m <= 12; m++) monthSel.innerHTML += `<option value="${m}">${m}</option>`;
+daySel.innerHTML = '<option value="">請選擇</option>';
+for (let d = 1; d <= 31; d++) daySel.innerHTML += `<option value="${d}">${d}</option>`;
+const now = new Date();
+monthSel.value = now.getMonth() + 1;
+daySel.value = now.getDate();
+
+// ============ 爭議類型切換 ============
+const typeCards = document.querySelectorAll('.type-card');
+const dynSections = document.querySelectorAll('.dynamic-section');
+const downloadBtn = document.getElementById('download-btn');
+let currentType = null;
+
+const typeLabel = {
+  overdue: '家長積欠補習費催繳函',
+  defame: '不實爆料與網路誹謗澄清警告函',
+  refund: '退費爭議終結與免責聲明函',
+  noncompete: '教師離職競業禁止與違約金請求警告函',
+  poaching: '同業惡意挖角與搶奪學生警告函'
+};
+
+typeCards.forEach(card => {
+  card.addEventListener('click', () => {
+    typeCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    currentType = card.dataset.type;
+    dynSections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById('form-' + currentType).classList.add('active');
+    downloadBtn.disabled = false;
+    downloadBtn.innerHTML = `<span>📥</span><span>下載「${typeLabel[currentType]}」docx</span>`;
+  });
+});
+
+// 從 URL query string 自動選定類型（dragon-parent.html 範本卡片連結用）
+const urlType = new URLSearchParams(location.search).get('type');
+if (urlType && typeLabel[urlType]) {
+  const targetCard = document.querySelector(`.type-card[data-type="${urlType}"]`);
+  if (targetCard) {
+    targetCard.click();
+    setTimeout(() => targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  }
+}
+
+// ============ 產生 docx ============
+function loadFile(url, callback) {
+  PizZipUtils.getBinaryContent(url, callback);
+}
+
+function showMsg(text, kind) {
+  const msg = document.getElementById('download-msg');
+  msg.className = 'download-msg ' + kind;
+  msg.textContent = text;
+}
+
+downloadBtn.addEventListener('click', () => {
+  if (!currentType) return;
+  showMsg('產生中...', 'ok');
+
+  const templateFile = `templates/attorney-${currentType}-template.docx`;
+
+  loadFile(templateFile, (error, content) => {
+    if (error) {
+      showMsg('範本載入失敗：' + error.message + '（請確認 templates/' + currentType + '-template.docx 已上傳）', 'warn');
+      return;
+    }
+
+    // 蒐集所有欄位（共用 + 動態）
+    const data = {
+      sender_cram_name: document.getElementById('sender_cram_name').value || '【填寫補習班名稱】',
+      sender_owner_name: document.getElementById('sender_owner_name').value || '【填寫負責人姓名】',
+      sender_address: document.getElementById('sender_address').value || '【填寫補習班地址】',
+      sender_phone: document.getElementById('sender_phone').value || '【填寫聯絡電話】',
+      recipient_name: document.getElementById('recipient_name').value || '【填寫收件人姓名】',
+      recipient_address: document.getElementById('recipient_address').value || '【填寫收件人地址】',
+      send_year: document.getElementById('send_year').value || '___',
+      send_month: document.getElementById('send_month').value || '__',
+      send_day: document.getElementById('send_day').value || '__',
+      lawyer_name: document.getElementById('lawyer_name').value || '（自寄存證信函）'
+    };
+
+    document.querySelectorAll(`#form-${currentType} [data-field]`).forEach(el => {
+      const k = el.dataset.field;
+      data[k] = el.value || `【填寫${el.previousElementSibling?.textContent?.trim()?.replace('*','').trim() || k}】`;
+    });
+
+    try {
+      const zip = new PizZip(content);
+      const doc = new docxtemplater(zip, {
+        delimiters: { start: '{', end: '}' },
+        paragraphLoop: true,
+        linebreaks: true
+      });
+      doc.render(data);
+      const blob = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${typeLabel[currentType]}_${data.sender_cram_name}_${data.send_year}${data.send_month}${data.send_day}.docx`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showMsg(`✅ 已下載「${typeLabel[currentType]}」。建議委請律師審稿後再寄出；郵局存證信函記得辦「雙掛號（附回執聯）」一式三份。`, 'ok');
+    } catch (e) {
+      showMsg('產生失敗：' + e.message, 'warn');
+      console.error(e);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

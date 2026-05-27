@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="恐龍家長／補教蟑螂應對指南——超額退費要脅、網路公審、行政滋擾、勒索取財、同業安插五大爭議的法源對照、5 步應對 SOP 與律師函範本入口。">
+<title>恐龍家長／補教蟑螂應對指南｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c;
+  --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e;
+  --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c;
+  --color-warn-bg: #fef2f2;
+  --color-ok: #15803d;
+  --color-ok-bg: #f0fdf4;
+  --color-test: #92400e;
+  --color-test-bg: #fef3c7;
+  --color-bg: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-text: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--color-primary); }
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 14px 24px;
+}
+.navbar-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.brand .brand-mark {
+  display: inline-block;
+  width: 6px;
+  height: 18px;
+  background: var(--color-accent);
+  margin-right: 10px;
+  vertical-align: -3px;
+}
+.nav-back {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.nav-back:hover { color: var(--color-primary); }
+
+.subhero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+  color: white;
+  padding: 64px 24px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.subhero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(176, 141, 62, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.subhero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+.subhero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.subhero h1 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead {
+  font-size: 16px;
+  line-height: 1.85;
+  opacity: 0.92;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.dev-notice {
+  max-width: 780px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+}
+.dev-notice-inner {
+  background: var(--color-warn-bg);
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: var(--color-warn);
+  font-size: 14.5px;
+  line-height: 1.75;
+}
+.dev-notice-inner strong { font-weight: 700; }
+
+main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.chapter { margin: 56px 0 32px; }
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.chapter-num {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  color: var(--color-accent);
+  line-height: 1;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.chapter-divider {
+  width: 64px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 18px 0 24px;
+}
+
+/* 5 步 SOP timeline */
+.step-item {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin: 14px 0;
+  box-shadow: var(--shadow-sm);
+}
+.step-item .step-num {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 6px;
+}
+.step-item h3 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.step-item p {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+.step-item p:last-child { margin-bottom: 0; }
+.step-item strong { color: var(--color-primary-dark); font-weight: 700; }
+.step-item .step-warn { color: var(--color-warn); font-weight: 700; }
+
+/* 5 大爭議卡片 */
+.dispute-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 22px 24px;
+  margin: 16px 0;
+  box-shadow: var(--shadow-sm);
+}
+.dispute-card .dispute-tag {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.dispute-card.lv-yellow .dispute-tag { background: #fef3c7; color: #92400e; }
+.dispute-card.lv-orange .dispute-tag { background: #ffedd5; color: #9a3412; }
+.dispute-card.lv-red .dispute-tag { background: #fee2e2; color: #991b1b; }
+.dispute-card.lv-dark .dispute-tag { background: #1f2937; color: #fef3c7; }
+.dispute-card h3 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.dispute-grid {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px 16px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.dispute-grid dt {
+  font-family: var(--font-serif);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.dispute-grid dd {
+  color: var(--color-text);
+}
+.dispute-grid dd strong { color: var(--color-primary-dark); }
+.dispute-grid dd code {
+  background: #f1f5f9;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+}
+
+/* FAQ 風格 */
+.faq-item {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 14px 0;
+  box-shadow: var(--shadow-sm);
+}
+.faq-item .faq-q {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.faq-item .faq-q::before {
+  content: 'Q. ';
+  color: var(--color-accent);
+  font-weight: 900;
+}
+.faq-item .faq-a {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--color-text);
+}
+.faq-item .faq-a::before {
+  content: 'A. ';
+  color: var(--color-ok);
+  font-weight: 900;
+  margin-right: 2px;
+}
+.faq-item .faq-a strong { color: var(--color-warn); font-weight: 700; }
+
+/* 時效警示表 */
+.deadline-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.deadline-table thead {
+  background: var(--color-primary);
+  color: white;
+}
+.deadline-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+.deadline-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-border);
+  vertical-align: top;
+  line-height: 1.7;
+}
+.deadline-table tr:nth-child(even) td { background: #fafafa; }
+.deadline-table .deadline-tight { color: var(--color-warn); font-weight: 700; }
+.deadline-table code {
+  background: #f1f5f9;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--color-primary);
+}
+
+/* 律師函範本入口 */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.template-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.template-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+.template-card .tpl-tag {
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.template-card h4 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.template-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+.template-soon {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 32px 24px;
+  border-radius: 10px;
+  margin: 16px 0;
+  font-size: 14.5px;
+}
+.template-soon strong { color: var(--color-primary); }
+
+/* cross-link bar */
+.crosslink {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 28px 0;
+}
+.crosslink-title {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.crosslink-list {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+.crosslink-list a {
+  display: inline-block;
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 13.5px;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+.crosslink-list a:hover { background: var(--color-primary); color: white; }
+
+/* 免責 */
+.disclaimer {
+  background: #fef9e7;
+  border: 1px solid #f1d77a;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 56px 0 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #715a13;
+}
+.disclaimer strong { color: #5e4a0e; }
+.disclaimer-title {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #9ca3af;
+  padding: 36px 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 64px;
+}
+footer .footer-brand {
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+footer .footer-version {
+  margin-top: 8px;
+  opacity: 0.55;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .subhero { padding: 48px 20px 44px; }
+  .subhero h1 { font-size: 26px; }
+  .chapter-header { gap: 14px; }
+  .chapter-num { font-size: 36px; }
+  .chapter-title { font-size: 21px; }
+  .template-grid { grid-template-columns: 1fr; }
+  .dispute-grid { grid-template-columns: 80px 1fr; }
+  main { padding: 36px 16px 48px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第一梯隊　·　爭議應對</div>
+    <h1>恐龍家長／補教蟑螂<br><span class="accent">應對指南與法源對照</span></h1>
+    <p class="lead">家長要脅全額退費、網路公審、連環檢舉、開口要錢、或實為同業派來竊取機密——這頁告訴你 5 步應對 SOP、5 大爭議的法源與處理層級、常見法律迷思釐清，以及律師函範本入口。</p>
+  </div>
+</header>
+
+<div class="dev-notice">
+  <div class="dev-notice-inner">
+    <strong>本工具定位</strong>——純查詢與法源對照工具，不蒐集、不儲存、不公開任何家長個資。完整版「同業預警查詢系統」需會員制與雲端加密承載個案資料，本站不提供；如有預警聯防需求，請另諮詢法律顧問建置封閉式內網系統。
+  </div>
+</div>
+
+<main>
+
+<section class="chapter" id="ch1">
+  <div class="chapter-header">
+    <div class="chapter-num">1</div>
+    <div class="chapter-title">事發當下：5 步應對 SOP</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="step-item">
+    <div class="step-num">STEP 1　·　黃金 24 小時</div>
+    <h3>證據保全</h3>
+    <p><strong>通訊軟體</strong>——LINE／Messenger 對話立即截圖，<span class="step-warn">含日期、時間、對方帳號名稱、完整脈絡</span>；對方有可能用「收回訊息」抹除。</p>
+    <p><strong>實體場域</strong>——櫃台與公共區監視器影像鎖定時段備份至獨立硬碟，防循環錄影覆蓋。</p>
+    <p><strong>現場錄音</strong>——預感家長來意不善時可大方或在口袋內開錄音。<span class="step-warn">您本身即為對話一方且目的為保護自身權益，不構成刑法 §315-1 妨害秘密罪</span>，這常是反制「補教蟑螂」恐嚇取財最核心的防線。</p>
+  </div>
+
+  <div class="step-item">
+    <div class="step-num">STEP 2　·　內部對外口徑</div>
+    <h3>通報、隔離、定調</h3>
+    <p><strong>嚴禁第一線私下承諾退費或道歉</strong>——工讀生、年輕導師被逼問時，統一回覆：「您的訴求我們已詳細紀錄，由於涉及公司規範，將交由班主任於三個工作日內統一向您回覆。」</p>
+    <p><strong>時空隔離</strong>——家長在大廳大聲喧嘩時，溫和但堅定請其移步獨立會議室，避免恐慌蔓延，同時全程錄音錄影。</p>
+    <p>當事人立即填寫內部異常事件通報單（人、事、時、地、物），管理階層收到後統一對外口徑。</p>
+  </div>
+
+  <div class="step-item">
+    <div class="step-num">STEP 3　·　法律宣示</div>
+    <h3>存證信函／律師函</h3>
+    <p>當溝通無效或家長開始勒索（如「不退全額就去檢舉到你們關門」、網路散佈不實謠言），<strong>果斷中斷無意義爭論</strong>，依情節嚴重程度選用對應級別的郵局存證信函或委請律師發送律師函。</p>
+    <p>寄發信函核心目的<strong>不是立即興訟</strong>，而是展現機構具備法律防禦能力，對補教蟑螂產生心理震懾；同時若日後步入法庭，亦是向法官證明「已盡告知義務」與「積極處理態度」的關鍵書面證據。</p>
+    <p style="margin-top: 10px;">→ 5 種範本詳見本頁第 <a href="#ch5">5 章律師函範本入口</a>。</p>
+  </div>
+
+  <div class="step-item">
+    <div class="step-num">STEP 4　·　公權力介入</div>
+    <h3>報警／刑事提告</h3>
+    <p><strong>家長滯留咆哮、阻礙營運且拒絕離開</strong>——立即撥 110，主張依《社會秩序維護法》<code>§68(2)</code>「藉端滋擾公司行號」要求警方勸阻或裁罰。警方到場紀錄（報案三聯單或工作紀錄簿）即為極佳客觀證據。</p>
+    <p><strong>家長索取無法律依據之鉅額金錢或揚言危害員工身體</strong>——備妥步驟 1 蒐集的錄音影像，前往轄區分局或地檢署按鈴申告：刑法 <code>§305</code> 恐嚇危害安全罪 / <code>§346</code> 恐嚇取財罪。</p>
+    <p><strong>網路惡意留言、肉搜公審</strong>——提告刑法 <code>§310</code> 加重誹謗罪。</p>
+  </div>
+
+  <div class="step-item">
+    <div class="step-num">STEP 5　·　危機公關</div>
+    <h3>媒體應對</h3>
+    <p>家長極易將糾紛轉「爆料公社」或新聞媒體。<strong>事件曝光後 4-8 小時黃金時間內必發官方聲明</strong>。</p>
+    <p><strong>絕不輕易認錯道歉</strong>——事實未經第三方釐清前，輕易道歉會被解讀為「承認所有不實指控」。</p>
+    <p>聲明稿三句話：(1)「本機構歷來皆依法規辦理」(2)「相關影像與事證已全數交由警方處理」(3)「基於保護未成年學生隱私與個資法規範，本機構不便於網路公開爭議細節」。末段宣示：「針對網路上未經查證之不實指控與惡意中傷，本班已委請法律顧問進行全面蒐證，將保留一切民刑事法律追訴權。」</p>
+  </div>
+</section>
+
+<section class="chapter" id="ch2">
+  <div class="chapter-header">
+    <div class="chapter-num">2</div>
+    <div class="chapter-title">5 大爭議類型對照</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="dispute-card lv-yellow">
+    <span class="dispute-tag">警示等級　·　黃</span>
+    <h3>類型 ①　超額退費要脅</h3>
+    <dl class="dispute-grid">
+      <dt>典型情境</dt><dd>學生已上課逾法定期限，家長強硬要求全額退費並於櫃檯引發爭執。</dd>
+      <dt>法源依據</dt><dd><strong>各縣市《短期補習班設立及管理自治條例》退費基準</strong>（如桃園市退費條例）+ 報名表約定。</dd>
+      <dt>應對重點</dt><dd>依法精算退費金額後函告，請對方逕向當地教育局或消費者保護官申訴，業者全面配合主管機關調查程序。</dd>
+      <dt>對應範本</dt><dd>溫和嚴正聲明等級 → 第 5 章範本一</dd>
+    </dl>
+  </div>
+
+  <div class="dispute-card lv-orange">
+    <span class="dispute-tag">警示等級　·　橘</span>
+    <h3>類型 ②　網路公審與惡意負評</h3>
+    <dl class="dispute-grid">
+      <dt>典型情境</dt><dd>家長在 Google Maps 評論／Facebook 社團留下誇大不實、攻擊性與貶損商譽的言論。</dd>
+      <dt>法源依據</dt><dd>刑法 <code>§310 II</code> 加重誹謗罪（2 年以下有期徒刑或 3 萬元以下罰金）+ 民法 <code>§195</code> 非財產上損害賠償與名譽回復處分。</dd>
+      <dt>應對重點</dt><dd>函告 3 日內撤除不實文章；法務部門將相關網頁內容完整截圖並予以公證保全，逾期未移除即提起民刑事訴訟。</dd>
+      <dt>對應範本</dt><dd>妨害名譽警告等級 → 第 5 章範本二</dd>
+    </dl>
+  </div>
+
+  <div class="dispute-card lv-orange">
+    <span class="dispute-tag">警示等級　·　橘</span>
+    <h3>類型 ③　連環客訴與行政滋擾</h3>
+    <dl class="dispute-grid">
+      <dt>典型情境</dt><dd>家長不斷以惡劣語氣致電辱罵客服，並屢次向 1999／消防局／建管處／教育局做與事實不符的匿名檢舉。</dd>
+      <dt>法源依據</dt><dd>社會秩序維護法 <code>§68(2)</code> 藉端滋擾公司行號（3 日以下拘留或 1.2 萬元以下罰鍰）+ 民法 <code>§184 I</code> 後段背於善良風俗加損害侵權行為。</dd>
+      <dt>應對重點</dt><dd>函告即刻停止滋擾；本班已彙整電話錄音與各主管機關稽查紀錄；若雙方尚有未解消費爭議，應循法定程序理性處理。</dd>
+      <dt>對應範本</dt><dd>社維法與侵權警告等級 → 第 5 章範本三</dd>
+    </dl>
+  </div>
+
+  <div class="dispute-card lv-red">
+    <span class="dispute-tag">警示等級　·　紅</span>
+    <h3>類型 ④　補教蟑螂式勒索</h3>
+    <dl class="dispute-grid">
+      <dt>典型情境</dt><dd>家長以輕微疏失或自製爭端要脅鉅額賠償，否則揚言找黑道處理或讓補習班關門。</dd>
+      <dt>法源依據</dt><dd>刑法 <code>§346 I</code> 恐嚇取財罪（6 月以上 5 年以下有期徒刑）+ <code>§305</code> 恐嚇危害安全罪。</dd>
+      <dt>應對重點</dt><dd>對方當日於本班場域內所有言行已全程錄音錄影存證；雙方補教服務契約即因對方重大違約而告終止；證據移交警察機關及地檢署偵辦。<strong>談判時引導對方明確說出「給錢就不檢舉」的對價關係並錄音 = 致命呈堂證供。</strong></dd>
+      <dt>對應範本</dt><dd>恐嚇取財最後通牒等級 → 第 5 章範本四</dd>
+    </dl>
+  </div>
+
+  <div class="dispute-card lv-dark">
+    <span class="dispute-tag">警示等級　·　暗</span>
+    <h3>類型 ⑤　同業惡意安插與竊取機密</h3>
+    <dl class="dispute-grid">
+      <dt>典型情境</dt><dd>家長實為同業派來報名之暗樁，目的在竊取獨家講義或在群組煽動學生轉班。</dd>
+      <dt>法源依據</dt><dd>著作權法 <code>§91</code> 非法重製罪 + 營業秘密法 <code>§13-1</code> + 公平交易法 <code>§24</code>、<code>§25</code> 顯失公平之競爭行為 + 雙方契約保密條款。</dd>
+      <dt>應對重點</dt><dd>終止與該家長子弟之補習契約，禁止再進入本班場域；限對方 3 日內銷毀所有非法取得之紙本與數位教材並簽具切結書；向公平交易委員會提出檢舉。</dd>
+      <dt>對應範本</dt><dd>營業秘密與違約警告等級 → 第 5 章範本五</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="chapter" id="ch3">
+  <div class="chapter-header">
+    <div class="chapter-num">3</div>
+    <div class="chapter-title">法律邊界 FAQ：常見迷思釐清</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <div class="faq-item">
+    <div class="faq-q">業界常傳「社維法 §107」可以反制家長，這條真的存在嗎？</div>
+    <div class="faq-a">
+      <strong>不存在。</strong>現行《社會秩序維護法》條文總共僅至第 94 條為止，並無第 107 條。此誤解可能源自民國 107 年警察特考相關考題在網路流傳時被張冠李戴。家長「非暴力但極度煩人的滋擾行為」（如賴在大廳不走、高聲咆哮、阻礙其他學生進出）應適用 <code>§68(2)</code>「藉端滋擾住戶、工廠、公司行號、公共場所」（3 日以下拘留或 1.2 萬元以下罰鍰）。
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">恐嚇危害安全罪（§305）和恐嚇取財罪（§346）怎麼分？</div>
+    <div class="faq-a">
+      <code>§305</code>「我要找黑道砸店」「我知道你下班走哪條路」——加害生命、身體、自由、名譽、財產的言語只要客觀上足以使人心生畏怖即成立。<code>§346</code> 須同時具備「不法所有之意圖」+「使人交付財物」。實務上最棘手的是家長威脅「給錢就不檢舉」——這種以合法外衣（檢舉權）包裝非法勒索（鉅額賠償金）的行為仍構成 §346（最高法院判例意旨）。<strong>業者談判時引導對方明確說出對價關係並錄音 = 致命證據。</strong>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">家長在網路公審，我反擊揭露家長資訊會不會觸犯個資法 §41？</div>
+    <div class="faq-a">
+      <strong>有反擊空間，但須在「辯護與澄清」必要範圍內。</strong>依臺灣高等法院 112 年度上訴字第 2311 號判決指標性見解，若家長主動在網路發動公審，該事件已成公眾關注焦點；若補習班<strong>適度引用該家長「自行於臉書或社群平台公開」的資訊</strong>，法院認為家長對自行公開的資訊已不具「隱私之合理期待」；補習班揭露目的是「捍衛商譽」而非「損害他人利益」之真實惡意，客觀與主觀要件均不符，不構成個資法 §41 刑事責任。
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">我自己跟家長對話時偷偷錄音，會不會違反刑法 §315-1 妨害秘密？</div>
+    <div class="faq-a">
+      <strong>原則上不會。</strong>依台灣司法實務見解，若錄音者本身為對話一方（您本人參與對話），且目的為保護自身合法權益、保全證據，並非出於不法意圖，<strong>不構成 §315-1 妨害秘密罪</strong>。預感家長來意不善時，員工可大方或在口袋內開啟手機錄音；此常是日後反制「補教蟑螂」恐嚇取財最核心的防線。
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">家長在 Google Map 給 1 星負評就是誹謗嗎？</div>
+    <div class="faq-a">
+      <strong>不全是。</strong>單純評分或基於事實的負面評論屬言論自由的合理評論範圍。但若家長除陳述事實外，<strong>加入「誇大不實的情緒性描述」</strong>（如「收費是外面的 10 倍」「老師完全不負責任都在玩手機」等與事實不符且未經查證），足以誤導他人並貶損商家社會評價，<strong>即超越合理評論範圍構成刑法 §310 II 加重誹謗罪</strong>（臺灣高雄地方法院 112 年度訴字第 4567 號判決意旨）。
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="ch4">
+  <div class="chapter-header">
+    <div class="chapter-num">4</div>
+    <div class="chapter-title">時效警示：別錯過告訴期</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <table class="deadline-table">
+    <thead>
+      <tr>
+        <th style="width: 32%;">行動類別</th>
+        <th style="width: 22%;">法定期限</th>
+        <th>起算點與說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>誹謗罪告訴（§310）</strong></td>
+        <td class="deadline-tight">6 個月</td>
+        <td>自知悉犯人之時起算（刑訴 §237 I）。網路公審錯過此期限 = 喪失刑事告訴權。</td>
+      </tr>
+      <tr>
+        <td><strong>妨害名譽損害賠償</strong></td>
+        <td>2 年 / 10 年</td>
+        <td>民法 §197：自知有損害及賠償義務人時起 2 年，自侵權行為時起 10 年。</td>
+      </tr>
+      <tr>
+        <td>恐嚇罪告訴（§305／§346）</td>
+        <td>非告訴乃論</td>
+        <td>檢察官得依職權追訴，無 6 個月限制。但證據保全仍宜越早越好。</td>
+      </tr>
+      <tr>
+        <td><strong>社維法案件</strong></td>
+        <td class="deadline-tight">2 個月</td>
+        <td>社會秩序維護法 §31：「自違反本法行為成立之日起，至警察機關通知到場之日止，逾 2 個月者，警察機關不得訊問處罰。」現場立即報警最有效。</td>
+      </tr>
+      <tr>
+        <td>侵權行為損害賠償（§184）</td>
+        <td>2 年 / 10 年</td>
+        <td>同民法 §197 規定。連環檢舉案件可主張侵權併計累計損害。</td>
+      </tr>
+      <tr>
+        <td>著作權／營業秘密刑事告訴</td>
+        <td class="deadline-tight">6 個月</td>
+        <td>著作權法 §91 屬告訴乃論，自知悉侵權人時起 6 個月內提告。同業安插型案件常因蒐證時間長而錯過。</td>
+      </tr>
+      <tr>
+        <td>消保官調處／教育局申訴</td>
+        <td>無嚴格期限</td>
+        <td>但業者收到主管機關通知後，<strong>函覆／陳述意見期限通常為 7 至 14 日</strong>，逾期可能直接被裁罰。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 13.5px; color: var(--color-text-muted); margin-top: 12px;">※ 以上為一般原則性說明，實際個案請以當時法令與專業律師意見為準。</p>
+</section>
+
+<section class="chapter" id="ch5">
+  <div class="chapter-header">
+    <div class="chapter-num">5</div>
+    <div class="chapter-title">律師函／存證信函範本入口</div>
+  </div>
+  <div class="chapter-divider"></div>
+
+  <p style="margin-bottom: 8px; color: var(--color-text-muted); font-size: 14.5px;">5 種對應補教業常見爭議的律師函／存證信函範本——線上填表 1-2 分鐘自動產生 docx：</p>
+  <p style="margin-bottom: 16px; color: var(--color-text-muted); font-size: 13px;">※ 範本貼合 A6 深度研究報告原文，含勞基 §9-1、公交 §21/§25、民 §127(7) 等法源引用；標楷體 14pt 標準書狀格式。</p>
+
+  <div class="template-grid">
+    <a class="template-card" href="./attorney-letter-form.html?type=overdue">
+      <div class="tpl-tag">類型 ①　·　催繳</div>
+      <h4>家長積欠補習費</h4>
+      <p>催繳並終止服務契約。引民 §127(7) 兩年時效中斷 + §229/§233 遲延利息。</p>
+    </a>
+    <a class="template-card" href="./attorney-letter-form.html?type=defame">
+      <div class="tpl-tag">類型 ②　·　誹謗</div>
+      <h4>不實爆料／網路誹謗</h4>
+      <p>妨害名譽警告等級。引刑 §310 II + 民 §195，限 24 小時內撤除。</p>
+    </a>
+    <a class="template-card" href="./attorney-letter-form.html?type=refund">
+      <div class="tpl-tag">類型 ③　·　退費終結</div>
+      <h4>退費爭議終結與免責</h4>
+      <p>已依縣市自治條例精算並匯款，宣告契約終止、互不相欠。</p>
+    </a>
+    <a class="template-card" href="./attorney-letter-form.html?type=noncompete">
+      <div class="tpl-tag">類型 ④　·　競業</div>
+      <h4>教師離職競業違反</h4>
+      <p>引勞基 §9-1（最長 2 年）+ 違約金 + 民訴假處分。</p>
+    </a>
+    <a class="template-card" href="./attorney-letter-form.html?type=poaching">
+      <div class="tpl-tag">類型 ⑤　·　挖角</div>
+      <h4>同業惡意挖角／搶生</h4>
+      <p>引公交 §21 不實廣告 + §25 不公平競爭（最高罰 2,500 萬）。</p>
+    </a>
+  </div>
+</section>
+
+<div class="crosslink">
+  <div class="crosslink-title">相關工具</div>
+  <ul class="crosslink-list">
+    <li><a href="./privacy-plan.html">個資維護企劃書產生器</a></li>
+    <li><a href="./refund-calc.html">退費試算器</a></li>
+    <li><a href="./labor-check.html">勞檢應變 SOP</a></li>
+    <li><a href="./cross-check.html">跳查照中心</a></li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+  <span class="disclaimer-title">⚠️ 法律免責聲明</span>
+  本工具所提供之資訊（含 SOP、對照表、FAQ、時效表、範本入口）係綜合公開法規、司法實務見解與深度研究報告整理之<strong>一般性參考</strong>，<strong>不構成個案法律意見</strong>。個案爭議涉及證據評價、訴訟策略與當事人權益重大，請務必諮詢具備執業資格之律師。各縣市自治條例（如桃園市短期補習班設立及管理自治條例）隨時可能修正，本頁所引法條與判決字號請以查詢時最新版本為準。
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <div>遇到爭議？這裡告訴你下一步要做什麼。</div>
+  <div class="footer-version">v1.0 ·  2026-05　·　乙降階純查詢版（不蒐集個資）</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補教業新進員工 30 分鐘必讀（雙版）——員工版（8 大情境單元 + 7 大緊急 SOP + 法規遵循承諾書）+ 經營者版（員工會踩的 8 個雷 × 三層分析 + 員工守則一頁紙 + 主管內訓檢核表）。">
+<title>新進員工 30 分鐘必讀（雙版）｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f; --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
+  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
+  --color-bg: #fafafa; --color-bg-card: #ffffff;
+  --color-text: #1f2937; --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--color-primary); }
+.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
+.navbar-inner { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 16px; letter-spacing: 0.02em; text-decoration: none; }
+.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
+.nav-back { font-size: 14px; color: var(--color-text-muted); text-decoration: none; }
+.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 64px 24px 56px; text-align: center; }
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); padding: 6px 18px; border-radius: 999px; font-size: 13px; letter-spacing: 0.15em; margin-bottom: 20px; font-weight: 500; }
+.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.35; margin-bottom: 16px; letter-spacing: 0.02em; }
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 680px; margin: 0 auto; }
+
+main { max-width: 980px; margin: 0 auto; padding: 48px 24px 64px; }
+
+.dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 56px; }
+@media (max-width: 760px) { .dual-grid { grid-template-columns: 1fr; } }
+.version-card { background: white; border: 1px solid var(--color-border); border-radius: 14px; padding: 32px 28px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; }
+.version-card .ver-tag { font-family: var(--font-serif); font-size: 12px; letter-spacing: 0.18em; font-weight: 700; padding: 4px 12px; border-radius: 4px; display: inline-block; margin-bottom: 14px; align-self: flex-start; }
+.version-card.employee .ver-tag { background: #dbeafe; color: #1e40af; }
+.version-card.owner .ver-tag { background: #fef3c7; color: #92400e; }
+.version-card h2 { font-family: var(--font-serif); font-size: 24px; color: var(--color-primary); font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
+.version-card p { font-size: 14.5px; line-height: 1.85; color: var(--color-text); margin-bottom: 16px; }
+.version-card ul { margin: 0 0 24px 18px; font-size: 14px; line-height: 1.85; color: var(--color-text); }
+.version-card ul li { margin-bottom: 4px; }
+.version-card .download-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--color-primary); color: white; padding: 14px 22px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; margin-top: auto; transition: all 0.15s; }
+.version-card .download-btn:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.rays-section { margin: 56px 0; }
+.rays-title { font-family: var(--font-serif); font-size: 22px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; }
+.rays-sub { font-size: 14px; color: var(--color-text-muted); margin-bottom: 24px; }
+.rays-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.ray-item { background: white; border: 1px solid var(--color-border); border-radius: 10px; padding: 18px 20px; box-shadow: var(--shadow-sm); }
+.ray-num { font-family: var(--font-serif); color: var(--color-warn); font-weight: 900; font-size: 13px; letter-spacing: 0.12em; margin-bottom: 6px; }
+.ray-item h4 { font-family: var(--font-serif); color: var(--color-primary); font-size: 15px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.ray-item p { font-size: 13px; line-height: 1.7; color: var(--color-text-muted); margin: 0; }
+
+.usage-section { background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 100%); border: 1px solid #bae6fd; border-radius: 14px; padding: 28px 32px; margin: 56px 0; }
+.usage-title { font-family: var(--font-serif); font-size: 18px; color: var(--color-primary); font-weight: 700; margin-bottom: 14px; }
+.usage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 600px) { .usage-grid { grid-template-columns: 1fr; } }
+.usage-grid h5 { font-family: var(--font-serif); font-size: 15px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; }
+.usage-grid p { font-size: 13.5px; line-height: 1.8; color: var(--color-text); }
+
+.crosslink { background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 100%); border: 1px solid #bae6fd; border-radius: 10px; padding: 22px 26px; margin: 28px 0; }
+.crosslink-title { font-family: var(--font-serif); color: var(--color-primary); font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+.crosslink-list { display: flex; gap: 14px; flex-wrap: wrap; margin: 0; list-style: none; padding: 0; }
+.crosslink-list a { display: inline-block; padding: 6px 14px; background: white; border: 1px solid var(--color-border); border-radius: 999px; font-size: 13.5px; text-decoration: none; color: var(--color-primary); }
+.crosslink-list a:hover { background: var(--color-primary); color: white; }
+
+.disclaimer { background: #fef9e7; border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; margin: 56px 0 0; font-size: 14.5px; line-height: 1.8; color: #715a13; }
+.disclaimer strong { color: #5e4a0e; }
+.disclaimer-title { font-weight: 700; display: block; margin-bottom: 8px; font-size: 15px; }
+
+footer { background: #1a1a1a; color: #9ca3af; padding: 36px 24px; text-align: center; font-size: 13px; line-height: 1.8; margin-top: 64px; }
+footer .footer-brand { color: white; font-family: var(--font-serif); font-size: 16px; margin-bottom: 6px; }
+footer .footer-version { margin-top: 8px; opacity: 0.55; font-size: 12px; letter-spacing: 0.08em; }
+
+@media (max-width: 720px) {
+  .subhero { padding: 48px 20px 44px; }
+  .subhero h1 { font-size: 26px; }
+  main { padding: 36px 16px 48px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第三梯隊　·　內訓教材</div>
+    <h1>新進員工 30 分鐘必讀<br><span class="accent">員工版 ＋ 經營者版</span></h1>
+    <p class="lead">補教業新進員工到職第一天必讀的法規遵循文件。員工版 30 分鐘讀完知道「不要做什麼」；經營者版告訴老闆「員工會踩的 8 個雷、會被罰多少、預防 SOP 怎麼寫」。兩版設計搭配，把 Z 世代員工的法規盲區轉化為堅實的雇主免責舉證基礎。</p>
+  </div>
+</header>
+
+<main>
+
+<div class="dual-grid">
+  <div class="version-card employee">
+    <span class="ver-tag">員工版</span>
+    <h2>新進員工 30 分鐘必讀</h2>
+    <p>到職第一天交給員工自行閱讀並完成承諾書簽署。從實名制紅線到性平界線、從個資鐵律到 8 大禁忌——以情境開場代替法條堆疊，讓 Z 世代員工 30 分鐘內建立法律敏感度。</p>
+    <ul>
+      <li>8 大情境單元（依 B1 DR 設計）</li>
+      <li>7 大緊急狀況通報 SOP</li>
+      <li>每日營運 8 大禁忌總結</li>
+      <li>末頁附法規遵循與保密承諾書（員工親筆簽署）</li>
+      <li>標楷體 13pt 標準書狀格式，A4 列印約 12-15 頁</li>
+    </ul>
+    <a class="download-btn" href="./templates/onboarding-employee-template.docx" download>
+      <span>📥</span><span>下載員工版 docx</span>
+    </a>
+  </div>
+
+  <div class="version-card owner">
+    <span class="ver-tag">經營者版</span>
+    <h2>8 大雷區雇主防禦手冊</h2>
+    <p>給負責人/班主任。每個雷區三層分析：(1) 員工常犯錯誤 (2) 雇主面臨罰款／處分 (3) 預防 SOP（內訓 / 文件 / 監督機制）。末頁附員工守則一頁紙與主管季度檢核表。</p>
+    <ul>
+      <li>8 大雷區 × 三層分析（員工錯/雇主罰/預防 SOP）</li>
+      <li>員工守則一頁紙（可印成 A3 海報貼板報）</li>
+      <li>主管內訓檢核表（每季 20 項勾選）</li>
+      <li>含預防 SOP 約 40 項可直接抄入內訓教材</li>
+      <li>標楷體 13pt 標準書狀格式，A4 列印約 15-18 頁</li>
+    </ul>
+    <a class="download-btn" href="./templates/onboarding-owner-template.docx" download>
+      <span>📥</span><span>下載經營者版 docx</span>
+    </a>
+  </div>
+</div>
+
+<section class="rays-section">
+  <h3 class="rays-title">8 大雷區一覽</h3>
+  <p class="rays-sub">員工版與經營者版共同涵蓋的 8 大雷區，對應 10 部法規（補教法／兒少法／性平法／個資法／著作權法／勞基法／食安法／消防法／傳染病防治法／教師法）：</p>
+
+  <div class="rays-grid">
+    <div class="ray-item">
+      <div class="ray-num">雷 1　·　實名制</div>
+      <h4>使用假名招生／不適任系統洩密</h4>
+      <p>補習班負責人最高罰 25 萬；停止招生甚至撤照。員工到職須簽實名制承諾書。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 2　·　體罰</div>
+      <h4>體罰／知情不報</h4>
+      <p>個人罰 6 萬至 30 萬元並公告姓名；補習班受糾正、停招、撤照。家長書面授權不阻卻違法。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 3　·　性平</div>
+      <h4>性平／與學生過界</h4>
+      <p>性平法違反通報義務罰 5 萬至 25 萬；性剝削屬刑事重罪。即使員工 5 人也要有性騷擾申訴管道。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 4　·　個資</div>
+      <h4>個資洩漏／營業秘密外流</h4>
+      <p>民事鉅額損害賠償；補習班可對員工提刑事背信／妨害秘密罪告訴。教育局稽查需備「個資維護計畫」。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 5　·　著作權</div>
+      <h4>影印教材／側錄課程</h4>
+      <p>著作權法 §91 重製罪 5 年以下徒刑或 75 萬罰金。曾有 9 出版社聯合告補習班侵權 180 億元案例。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 6　·　場域</div>
+      <h4>食安／消防／場域違規</h4>
+      <p>不得設置烹煮場所、不得提供睡袋、不得辦山域水域活動。逃生通道阻塞為消防稽查重點。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 7　·　倫理</div>
+      <h4>私下家教／代收費／隱匿傳染病</h4>
+      <p>違反忠誠義務可解雇求償。代收費衍生業務侵占罪。隱匿傳染病造成群聚感染遭衛生局裁罰。</p>
+    </div>
+    <div class="ray-item">
+      <div class="ray-num">雷 8　·　日常綜合</div>
+      <h4>每日營運禁忌綜合違反</h4>
+      <p>用個人 IG 發學生成績單；加學生家長私人 LINE；對學生開越界玩笑——擴大為公關危機。</p>
+    </div>
+  </div>
+</section>
+
+<div class="usage-section">
+  <h3 class="usage-title">📋 兩版使用情境</h3>
+  <div class="usage-grid">
+    <div>
+      <h5>員工版用法</h5>
+      <p>新員工到職第一天交付，要求 30 分鐘內讀完並回答末頁 6 大承諾條款。簽署後實體歸檔 5 年——作為勞檢或教育局稽查時，雇主已善盡教育訓練義務的核心證據。</p>
+    </div>
+    <div>
+      <h5>經營者版用法</h5>
+      <p>負責人/班主任自讀，作為制定內訓教材與防禦 SOP 的藍本。員工守則一頁紙印 A3 海報貼於辦公室高頻接觸區；主管檢核表每季召開內訓會議逐項勾選。</p>
+    </div>
+  </div>
+</div>
+
+<div class="crosslink">
+  <div class="crosslink-title">相關工具</div>
+  <ul class="crosslink-list">
+    <li><a href="./privacy-plan.html">個資維護企劃書產生器</a></li>
+    <li><a href="./labor-check.html">勞檢應變 SOP</a></li>
+    <li><a href="./dragon-parent.html">恐龍家長／補教蟑螂應對指南</a></li>
+    <li><a href="./attorney-letter-form.html">律師函／存證信函產生器</a></li>
+  </ul>
+</div>
+
+<div class="disclaimer">
+  <span class="disclaimer-title">⚠️ 法律免責聲明</span>
+  本工具所提供之兩版內訓教材（員工版與經營者版）係依據 B1 深度研究報告整理之<strong>一般性參考</strong>，<strong>不構成個案法律意見</strong>。實際法規可能因主管機關發布令釋或地方自治條例調整而異動，請於每年度教育訓練前回頭核對最新版本。涉及個案紛爭時，請務必諮詢具備執業資格之律師。
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <div>新進員工 30 分鐘必讀 v1.0（員工版 + 經營者版）</div>
+  <div class="footer-version">2026-05　·　依 B1 深度研究報告 8 大情境單元 + 7 大緊急 SOP 整理</div>
+</footer>
+
+</body>
+</html>
