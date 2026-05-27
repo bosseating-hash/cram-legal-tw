@@ -9,103 +9,78 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/form-helpers.css">
 
 <style>
-:root {
-  --color-primary: #1e3a5f; --color-primary-dark: #142840;
-  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
-  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
-  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
-  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
-  --color-test: #92400e; --color-test-bg: #fef3c7;
-  --color-bg: #fafafa; --color-bg-card: #ffffff;
-  --color-text: #1f2937; --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
-a { color: var(--color-primary); }
-
-.test-banner { background: var(--color-test-bg); color: var(--color-test); border-bottom: 1px solid #f1d77a; padding: 8px 24px; text-align: center; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; }
-.test-banner strong { font-weight: 700; }
-
-.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
-.navbar-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
-.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
-.nav-links { display: flex; gap: 20px; font-size: 14px; color: var(--color-text-muted); }
-.nav-links a { text-decoration: none; color: inherit; transition: color 0.15s; }
-.nav-links a:hover { color: var(--color-primary); }
-
-.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 56px 24px 48px; text-align: center; }
-.subhero-inner { max-width: 820px; margin: 0 auto; }
-.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 999px; font-size: 12.5px; letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500; }
-.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em; }
-.subhero h1 .accent { color: var(--color-accent-light); }
-.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 640px; margin: 0 auto; }
-
-.steps { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
-.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
-.step { background: white; border-radius: 10px; padding: 22px 20px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
-.step-num { font-family: var(--font-serif); font-size: 12px; letter-spacing: 0.2em; color: var(--color-accent); font-weight: 700; margin-bottom: 8px; }
-.step h3 { font-family: var(--font-serif); font-size: 17px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; }
-.step p { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.7; }
-
-.form-section { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
-.form-title { font-family: var(--font-serif); font-size: 24px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; letter-spacing: 0.01em; }
-.form-sub { font-size: 14px; color: var(--color-text-muted); margin-bottom: 28px; }
-.form-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px 32px; box-shadow: var(--shadow-md); }
-.form-group { margin-bottom: 22px; }
-.form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.form-group-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
-@media (max-width: 600px) { .form-group-row, .form-group-row3 { grid-template-columns: 1fr; } }
-.form-label { display: block; font-size: 13.5px; font-weight: 500; color: var(--color-text); margin-bottom: 6px; letter-spacing: 0.02em; }
-.form-label .required { color: var(--color-warn); margin-left: 3px; }
-.form-label .hint { font-size: 12px; color: var(--color-text-muted); font-weight: 400; margin-left: 6px; }
-.form-input, .form-select, .form-textarea { width: 100%; padding: 10px 14px; font-size: 14.5px; font-family: var(--font-sans); color: var(--color-text); background: white; border: 1px solid var(--color-border); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; }
-.form-textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
-.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12); }
-.form-divider { height: 1px; background: var(--color-border); margin: 28px 0; }
-.form-section-label { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
-
-.law-callout { background: #fefaef; border: 1px solid #f1d77a; border-left: 4px solid var(--color-accent); border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 13.5px; line-height: 1.85; color: #6b4f11; }
-.law-callout strong { color: var(--color-accent); font-weight: 700; }
-
-.download-section { max-width: 880px; margin: 0 auto; padding: 32px 24px 0; }
-.download-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
-.download-title { font-family: var(--font-serif); font-size: 19px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; }
-.download-sub { font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 22px; }
-.download-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.download-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; background: var(--color-primary); color: white; border: none; border-radius: 10px; padding: 18px 22px; font-family: var(--font-sans); font-size: 14.5px; font-weight: 500; cursor: pointer; text-align: left; transition: background 0.15s, transform 0.15s, box-shadow 0.15s; box-shadow: var(--shadow-sm); }
-.download-btn:hover:not(:disabled) { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.download-btn .btn-name { font-size: 15px; font-weight: 700; font-family: var(--font-serif); letter-spacing: 0.02em; }
-.download-btn .btn-desc { font-size: 12px; opacity: 0.85; letter-spacing: 0.04em; }
-
-.status-msg { margin-top: 18px; padding: 12px 16px; border-radius: 8px; font-size: 13.5px; display: none; }
-.status-msg.show { display: block; }
-.status-msg.ok { background: var(--color-ok-bg); color: var(--color-ok); border: 1px solid #bbf7d0; }
-.status-msg.err { background: var(--color-warn-bg); color: var(--color-warn); border: 1px solid #fecaca; }
-
-.disclaimer { max-width: 820px; margin: 40px auto 0; padding: 0 24px; }
-.disclaimer-inner { background: var(--color-test-bg); border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.85; color: var(--color-test); }
-.disclaimer-inner strong { font-weight: 700; }
-
-.footer { margin-top: 64px; background: #1a1a1a; color: #999; padding: 36px 24px 32px; text-align: center; font-size: 13px; line-height: 1.85; }
-.footer a { color: #ddd; text-decoration: none; }
-.footer .footer-row { max-width: 720px; margin: 0 auto; }
-.footer .footer-meta { margin-top: 14px; font-size: 12px; opacity: 0.65; letter-spacing: 0.05em; }
+:root { --color-primary:#1e3a5f; --color-primary-dark:#142840; --color-primary-light:#2c4f7c; --color-secondary:#1b3a3a; --color-accent:#b08d3e; --color-accent-light:#d4b25a; --color-warn:#b91c1c; --color-warn-bg:#fef2f2; --color-ok:#15803d; --color-ok-bg:#f0fdf4; --color-test:#92400e; --color-test-bg:#fef3c7; --color-bg:#fafafa; --color-bg-card:#fff; --color-text:#1f2937; --color-text-muted:#6b7280; --color-border:#e5e7eb; --font-sans:'Noto Sans TC',-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif; --font-serif:'Noto Serif TC','Songti TC','PMingLiU',serif; --shadow-sm:0 1px 2px rgba(0,0,0,.04); --shadow-md:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04); }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);font-size:16px;line-height:1.85;color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary)}
+.test-banner{background:var(--color-test-bg);color:var(--color-test);border-bottom:1px solid #f1d77a;padding:8px 24px;text-align:center;font-size:13px;font-weight:500;letter-spacing:.05em}
+.test-banner strong{font-weight:700}
+.navbar{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);z-index:100;padding:14px 24px}
+.navbar-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--font-serif);font-weight:700;color:var(--color-primary);font-size:17px;letter-spacing:.02em;text-decoration:none}
+.brand .brand-mark{display:inline-block;width:6px;height:18px;background:var(--color-accent);margin-right:10px;vertical-align:-3px}
+.nav-links{display:flex;gap:20px;font-size:14px;color:var(--color-text-muted)}
+.nav-links a{text-decoration:none;color:inherit;transition:color .15s}
+.nav-links a:hover{color:var(--color-primary)}
+.subhero{background:linear-gradient(135deg,var(--color-primary-dark) 0,var(--color-primary) 50%,var(--color-secondary) 100%);color:#fff;padding:56px 24px 48px;text-align:center}
+.subhero-inner{max-width:820px;margin:0 auto}
+.subhero-tag{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 16px;border-radius:999px;font-size:12.5px;letter-spacing:.15em;margin-bottom:18px;font-weight:500}
+.subhero h1{font-family:var(--font-serif);font-size:36px;font-weight:900;line-height:1.4;margin-bottom:14px;letter-spacing:.02em}
+.subhero h1 .accent{color:var(--color-accent-light)}
+.subhero .lead{font-size:16px;line-height:1.85;opacity:.92;max-width:640px;margin:0 auto}
+.steps{max-width:880px;margin:0 auto;padding:48px 24px 0}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.step{background:#fff;border-radius:10px;padding:22px 20px;border:1px solid var(--color-border);box-shadow:var(--shadow-sm)}
+.step-num{font-family:var(--font-serif);font-size:12px;letter-spacing:.2em;color:var(--color-accent);font-weight:700;margin-bottom:8px}
+.step h3{font-family:var(--font-serif);font-size:17px;color:var(--color-primary);font-weight:700;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--color-text-muted);line-height:1.7}
+.form-section{max-width:880px;margin:0 auto;padding:48px 24px 0}
+.form-title{font-family:var(--font-serif);font-size:24px;color:var(--color-primary);font-weight:700;margin-bottom:6px;letter-spacing:.01em}
+.form-sub{font-size:14px;color:var(--color-text-muted);margin-bottom:28px}
+.form-card{background:#fff;border:1px solid var(--color-border);border-radius:12px;padding:32px;box-shadow:var(--shadow-md)}
+.form-group{margin-bottom:22px}
+.form-group-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-group-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+@media (max-width:600px){.form-group-row,.form-group-row3{grid-template-columns:1fr}}
+.form-label{display:block;font-size:13.5px;font-weight:500;color:var(--color-text);margin-bottom:6px;letter-spacing:.02em}
+.form-label .required{color:var(--color-warn);margin-left:3px}
+.form-label .hint{font-size:12px;color:var(--color-text-muted);font-weight:400;margin-left:6px}
+.form-input,.form-select,.form-textarea{width:100%;padding:10px 14px;font-size:14.5px;font-family:var(--font-sans);color:var(--color-text);background:#fff;border:1px solid var(--color-border);border-radius:8px;transition:border-color .15s,box-shadow .15s}
+.form-textarea{resize:vertical;min-height:60px;line-height:1.7}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--color-accent);box-shadow:0 0 0 3px rgba(176,141,62,.12)}
+.form-divider{height:1px;background:var(--color-border);margin:28px 0}
+.form-section-label{font-family:var(--font-serif);font-size:16px;color:var(--color-primary);font-weight:700;margin-bottom:18px;padding-left:12px;border-left:3px solid var(--color-accent)}
+.law-callout{background:#fefaef;border:1px solid #f1d77a;border-left:4px solid var(--color-accent);border-radius:8px;padding:16px 20px;margin-bottom:24px;font-size:13.5px;line-height:1.85;color:#6b4f11}
+.law-callout strong{color:var(--color-accent);font-weight:700}
+.download-section{max-width:880px;margin:0 auto;padding:32px 24px 0}
+.download-card{background:#fff;border:1px solid var(--color-border);border-radius:12px;padding:32px;box-shadow:var(--shadow-md)}
+.download-title{font-family:var(--font-serif);font-size:19px;color:var(--color-primary);font-weight:700;margin-bottom:8px}
+.download-sub{font-size:13.5px;color:var(--color-text-muted);margin-bottom:22px}
+.download-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.download-btn{display:flex;flex-direction:column;align-items:flex-start;gap:8px;background:var(--color-primary);color:#fff;border:none;border-radius:10px;padding:18px 22px;font-family:var(--font-sans);font-size:14.5px;font-weight:500;cursor:pointer;text-align:left;transition:background .15s,transform .15s,box-shadow .15s;box-shadow:var(--shadow-sm)}
+.download-btn:hover:not(:disabled){background:var(--color-primary-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.download-btn .btn-name{font-size:15px;font-weight:700;font-family:var(--font-serif);letter-spacing:.02em}
+.download-btn .btn-desc{font-size:12px;opacity:.85;letter-spacing:.04em}
+.status-msg{margin-top:18px;padding:12px 16px;border-radius:8px;font-size:13.5px;display:none}
+.status-msg.show{display:block}
+.status-msg.ok{background:var(--color-ok-bg);color:var(--color-ok);border:1px solid #bbf7d0}
+.status-msg.err{background:var(--color-warn-bg);color:var(--color-warn);border:1px solid #fecaca}
+.disclaimer{max-width:820px;margin:40px auto 0;padding:0 24px}
+.disclaimer-inner{background:var(--color-test-bg);border:1px solid #f1d77a;border-radius:10px;padding:22px 26px;font-size:13.5px;line-height:1.85;color:var(--color-test)}
+.disclaimer-inner strong{font-weight:700}
+.footer{margin-top:64px;background:#1a1a1a;color:#999;padding:36px 24px 32px;text-align:center;font-size:13px;line-height:1.85}
+.footer a{color:#ddd;text-decoration:none}
+.footer .footer-row{max-width:720px;margin:0 auto}
+.footer .footer-meta{margin-top:14px;font-size:12px;opacity:.65;letter-spacing:.05em}
 </style>
 </head>
 <body>
 
-<div class="test-banner">
-  <strong>測試版 v0.1</strong>　·　純前端工具，資料不上傳　·　產出文件為律師審稿前 draft，使用前請與律師確認
-</div>
+<div class="test-banner"><strong>測試版 v0.2</strong>　·　純前端工具，資料不上傳　·　產出文件為律師審稿前 draft，使用前請與律師確認</div>
 
 <nav class="navbar">
   <div class="navbar-inner">
@@ -129,89 +104,101 @@ a { color: var(--color-primary); }
 
 <section class="steps">
   <div class="steps-grid">
-    <div class="step">
-      <div class="step-num">STEP 1</div>
-      <h3>填寫會議與出席人員</h3>
-      <p>機構資訊 + 屆次/日期/地點 + 主席/紀錄/勞方代表/資方代表。</p>
-    </div>
-    <div class="step">
-      <div class="step-num">STEP 2</div>
-      <h3>填寫變形工時決議資訊</h3>
-      <p>八週週期起始日 + 決議字號 + 同意票數 / 總票數。</p>
-    </div>
-    <div class="step">
-      <div class="step-num">STEP 3</div>
-      <h3>下載 docx + 簽到表附件</h3>
-      <p>會議紀錄 docx 下載後，請另製作出席簽到表（含勞方代表簽名）一併存底。</p>
-    </div>
+    <div class="step"><div class="step-num">STEP 1</div><h3>填寫會議與出席人員</h3><p>機構資訊 + 屆次/日期/地點 + 主席/紀錄/勞方代表/資方代表。</p></div>
+    <div class="step"><div class="step-num">STEP 2</div><h3>填寫變形工時決議資訊</h3><p>八週週期起始日 + 決議字號 + 同意票數 / 總票數。</p></div>
+    <div class="step"><div class="step-num">STEP 3</div><h3>下載 docx + 簽到表附件</h3><p>會議紀錄 docx 下載後，請另製作出席簽到表（含勞方代表簽名）一併存底。</p></div>
   </div>
 </section>
 
 <section class="form-section">
   <h2 class="form-title">資訊填寫</h2>
-  <p class="form-sub">標示 <span style="color:var(--color-warn);">*</span> 為必填欄位。所有資料僅在您的瀏覽器處理，不會上傳。</p>
+  <p class="form-sub">標示 <span style="color:var(--color-warn);">*</span> 為必填。<strong style="color:#86efac;">綠底</strong>=已填、<strong style="color:#fca5a5;">粉紅底</strong>=未填。資料僅在瀏覽器處理。</p>
 
   <div class="form-card">
 
     <div class="law-callout">
       <strong>§83 + 勞資會議實施辦法 三大要件</strong><br>
-      ① 至少每 3 月召開一次　② 勞方代表由全體員工選舉產生（資方不可指派 + 留存選舉公告計票紀錄）　③ 紀錄需有明確「案由 / 說明 / 決議」文字
+      ① 至少每 3 月召開一次　② 勞方代表由全體員工選舉產生（資方不可指派）　③ 紀錄需有明確「案由 / 說明 / 決議」文字
     </div>
 
     <div class="form-section-label">機構基本資訊</div>
 
     <div class="form-group">
       <label class="form-label" for="cram_name">補習班全名<span class="required">*</span></label>
-      <input type="text" id="cram_name" class="form-input" placeholder="例：私立優秀文理短期補習班" required>
+      <input type="text" id="cram_name" class="form-input" value="私立OO短期補習班" placeholder="（請改）" required>
     </div>
 
     <div class="form-group-row">
       <div class="form-group">
         <label class="form-label" for="license_no">立案字號<span class="required">*</span></label>
-        <input type="text" id="license_no" class="form-input" placeholder="例：桃教社字第○○○○○○○○○號" required>
+        <input type="text" id="license_no" class="form-input" value="桃教社字第OO號" placeholder="（請改）" required>
       </div>
       <div class="form-group">
         <label class="form-label" for="owner_name">代表人姓名<span class="required">*</span></label>
-        <input type="text" id="owner_name" class="form-input" placeholder="例：王大明" required>
+        <input type="text" id="owner_name" class="form-input" value="OOO" placeholder="（請改）" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="address">補習班地址<span class="required">*</span></label>
-      <input type="text" id="address" class="form-input" placeholder="例：桃園市中壢區中央西路○段○號○樓" required>
+      <label class="form-label">補習班地址<span class="required">*</span></label>
+      <div class="form-group-row" style="margin-bottom:10px;">
+        <select id="addr_city" class="form-select" required></select>
+        <select id="addr_district" class="form-select" required disabled></select>
+      </div>
+      <div class="form-group-row" style="margin-bottom:10px;">
+        <input type="text" id="addr_road" class="form-input" value="中央西路" placeholder="路/街/大道" required>
+        <select id="addr_section" class="form-select"><option value="">（無段）</option><option value="一段">一段</option><option value="二段" selected>二段</option><option value="三段">三段</option><option value="四段">四段</option><option value="五段">五段</option><option value="六段">六段</option><option value="七段">七段</option><option value="八段">八段</option><option value="九段">九段</option><option value="十段">十段</option></select>
+      </div>
+      <div class="form-group-row">
+        <input type="text" id="addr_number" class="form-input" value="123 號" placeholder="號碼" required>
+        <select id="addr_floor" class="form-select"><option value="">（整棟）</option><option value="B3">B3</option><option value="B2">B2</option><option value="B1">B1</option><option value="1 樓">1 樓</option><option value="2 樓">2 樓</option><option value="3 樓">3 樓</option><option value="4 樓">4 樓</option><option value="5 樓" selected>5 樓</option><option value="6 樓">6 樓</option><option value="7 樓">7 樓</option><option value="8 樓">8 樓</option><option value="9 樓">9 樓</option><option value="10 樓">10 樓</option><option value="11 樓">11 樓</option><option value="12 樓">12 樓</option><option value="13 樓">13 樓</option><option value="14 樓">14 樓</option><option value="15 樓">15 樓</option><option value="16 樓">16 樓</option><option value="17 樓">17 樓</option><option value="18 樓">18 樓</option><option value="19 樓">19 樓</option><option value="20 樓">20 樓</option></select>
+      </div>
     </div>
 
     <div class="form-divider"></div>
     <div class="form-section-label">會議資訊</div>
 
     <div class="form-group">
-      <label class="form-label" for="meeting_session">會議屆次<span class="required">*</span></label>
-      <input type="text" id="meeting_session" class="form-input" placeholder="例：第八屆第一次勞資會議" required>
+      <label class="form-label">會議屆次<span class="required">*</span></label>
+      <div class="form-group-row">
+        <select id="mtg_session" class="form-select" required></select>
+        <select id="mtg_no" class="form-select" required></select>
+      </div>
     </div>
 
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="meeting_date_year">召開年（民國）<span class="required">*</span></label>
-        <input type="number" id="meeting_date_year" class="form-input" placeholder="115" min="100" max="200" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="meeting_date_month">月<span class="required">*</span></label>
-        <input type="number" id="meeting_date_month" class="form-input" placeholder="1" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="meeting_date_day">日<span class="required">*</span></label>
-        <input type="number" id="meeting_date_day" class="form-input" placeholder="10" min="1" max="31" required>
+    <div class="form-group">
+      <label class="form-label">召開日期（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="meeting_date_year" class="form-select" required></select>
+        <select id="meeting_date_month" class="form-select" required></select>
+        <select id="meeting_date_day" class="form-select" required></select>
       </div>
     </div>
 
     <div class="form-group-row">
       <div class="form-group">
-        <label class="form-label" for="meeting_time">召開時間<span class="required">*</span></label>
-        <input type="text" id="meeting_time" class="form-input" placeholder="例：下午 7:00 至 8:30" required>
+        <label class="form-label" for="meeting_time_sel">召開時間<span class="required">*</span></label>
+        <select id="meeting_time_sel" class="form-select" required>
+          <option value="">請選擇</option>
+          <option value="下午 7:00 至 8:30">下午 7:00-8:30</option>
+          <option value="下午 6:30 至 8:00">下午 6:30-8:00</option>
+          <option value="下午 8:00 至 9:30">下午 8:00-9:30</option>
+          <option value="上午 9:00 至 10:30">上午 9:00-10:30</option>
+          <option value="上午 10:00 至 11:30">上午 10:00-11:30</option>
+          <option value="__other__">其他（自填）</option>
+        </select>
+        <input type="text" id="meeting_time_other" class="form-input" placeholder="請手動輸入..." style="display:none;margin-top:8px;">
       </div>
       <div class="form-group">
-        <label class="form-label" for="meeting_location">召開地點<span class="required">*</span></label>
-        <input type="text" id="meeting_location" class="form-input" placeholder="例：本補習班會議室" required>
+        <label class="form-label" for="meeting_location_sel">召開地點<span class="required">*</span></label>
+        <select id="meeting_location_sel" class="form-select" required>
+          <option value="">請選擇</option>
+          <option value="本補習班會議室">本補習班會議室</option>
+          <option value="本補習班教室">本補習班教室</option>
+          <option value="本補習班辦公室">本補習班辦公室</option>
+          <option value="__other__">其他（自填）</option>
+        </select>
+        <input type="text" id="meeting_location_other" class="form-input" placeholder="請手動輸入..." style="display:none;margin-top:8px;">
       </div>
     </div>
 
@@ -221,78 +208,80 @@ a { color: var(--color-primary); }
     <div class="form-group-row">
       <div class="form-group">
         <label class="form-label" for="chairperson">主席姓名<span class="required">*</span></label>
-        <input type="text" id="chairperson" class="form-input" placeholder="例：王大明" required>
+        <input type="text" id="chairperson" class="form-input" value="OOO" placeholder="（請改）" required>
       </div>
       <div class="form-group">
         <label class="form-label" for="recorder">紀錄姓名<span class="required">*</span></label>
-        <input type="text" id="recorder" class="form-input" placeholder="例：李小華" required>
+        <input type="text" id="recorder" class="form-input" value="OOO" placeholder="（請改）" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="employee_reps">勞方代表（多人以逗號分隔）<span class="required">*</span><span class="hint">須為全體勞工選舉產生</span></label>
-      <input type="text" id="employee_reps" class="form-input" placeholder="例：陳大同、張小華、林一明" required>
+      <label class="form-label" for="employee_reps">勞方代表（多人以、分隔）<span class="required">*</span><span class="hint">須為全體勞工選舉產生</span></label>
+      <input type="text" id="employee_reps" class="form-input" value="陳OO、張OO、林OO" placeholder="（請改）" required>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="employer_reps">資方代表（多人以逗號分隔）<span class="required">*</span></label>
-      <input type="text" id="employer_reps" class="form-input" placeholder="例：王大明、林小英" required>
+      <label class="form-label" for="employer_reps">資方代表（多人以、分隔）<span class="required">*</span></label>
+      <input type="text" id="employer_reps" class="form-input" value="王OO、林OO" placeholder="（請改）" required>
     </div>
 
     <div class="form-group">
       <label class="form-label" for="attendee_count">出席總人數<span class="required">*</span></label>
-      <input type="number" id="attendee_count" class="form-input" placeholder="例：6" min="1" required>
+      <select id="attendee_count" class="form-select" required></select>
     </div>
 
     <div class="form-divider"></div>
     <div class="form-section-label">變形工時決議資訊</div>
 
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="flex_cycle_start_year">變形工時起始年（民國）<span class="required">*</span></label>
-        <input type="number" id="flex_cycle_start_year" class="form-input" placeholder="115" min="100" max="200" required>
+    <div class="form-group">
+      <label class="form-label">變形工時起始日（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="flex_cycle_start_year" class="form-select" required></select>
+        <select id="flex_cycle_start_month" class="form-select" required></select>
+        <select id="flex_cycle_start_day" class="form-select" required></select>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="flex_cycle_start_month">月<span class="required">*</span></label>
-        <input type="number" id="flex_cycle_start_month" class="form-input" placeholder="1" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="flex_cycle_start_day">日<span class="required">*</span></label>
-        <input type="number" id="flex_cycle_start_day" class="form-input" placeholder="20" min="1" max="31" required>
+      <div class="date-shortcut-row">
+        <span>快速套用：</span>
+        <button type="button" class="copy-date-btn" data-src="meeting_date" data-tgt="flex_cycle_start">📋 同召開日</button>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="resolution_no">決議字號<span class="required">*</span><span class="hint">建議格式：機構代號（年）勞資字第○○號</span></label>
-      <input type="text" id="resolution_no" class="form-input" placeholder="例：優秀補（115）勞資字第 001 號" required>
+      <label class="form-label">決議字號</label>
+      <div class="form-group-row3">
+        <input type="text" id="res_prefix" class="form-input" value="OO補" placeholder="前綴">
+        <select id="res_year" class="form-select"></select>
+        <input type="text" id="res_no" class="form-input" value="001" placeholder="流水">
+      </div>
+      <p style="margin-top:6px;font-size:12px;color:var(--color-text-muted);">組合範例：OO補（115）勞資字第 001 號</p>
     </div>
 
     <div class="form-group-row">
       <div class="form-group">
         <label class="form-label" for="agree_count">同意票數<span class="required">*</span></label>
-        <input type="number" id="agree_count" class="form-input" placeholder="例：6" min="1" required>
+        <select id="agree_count" class="form-select" required></select>
       </div>
       <div class="form-group">
         <label class="form-label" for="total_vote">總出席表決人數<span class="required">*</span></label>
-        <input type="number" id="total_vote" class="form-input" placeholder="例：6" min="1" required>
+        <select id="total_vote" class="form-select" required></select>
       </div>
     </div>
 
     <div class="form-divider"></div>
     <div class="form-section-label">簽署日期</div>
 
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="sign_year">年（民國）<span class="required">*</span></label>
-        <input type="number" id="sign_year" class="form-input" placeholder="115" min="100" max="200" required>
+    <div class="form-group">
+      <label class="form-label">簽署日期（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="sign_year" class="form-select" required></select>
+        <select id="sign_month" class="form-select" required></select>
+        <select id="sign_day" class="form-select" required></select>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="sign_month">月<span class="required">*</span></label>
-        <input type="number" id="sign_month" class="form-input" placeholder="1" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="sign_day">日<span class="required">*</span></label>
-        <input type="number" id="sign_day" class="form-input" placeholder="10" min="1" max="31" required>
+      <div class="date-shortcut-row">
+        <span>快速套用：</span>
+        <button type="button" class="copy-date-btn" data-src="meeting_date" data-tgt="sign">📋 同召開日</button>
+        <button type="button" class="copy-date-btn" data-src="flex_cycle_start" data-tgt="sign">📋 同變形工時起始日</button>
       </div>
     </div>
 
@@ -322,73 +311,133 @@ a { color: var(--color-primary); }
 <footer class="footer">
   <div class="footer-row">
     <a href="index.html">回首頁</a>　·　<a href="labor-check.html">勞檢應變</a>　·　<a href="cross-check.html">跳查照中心</a>　·　補教業法務支援站
-    <div class="footer-meta">
-      © 2026　·　測試版 v0.1　·　使用前請與律師確認
-    </div>
+    <div class="footer-meta">© 2026　·　測試版 v0.2　·　使用前請與律師確認</div>
   </div>
 </footer>
 
+<script src="assets/tw-address-data.js"></script>
+<script src="assets/form-helpers.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip-utils.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.50.0/build/docxtemplater.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 
 <script>
-const TEMPLATE = {
-  url: 'templates/labor-meeting-template.docx',
-  filename: '勞資會議紀錄_變形工時同意.docx',
-  label: '勞資會議紀錄'
-};
+const TEMPLATE = { url:'templates/labor-meeting-template.docx', filename:'勞資會議紀錄_變形工時同意.docx', label:'勞資會議紀錄' };
 
-const FIELDS = ['cram_name', 'license_no', 'address', 'owner_name',
-                'meeting_session',
-                'meeting_date_year', 'meeting_date_month', 'meeting_date_day',
-                'meeting_time', 'meeting_location',
-                'chairperson', 'recorder',
-                'employee_reps', 'employer_reps', 'attendee_count',
-                'flex_cycle_start_year', 'flex_cycle_start_month', 'flex_cycle_start_day',
-                'resolution_no', 'agree_count', 'total_vote',
-                'sign_year', 'sign_month', 'sign_day'];
+// 國字數字
+const CHINESE_DIGIT = ['零','一','二','三','四','五','六','七','八','九'];
+function numToChinese(n) {
+  n = parseInt(n);
+  if (isNaN(n)) return '';
+  if (n>=0 && n<=9) return CHINESE_DIGIT[n];
+  if (n===10) return '十';
+  if (n<20) return '十' + CHINESE_DIGIT[n-10];
+  if (n===20) return '二十';
+  if (n<30) return '二十' + CHINESE_DIGIT[n-20];
+  if (n===30) return '三十';
+  return String(n);
+}
 
-const REQUIRED = FIELDS;
+// 填屆/次
+function fillCountSelect(id, max, label) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '<option value="">請選' + label + '</option>';
+  for (let i=1; i<=max; i++) {
+    const o = document.createElement('option');
+    o.value = numToChinese(i);
+    o.textContent = '第 ' + numToChinese(i) + ' ' + label;
+    sel.appendChild(o);
+  }
+}
+function fillNumSelect(id, min, max) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '<option value="">請選</option>';
+  for (let i=min; i<=max; i++) {
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = String(i) + ' 人';
+    sel.appendChild(o);
+  }
+}
+function fillYearOnlySelect(id, yStart, yEnd) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '';
+  for (let y=yStart; y<=yEnd; y++) {
+    const o = document.createElement('option');
+    o.value = String(y);
+    o.textContent = String(y);
+    if (y===115) o.selected = true;
+    sel.appendChild(o);
+  }
+}
+
+// ===== 初始化所有下拉選單 =====
+initAddressSelector('addr_city', 'addr_district');
+fillCountSelect('mtg_session', 20, '屆');
+fillCountSelect('mtg_no', 10, '次');
+initMinguoDateSelector('meeting_date_year', 'meeting_date_month', 'meeting_date_day');
+fillNumSelect('attendee_count', 1, 30);
+initMinguoDateSelector('flex_cycle_start_year', 'flex_cycle_start_month', 'flex_cycle_start_day');
+fillYearOnlySelect('res_year', 113, 118);
+fillNumSelect('agree_count', 1, 30);
+fillNumSelect('total_vote', 1, 30);
+initMinguoDateSelector('sign_year', 'sign_month', 'sign_day');
+bindOtherFallback('meeting_time_sel', 'meeting_time_other');
+bindOtherFallback('meeting_location_sel', 'meeting_location_other');
+
+const PLAIN_FIELDS = ['cram_name','license_no','owner_name','chairperson','recorder','employee_reps','employer_reps','attendee_count','agree_count','total_vote'];
+const DATE_FIELDS  = ['meeting_date_year','meeting_date_month','meeting_date_day','flex_cycle_start_year','flex_cycle_start_month','flex_cycle_start_day','sign_year','sign_month','sign_day'];
 
 function getStatus() { return document.getElementById('status-msg'); }
-function showStatus(msg, type) {
-  const el = getStatus();
-  el.textContent = msg;
-  el.className = 'status-msg show ' + type;
-}
+function showStatus(msg, type) { const el = getStatus(); el.textContent = msg; el.className = 'status-msg show ' + type; }
 function clearStatus() { getStatus().className = 'status-msg'; }
-
-function pad2(s) {
-  s = String(s).trim();
-  return s.length === 1 ? '0' + s : s;
-}
 
 function collectData() {
   const data = {};
-  FIELDS.forEach(id => {
-    const el = document.getElementById(id);
-    let v = el ? el.value.trim() : '';
-    if (['meeting_date_month','meeting_date_day','flex_cycle_start_month','flex_cycle_start_day','sign_month','sign_day'].includes(id)) {
-      v = pad2(v);
-    }
-    data[id] = v;
-  });
+  PLAIN_FIELDS.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.value.trim() : ''; });
+  DATE_FIELDS.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.value.trim() : ''; });
+  // 地址組合
+  const city = document.getElementById('addr_city').value.trim();
+  const district = document.getElementById('addr_district').value.trim();
+  const road = document.getElementById('addr_road').value.trim();
+  const section = document.getElementById('addr_section').value.trim();
+  const number = document.getElementById('addr_number').value.trim();
+  const floor = document.getElementById('addr_floor').value.trim();
+  data.address = city + district + road + section + number + floor;
+  // 會議屆次 = 第X屆第X次勞資會議
+  const session = document.getElementById('mtg_session').value;
+  const mtgno = document.getElementById('mtg_no').value;
+  data.meeting_session = (session && mtgno) ? ('第 ' + session + ' 屆第 ' + mtgno + ' 次勞資會議') : '';
+  // 召開時間/地點（含其他）
+  data.meeting_time = getValueWithOther('meeting_time_sel', 'meeting_time_other');
+  data.meeting_location = getValueWithOther('meeting_location_sel', 'meeting_location_other');
+  // 決議字號組合
+  const prefix = document.getElementById('res_prefix').value.trim() || 'OO補';
+  const ryear = document.getElementById('res_year').value.trim();
+  const rno = document.getElementById('res_no').value.trim() || '001';
+  data.resolution_no = prefix + '（' + ryear + '）勞資字第 ' + rno + ' 號';
   return data;
 }
 
 function validate() {
+  const data = collectData();
+  const labelMap = {
+    cram_name:'補習班全名', license_no:'立案字號', owner_name:'代表人姓名',
+    address:'機構地址',
+    meeting_session:'會議屆次（屆+次）',
+    meeting_date_year:'召開年', meeting_date_month:'召開月', meeting_date_day:'召開日',
+    meeting_time:'召開時間', meeting_location:'召開地點',
+    chairperson:'主席', recorder:'紀錄',
+    employee_reps:'勞方代表', employer_reps:'資方代表',
+    attendee_count:'出席人數',
+    flex_cycle_start_year:'變形工時起始年', flex_cycle_start_month:'變形工時起始月', flex_cycle_start_day:'變形工時起始日',
+    resolution_no:'決議字號',
+    agree_count:'同意票數', total_vote:'總出席表決人數',
+    sign_year:'簽署年', sign_month:'簽署月', sign_day:'簽署日',
+  };
   const missing = [];
-  REQUIRED.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el || !el.value.trim()) {
-      const label = el && el.closest('.form-group') && el.closest('.form-group').querySelector('.form-label')
-        ? el.closest('.form-group').querySelector('.form-label').childNodes[0].textContent.trim().replace(/\*/g, '')
-        : id;
-      missing.push(label);
-    }
-  });
+  Object.keys(labelMap).forEach(k => { if (!data[k]) missing.push(labelMap[k]); });
   return missing;
 }
 
@@ -402,40 +451,48 @@ async function generateAndDownload() {
   clearStatus();
   const missing = validate();
   if (missing.length > 0) {
-    showStatus('還有 ' + missing.length + ' 個必填欄位未填：' + missing.slice(0, 3).join('、') + (missing.length > 3 ? '⋯⋯' : ''), 'err');
-    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+    showStatus('還有 ' + missing.length + ' 個必填欄位未填：' + missing.slice(0,3).join('、') + (missing.length>3?'⋯⋯':''), 'err');
+    document.querySelector('.form-section').scrollIntoView({behavior:'smooth'});
     return;
   }
   showStatus('正在生成 ' + TEMPLATE.label + ' ⋯⋯', 'ok');
   try {
     const buf = await loadTemplate(TEMPLATE.url);
     const zip = new PizZip(buf);
-    const doc = new window.docxtemplater(zip, {
-      paragraphLoop: true, linebreaks: true,
-      delimiters: { start: '{', end: '}' }
-    });
+    const doc = new window.docxtemplater(zip, {paragraphLoop:true, linebreaks:true, delimiters:{start:'{', end:'}'}});
     doc.render(collectData());
-    const out = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    const out = doc.getZip().generate({type:'blob', mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
     saveAs(out, TEMPLATE.filename);
-    showStatus('✅ ' + TEMPLATE.label + ' 下載完成（draft 版，建議交律師審稿後存底）', 'ok');
+    showStatus('✅ ' + TEMPLATE.label + ' 下載完成（draft，建議交律師審稿）', 'ok');
   } catch (err) {
     console.error(err);
     let msg = err.message || String(err);
-    if (err.properties && err.properties.errors) {
-      msg += '｜詳細：' + err.properties.errors.map(e => e.message).join('；');
-    }
+    if (err.properties && err.properties.errors) msg += '｜詳細：' + err.properties.errors.map(e=>e.message).join('；');
     showStatus('❌ 生成失敗：' + msg, 'err');
   }
 }
-
 document.getElementById('btn-meeting').addEventListener('click', generateAndDownload);
 
-const STORAGE_KEY = 'cram-legal-labor-meeting-form';
+// 日期「同上」按鈕
+document.querySelectorAll('.copy-date-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const src = btn.dataset.src;
+    const tgt = btn.dataset.tgt;
+    ['year','month','day'].forEach(part => {
+      const srcEl = document.getElementById(src + '_' + part);
+      const tgtEl = document.getElementById(tgt + '_' + part);
+      if (srcEl && tgtEl) {
+        tgtEl.value = srcEl.value;
+        tgtEl.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+});
+
+const STORAGE_KEY = 'cram-legal-labor-meeting-form-v2';
 function saveForm() {
   const data = {};
-  document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
-    data[el.id] = el.value;
-  });
+  document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => { if (el.id) data[el.id] = el.value; });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 function loadForm() {
@@ -443,8 +500,15 @@ function loadForm() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
     const data = JSON.parse(raw);
+    if (data.addr_city !== undefined) {
+      document.getElementById('addr_city').value = data.addr_city;
+      document.getElementById('addr_city').dispatchEvent(new Event('change'));
+    }
     document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
-      if (data[el.id] !== undefined) el.value = data[el.id];
+      if (el.id && el.id !== 'addr_city' && data[el.id] !== undefined) {
+        el.value = data[el.id];
+        if (el.id.endsWith('_sel')) el.dispatchEvent(new Event('change'));
+      }
     });
   } catch (e) { console.warn('loadForm 失敗', e); }
 }

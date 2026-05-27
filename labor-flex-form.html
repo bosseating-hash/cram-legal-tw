@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/form-helpers.css">
 
 <style>
 :root {
@@ -255,6 +256,54 @@ a { color: var(--color-primary); }
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12);
 }
+
+/* 必填欄位視覺狀態：未填粉紅 / 填好綠色 */
+.form-input:required:invalid,
+.form-select:required:invalid,
+.form-textarea:required:invalid {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+.form-input:required:valid,
+.form-select:required:valid,
+.form-textarea:required:valid {
+  background-color: #f0fdf4;
+  border-color: #86efac;
+}
+/* readonly textarea 保留灰底 + 內容顏色判斷 */
+.form-textarea[readonly]:valid {
+  background-color: #f0fdf4 !important;
+}
+.form-textarea[readonly]:invalid {
+  background-color: #fef2f2 !important;
+}
+
+/* 日期「同上」按鈕 */
+.date-shortcut-row {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.copy-date-btn {
+  background: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.15s;
+}
+.copy-date-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
 .form-divider {
   height: 1px;
   background: var(--color-border);
@@ -470,60 +519,108 @@ a { color: var(--color-primary); }
 
     <div class="form-group">
       <label class="form-label" for="cram_name">補習班全名<span class="required">*</span><span class="hint">立案核准名稱完整版</span></label>
-      <input type="text" id="cram_name" class="form-input" placeholder="例：私立優秀文理短期補習班" required>
+      <input type="text" id="cram_name" class="form-input" value="私立OO短期補習班" placeholder="（請改成貴補習班全名）" required>
     </div>
 
     <div class="form-group-row">
       <div class="form-group">
         <label class="form-label" for="license_no">立案字號<span class="required">*</span></label>
-        <input type="text" id="license_no" class="form-input" placeholder="例：桃教社字第○○○○○○○○○號" required>
+        <input type="text" id="license_no" class="form-input" value="桃教社字第○○○○○○○○○號" placeholder="（請改成貴補習班立案字號）" required>
       </div>
       <div class="form-group">
         <label class="form-label" for="owner_name">代表人姓名<span class="required">*</span></label>
-        <input type="text" id="owner_name" class="form-input" placeholder="例：王大明" required>
+        <input type="text" id="owner_name" class="form-input" value="王大明" placeholder="（請改成貴補習班代表人）" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="address">補習班地址<span class="required">*</span></label>
-      <input type="text" id="address" class="form-input" placeholder="例：桃園市中壢區中央西路○段○號○樓" required>
+      <label class="form-label">補習班地址<span class="required">*</span><span class="hint">縣市/區下拉 → 路段/樓層下拉 → 僅路名與號碼自填</span></label>
+      <div class="form-group-row" style="margin-bottom: 10px;">
+        <select id="addr_city" class="form-select" required></select>
+        <select id="addr_district" class="form-select" required disabled></select>
+      </div>
+      <div class="form-group-row" style="margin-bottom: 10px;">
+        <input type="text" id="addr_road" class="form-input" value="中央西路" placeholder="路/街/大道名稱" required>
+        <select id="addr_section" class="form-select">
+          <option value="">（無段）</option>
+          <option value="一段">一段</option>
+          <option value="二段" selected>二段</option>
+          <option value="三段">三段</option>
+          <option value="四段">四段</option>
+          <option value="五段">五段</option>
+          <option value="六段">六段</option>
+          <option value="七段">七段</option>
+          <option value="八段">八段</option>
+          <option value="九段">九段</option>
+          <option value="十段">十段</option>
+        </select>
+      </div>
+      <div class="form-group-row">
+        <input type="text" id="addr_number" class="form-input" value="123 號" placeholder="號碼（例：123 號 / 45-1 號）" required>
+        <select id="addr_floor" class="form-select">
+          <option value="">（整棟）</option>
+          <option value="B3">B3</option>
+          <option value="B2">B2</option>
+          <option value="B1">B1</option>
+          <option value="1 樓">1 樓</option>
+          <option value="2 樓">2 樓</option>
+          <option value="3 樓">3 樓</option>
+          <option value="4 樓">4 樓</option>
+          <option value="5 樓" selected>5 樓</option>
+          <option value="6 樓">6 樓</option>
+          <option value="7 樓">7 樓</option>
+          <option value="8 樓">8 樓</option>
+          <option value="9 樓">9 樓</option>
+          <option value="10 樓">10 樓</option>
+          <option value="11 樓">11 樓</option>
+          <option value="12 樓">12 樓</option>
+          <option value="13 樓">13 樓</option>
+          <option value="14 樓">14 樓</option>
+          <option value="15 樓">15 樓</option>
+          <option value="16 樓">16 樓</option>
+          <option value="17 樓">17 樓</option>
+          <option value="18 樓">18 樓</option>
+          <option value="19 樓">19 樓</option>
+          <option value="20 樓">20 樓</option>
+        </select>
+      </div>
     </div>
 
     <div class="form-divider"></div>
     <div class="form-section-label">八週循環週期</div>
 
     <div class="form-group">
-      <label class="form-label" for="cycle_label">本期週期名稱<span class="required">*</span><span class="hint">便於後續存底識別</span></label>
-      <input type="text" id="cycle_label" class="form-input" placeholder="例：一一五年第一期（寒輔期）" required>
+      <label class="form-label">本期週期名稱<span class="required">*</span><span class="hint">年份 + 期別兩段選擇</span></label>
+      <div class="form-group-row">
+        <select id="cycle_year_sel" class="form-select" required>
+          <option value="">請選年份</option>
+          <option value="一一三">一一三 年</option>
+          <option value="一一四">一一四 年</option>
+          <option value="一一五" selected>一一五 年</option>
+          <option value="一一六">一一六 年</option>
+          <option value="一一七">一一七 年</option>
+          <option value="一一八">一一八 年</option>
+        </select>
+        <select id="cycle_period_sel" class="form-select" required>
+          <option value="">請選期別</option>
+          <option value="寒輔期">寒輔期</option>
+          <option value="春季學期">春季學期</option>
+          <option value="暑期密集班">暑期密集班</option>
+          <option value="秋季學期">秋季學期</option>
+          <option value="期中考衝刺">期中考衝刺</option>
+          <option value="期末考衝刺">期末考衝刺</option>
+          <option value="__other__">其他（自填）</option>
+        </select>
+      </div>
+      <input type="text" id="cycle_period_other" class="form-input" placeholder="請手動輸入期別..." style="display:none;margin-top:8px;">
     </div>
 
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="start_year">起始年（民國）<span class="required">*</span></label>
-        <input type="number" id="start_year" class="form-input" placeholder="115" min="100" max="200" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="start_month">起始月<span class="required">*</span></label>
-        <input type="number" id="start_month" class="form-input" placeholder="1" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="start_day">起始日<span class="required">*</span></label>
-        <input type="number" id="start_day" class="form-input" placeholder="20" min="1" max="31" required>
-      </div>
-    </div>
-
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="end_year">結束年（民國）<span class="required">*</span><span class="hint">起始日 +55 天</span></label>
-        <input type="number" id="end_year" class="form-input" placeholder="115" min="100" max="200" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="end_month">結束月<span class="required">*</span></label>
-        <input type="number" id="end_month" class="form-input" placeholder="3" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="end_day">結束日<span class="required">*</span></label>
-        <input type="number" id="end_day" class="form-input" placeholder="15" min="1" max="31" required>
+    <div class="form-group">
+      <label class="form-label">實施起始日期（民國）<span class="required">*</span><span class="hint">自此日起持續適用，8 週為工時計算之循環單位</span></label>
+      <div class="form-group-row3">
+        <select id="start_year" class="form-select" required></select>
+        <select id="start_month" class="form-select" required></select>
+        <select id="start_day" class="form-select" required></select>
       </div>
     </div>
 
@@ -531,34 +628,88 @@ a { color: var(--color-primary); }
     <div class="form-section-label">同意佐證</div>
 
     <div class="form-group">
-      <label class="form-label" for="evidence_type">同意佐證方式<span class="required">*</span></label>
-      <select id="evidence_type" class="form-select" required>
+      <label class="form-label" for="evidence_type_sel">同意佐證方式<span class="required">*</span></label>
+      <select id="evidence_type_sel" class="form-select" required>
         <option value="">請選擇</option>
         <option value="勞資會議決議">勞資會議決議（補教業常見）</option>
         <option value="工會同意">工會同意（極少數補教業有工會）</option>
+        <option value="__other__">其他（自填）</option>
       </select>
+      <input type="text" id="evidence_type_other" class="form-input" placeholder="請手動輸入..." style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="form-divider" style="margin: 18px 0;"></div>
+    <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:14px;">↓ 依次填寫下列欄位，最下方「佐證細節」會自動組合文字</p>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="ev_session">屆次<span class="required">*</span></label>
+        <select id="ev_session" class="form-select" required></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="ev_meeting_no">次別<span class="required">*</span></label>
+        <select id="ev_meeting_no" class="form-select" required></select>
+      </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="evidence_detail">佐證細節<span class="required">*</span><span class="hint">勞資會議召開日 + 字號，或工會名稱 + 同意日</span></label>
-      <textarea id="evidence_detail" class="form-textarea" placeholder="例：本機構第八屆第一次勞資會議於民國一一五年一月十日召開，決議字號為「○○補（115）勞資字第 001 號」，決議通過自民國一一五年一月二十日起實施。" required></textarea>
+      <label class="form-label">召開日期（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="ev_open_year" class="form-select" required></select>
+        <select id="ev_open_month" class="form-select" required></select>
+        <select id="ev_open_day" class="form-select" required></select>
+      </div>
+      <div class="date-shortcut-row">
+        <span>快速套用：</span>
+        <button type="button" class="copy-date-btn" data-src="start" data-tgt="ev_open">📋 同實施起始日</button>
+        <button type="button" class="copy-date-btn" data-src="sign" data-tgt="ev_open">📋 同簽署日</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">決議字號</label>
+      <div class="form-group-row3">
+        <input type="text" id="ev_doc_prefix" class="form-input" value="OO補" placeholder="前綴">
+        <select id="ev_doc_year" class="form-select"></select>
+        <input type="text" id="ev_doc_no" class="form-input" value="001" placeholder="流水號">
+      </div>
+      <p style="margin-top:6px;font-size:12px;color:var(--color-text-muted);">組合範例：OO補（115）勞資字第 001 號</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">決議實施日（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="ev_apply_year" class="form-select" required></select>
+        <select id="ev_apply_month" class="form-select" required></select>
+        <select id="ev_apply_day" class="form-select" required></select>
+      </div>
+      <div class="date-shortcut-row">
+        <span>快速套用：</span>
+        <button type="button" class="copy-date-btn" data-src="ev_open" data-tgt="ev_apply">📋 同召開日</button>
+        <button type="button" class="copy-date-btn" data-src="start" data-tgt="ev_apply">📋 同實施起始日</button>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 24px;">
+      <label class="form-label" for="evidence_detail">佐證細節<span class="required">*</span><span class="hint">↑ 上方欄位選好後自動組合（唯讀）</span></label>
+      <textarea id="evidence_detail" class="form-textarea" placeholder="選好上方欄位後，此處會自動組合文字" required readonly style="background:#f9fafb;color:#374151;min-height:90px;"></textarea>
     </div>
 
     <div class="form-divider"></div>
     <div class="form-section-label">簽署日期</div>
 
-    <div class="form-group-row3">
-      <div class="form-group">
-        <label class="form-label" for="sign_year">年（民國）<span class="required">*</span></label>
-        <input type="number" id="sign_year" class="form-input" placeholder="115" min="100" max="200" required>
+    <div class="form-group">
+      <label class="form-label">簽署日期（民國）<span class="required">*</span></label>
+      <div class="form-group-row3">
+        <select id="sign_year" class="form-select" required></select>
+        <select id="sign_month" class="form-select" required></select>
+        <select id="sign_day" class="form-select" required></select>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="sign_month">月<span class="required">*</span></label>
-        <input type="number" id="sign_month" class="form-input" placeholder="1" min="1" max="12" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="sign_day">日<span class="required">*</span></label>
-        <input type="number" id="sign_day" class="form-input" placeholder="15" min="1" max="31" required>
+      <div class="date-shortcut-row">
+        <span>快速套用：</span>
+        <button type="button" class="copy-date-btn" data-src="ev_open" data-tgt="sign">📋 同召開日</button>
+        <button type="button" class="copy-date-btn" data-src="ev_apply" data-tgt="sign">📋 同決議實施日</button>
+        <button type="button" class="copy-date-btn" data-src="start" data-tgt="sign">📋 同實施起始日</button>
       </div>
     </div>
 
@@ -594,6 +745,10 @@ a { color: var(--color-primary); }
   </div>
 </footer>
 
+<!-- ========== 共用：縣市資料 + 表單工具 ========== -->
+<script src="assets/tw-address-data.js"></script>
+<script src="assets/form-helpers.js"></script>
+
 <!-- ========== docxtemplater 相依 ========== -->
 <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip-utils.js"></script>
@@ -607,14 +762,120 @@ const TEMPLATE = {
   label: '變形工時同意書'
 };
 
-const FIELDS = ['cram_name', 'license_no', 'address', 'owner_name',
-                'cycle_label',
-                'start_year', 'start_month', 'start_day',
-                'end_year', 'end_month', 'end_day',
-                'evidence_type', 'evidence_detail',
-                'sign_year', 'sign_month', 'sign_day'];
+// ===== 數字轉國字工具 =====
+const CHINESE_DIGIT = ['零','一','二','三','四','五','六','七','八','九'];
+function digitToChinese(n) {
+  // 民國年用「位數逐字」：115 → 一一五
+  return String(n).split('').map(d => CHINESE_DIGIT[parseInt(d)] || d).join('');
+}
+function numToChinese(n) {
+  // 月/日用「中文數字」：5 → 五，20 → 二十，31 → 三十一
+  n = parseInt(n);
+  if (isNaN(n)) return '';
+  if (n >= 0 && n <= 9) return CHINESE_DIGIT[n];
+  if (n === 10) return '十';
+  if (n < 20) return '十' + CHINESE_DIGIT[n-10];
+  if (n === 20) return '二十';
+  if (n < 30) return '二十' + CHINESE_DIGIT[n-20];
+  if (n === 30) return '三十';
+  if (n === 31) return '三十一';
+  return String(n);
+}
 
-const REQUIRED = FIELDS;
+// ===== 填充屆/次 select =====
+function fillCountSelect(id, max, placeholder) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '<option value="">' + placeholder + '</option>';
+  for (let i = 1; i <= max; i++) {
+    const opt = document.createElement('option');
+    opt.value = numToChinese(i);  // value 直接是國字「一」「二」...
+    opt.textContent = '第 ' + numToChinese(i) + ' ' + (id === 'ev_session' ? '屆' : '次');
+    sel.appendChild(opt);
+  }
+}
+function fillYearOnlySelect(id, yStart, yEnd) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '';
+  for (let y = yStart; y <= yEnd; y++) {
+    const opt = document.createElement('option');
+    opt.value = String(y);
+    opt.textContent = String(y);
+    if (y === 115) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+// ===== 初始化所有下拉選單 =====
+initAddressSelector('addr_city', 'addr_district');
+initMinguoDateSelector('start_year', 'start_month', 'start_day');
+initMinguoDateSelector('sign_year', 'sign_month', 'sign_day');
+initMinguoDateSelector('ev_open_year', 'ev_open_month', 'ev_open_day');
+initMinguoDateSelector('ev_apply_year', 'ev_apply_month', 'ev_apply_day');
+fillCountSelect('ev_session', 20, '請選屆次');
+fillCountSelect('ev_meeting_no', 10, '請選次別');
+fillYearOnlySelect('ev_doc_year', 113, 118);
+bindOtherFallback('cycle_label_sel', 'cycle_label_other');
+bindOtherFallback('evidence_type_sel', 'evidence_type_other');
+
+// ===== 佐證細節自動組合 =====
+function updateEvidenceDetail() {
+  const session = document.getElementById('ev_session').value;
+  const meetingNo = document.getElementById('ev_meeting_no').value;
+  const openY = document.getElementById('ev_open_year').value;
+  const openM = document.getElementById('ev_open_month').value;
+  const openD = document.getElementById('ev_open_day').value;
+  const docPrefix = document.getElementById('ev_doc_prefix').value.trim() || 'OO補';
+  const docYear = document.getElementById('ev_doc_year').value;
+  const docNo = document.getElementById('ev_doc_no').value.trim() || '001';
+  const applyY = document.getElementById('ev_apply_year').value;
+  const applyM = document.getElementById('ev_apply_month').value;
+  const applyD = document.getElementById('ev_apply_day').value;
+
+  if (!session || !meetingNo || !openY || !openM || !openD || !applyY || !applyM || !applyD) {
+    document.getElementById('evidence_detail').value = '';
+    return;
+  }
+  const text = '本機構第' + session + '屆第' + meetingNo + '次勞資會議於民國' +
+    digitToChinese(openY) + '年' + numToChinese(parseInt(openM)) + '月' +
+    numToChinese(parseInt(openD)) + '日召開，決議字號為「' +
+    docPrefix + '（' + docYear + '）勞資字第 ' + docNo + ' 號」，' +
+    '決議通過自民國' + digitToChinese(applyY) + '年' +
+    numToChinese(parseInt(applyM)) + '月' +
+    numToChinese(parseInt(applyD)) + '日起實施。';
+  document.getElementById('evidence_detail').value = text;
+}
+// 監聽 11 個欄位
+['ev_session','ev_meeting_no','ev_open_year','ev_open_month','ev_open_day',
+ 'ev_doc_prefix','ev_doc_year','ev_doc_no',
+ 'ev_apply_year','ev_apply_month','ev_apply_day'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('change', updateEvidenceDetail);
+  if (el.tagName === 'INPUT') el.addEventListener('input', updateEvidenceDetail);
+});
+// 初始觸發一次
+setTimeout(updateEvidenceDetail, 100);
+
+// ===== 日期「同上」按鈕：複製 data-src 區的 y/m/d 到 data-tgt 區 =====
+document.querySelectorAll('.copy-date-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const src = btn.dataset.src;
+    const tgt = btn.dataset.tgt;
+    ['year','month','day'].forEach(part => {
+      const srcEl = document.getElementById(src + '_' + part);
+      const tgtEl = document.getElementById(tgt + '_' + part);
+      if (srcEl && tgtEl) {
+        tgtEl.value = srcEl.value;
+        tgtEl.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+});
+
+// 直接 text 輸入的欄位
+const PLAIN_FIELDS = ['cram_name', 'license_no', 'owner_name', 'evidence_detail'];
+// 日期欄位（select 直接帶 padded value）
+const DATE_FIELDS = ['start_year','start_month','start_day',
+                     'sign_year','sign_month','sign_day'];
 
 function getStatus() { return document.getElementById('status-msg'); }
 function showStatus(msg, type) {
@@ -624,34 +885,46 @@ function showStatus(msg, type) {
 }
 function clearStatus() { getStatus().className = 'status-msg'; }
 
-function pad2(s) {
-  s = String(s).trim();
-  return s.length === 1 ? '0' + s : s;
-}
-
 function collectData() {
   const data = {};
-  FIELDS.forEach(id => {
+  PLAIN_FIELDS.forEach(id => {
     const el = document.getElementById(id);
-    let v = el ? el.value.trim() : '';
-    if (['start_month','start_day','end_month','end_day','sign_month','sign_day'].includes(id)) {
-      v = pad2(v);
-    }
-    data[id] = v;
+    data[id] = el ? el.value.trim() : '';
   });
+  DATE_FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    data[id] = el ? el.value.trim() : '';
+  });
+  // 地址：縣市 + 鄉鎮市區 + 路名 + 段 + 號 + 樓
+  const city = document.getElementById('addr_city').value.trim();
+  const district = document.getElementById('addr_district').value.trim();
+  const road = document.getElementById('addr_road').value.trim();
+  const section = document.getElementById('addr_section').value.trim();
+  const number = document.getElementById('addr_number').value.trim();
+  const floor = document.getElementById('addr_floor').value.trim();
+  data.address = city + district + road + section + number + floor;
+  // 週期名稱：年份 + 期別組合
+  const cycleYear = document.getElementById('cycle_year_sel').value.trim();
+  const cyclePeriod = getValueWithOther('cycle_period_sel', 'cycle_period_other');
+  data.cycle_label = cycleYear ? (cycleYear + '年' + cyclePeriod) : cyclePeriod;
+  // 同意佐證方式：select 或其他
+  data.evidence_type = getValueWithOther('evidence_type_sel', 'evidence_type_other');
   return data;
 }
 
 function validate() {
+  const data = collectData();
+  const labelMap = {
+    cram_name: '補習班全名', license_no: '立案字號', owner_name: '代表人姓名',
+    address: '補習班地址（縣市/鄉鎮市區/路名/號）',
+    cycle_label: '本期週期名稱（年份+期別）',
+    start_year: '實施起始年', start_month: '實施起始月', start_day: '實施起始日',
+    evidence_type: '同意佐證方式', evidence_detail: '佐證細節',
+    sign_year: '簽署年', sign_month: '簽署月', sign_day: '簽署日',
+  };
   const missing = [];
-  REQUIRED.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el || !el.value.trim()) {
-      const label = el && el.closest('.form-group') && el.closest('.form-group').querySelector('.form-label')
-        ? el.closest('.form-group').querySelector('.form-label').childNodes[0].textContent.trim().replace(/\*/g, '')
-        : id;
-      missing.push(label);
-    }
+  Object.keys(labelMap).forEach(k => {
+    if (!data[k]) missing.push(labelMap[k]);
   });
   return missing;
 }
@@ -670,15 +943,12 @@ async function generateAndDownload() {
     document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
     return;
   }
-
   showStatus('正在生成 ' + TEMPLATE.label + ' ⋯⋯', 'ok');
-
   try {
     const buf = await loadTemplate(TEMPLATE.url);
     const zip = new PizZip(buf);
     const doc = new window.docxtemplater(zip, {
-      paragraphLoop: true,
-      linebreaks: true,
+      paragraphLoop: true, linebreaks: true,
       delimiters: { start: '{', end: '}' }
     });
     doc.render(collectData());
@@ -698,11 +968,11 @@ async function generateAndDownload() {
 document.getElementById('btn-flex').addEventListener('click', generateAndDownload);
 
 // localStorage 自動暫存
-const STORAGE_KEY = 'cram-legal-labor-flex-form';
+const STORAGE_KEY = 'cram-legal-labor-flex-form-v2';
 function saveForm() {
   const data = {};
   document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
-    data[el.id] = el.value;
+    if (el.id) data[el.id] = el.value;
   });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
@@ -711,8 +981,17 @@ function loadForm() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
     const data = JSON.parse(raw);
+    // 先還原縣市 → 觸發 change → 再還原鄉鎮市區
+    if (data.addr_city !== undefined) {
+      document.getElementById('addr_city').value = data.addr_city;
+      document.getElementById('addr_city').dispatchEvent(new Event('change'));
+    }
     document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
-      if (data[el.id] !== undefined) el.value = data[el.id];
+      if (el.id && el.id !== 'addr_city' && data[el.id] !== undefined) {
+        el.value = data[el.id];
+        // 觸發「其他」展開檢查
+        if (el.id.endsWith('_sel')) el.dispatchEvent(new Event('change'));
+      }
     });
   } catch (e) { console.warn('loadForm 失敗', e); }
 }
