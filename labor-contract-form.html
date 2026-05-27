@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="教師勞動契約書產生器（鐘點兼任版）——線上填表 1 分鐘，下載依勞基法§9 製作之雇傭關係契約 docx，明確宣告契約性質避免雇主反向主張承攬。資料純前端處理。">
+<title>教師勞動契約產生器（鐘點兼任）｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f; --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
+  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
+  --color-test: #92400e; --color-test-bg: #fef3c7;
+  --color-bg: #fafafa; --color-bg-card: #ffffff;
+  --color-text: #1f2937; --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--color-primary); }
+
+.test-banner { background: var(--color-test-bg); color: var(--color-test); border-bottom: 1px solid #f1d77a; padding: 8px 24px; text-align: center; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; }
+.test-banner strong { font-weight: 700; }
+
+.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
+.navbar-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
+.nav-links { display: flex; gap: 20px; font-size: 14px; color: var(--color-text-muted); }
+.nav-links a { text-decoration: none; color: inherit; transition: color 0.15s; }
+.nav-links a:hover { color: var(--color-primary); }
+
+.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 56px 24px 48px; text-align: center; }
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 999px; font-size: 12.5px; letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500; }
+.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em; }
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 640px; margin: 0 auto; }
+
+.steps { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.step { background: white; border-radius: 10px; padding: 22px 20px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+.step-num { font-family: var(--font-serif); font-size: 12px; letter-spacing: 0.2em; color: var(--color-accent); font-weight: 700; margin-bottom: 8px; }
+.step h3 { font-family: var(--font-serif); font-size: 17px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; }
+.step p { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.7; }
+
+.form-section { max-width: 880px; margin: 0 auto; padding: 48px 24px 0; }
+.form-title { font-family: var(--font-serif); font-size: 24px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; letter-spacing: 0.01em; }
+.form-sub { font-size: 14px; color: var(--color-text-muted); margin-bottom: 28px; }
+.form-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px 32px; box-shadow: var(--shadow-md); }
+.form-group { margin-bottom: 22px; }
+.form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) { .form-group-row, .form-group-row3 { grid-template-columns: 1fr; } }
+.form-label { display: block; font-size: 13.5px; font-weight: 500; color: var(--color-text); margin-bottom: 6px; letter-spacing: 0.02em; }
+.form-label .required { color: var(--color-warn); margin-left: 3px; }
+.form-label .hint { font-size: 12px; color: var(--color-text-muted); font-weight: 400; margin-left: 6px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 10px 14px; font-size: 14.5px; font-family: var(--font-sans); color: var(--color-text); background: white; border: 1px solid var(--color-border); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; }
+.form-textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12); }
+.form-divider { height: 1px; background: var(--color-border); margin: 28px 0; }
+.form-section-label { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+
+.law-callout { background: #fef2f2; border: 1px solid #fecaca; border-left: 4px solid var(--color-warn); border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 13.5px; line-height: 1.85; color: #7f1d1d; }
+.law-callout strong { color: var(--color-warn); font-weight: 700; }
+
+.download-section { max-width: 880px; margin: 0 auto; padding: 32px 24px 0; }
+.download-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
+.download-title { font-family: var(--font-serif); font-size: 19px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; }
+.download-sub { font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 22px; }
+.download-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.download-btn { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; background: var(--color-primary); color: white; border: none; border-radius: 10px; padding: 18px 22px; font-family: var(--font-sans); font-size: 14.5px; font-weight: 500; cursor: pointer; text-align: left; transition: background 0.15s, transform 0.15s, box-shadow 0.15s; box-shadow: var(--shadow-sm); }
+.download-btn:hover:not(:disabled) { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.download-btn .btn-name { font-size: 15px; font-weight: 700; font-family: var(--font-serif); letter-spacing: 0.02em; }
+.download-btn .btn-desc { font-size: 12px; opacity: 0.85; letter-spacing: 0.04em; }
+
+.status-msg { margin-top: 18px; padding: 12px 16px; border-radius: 8px; font-size: 13.5px; display: none; }
+.status-msg.show { display: block; }
+.status-msg.ok { background: var(--color-ok-bg); color: var(--color-ok); border: 1px solid #bbf7d0; }
+.status-msg.err { background: var(--color-warn-bg); color: var(--color-warn); border: 1px solid #fecaca; }
+
+.disclaimer { max-width: 820px; margin: 40px auto 0; padding: 0 24px; }
+.disclaimer-inner { background: var(--color-test-bg); border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; font-size: 13.5px; line-height: 1.85; color: var(--color-test); }
+.disclaimer-inner strong { font-weight: 700; }
+
+.footer { margin-top: 64px; background: #1a1a1a; color: #999; padding: 36px 24px 32px; text-align: center; font-size: 13px; line-height: 1.85; }
+.footer a { color: #ddd; text-decoration: none; }
+.footer .footer-row { max-width: 720px; margin: 0 auto; }
+.footer .footer-meta { margin-top: 14px; font-size: 12px; opacity: 0.65; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<div class="test-banner">
+  <strong>測試版 v0.1</strong>　·　純前端工具，資料不上傳　·　產出文件為律師審稿前 draft，使用前請與律師確認
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>補教業法務支援站</a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="labor-check.html">勞檢應變</a>
+      <a href="cross-check.html">跳查照</a>
+      <a href="labor-contract-form.html" style="color:var(--color-primary);font-weight:600;">勞動契約</a>
+    </div>
+  </div>
+</nav>
+
+<section class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">七大文件包　·　DOC.7　·　鐘點兼任教師雇傭關係版</div>
+    <h1>教師勞動契約<span class="accent">產生器</span></h1>
+    <p class="lead">補教業最敏感的就是「<strong style="color:var(--color-accent-light);">雇傭 vs 承攬</strong>」之爭——本版本第一條<strong style="color:var(--color-accent-light);">明確宣告為雇傭契約</strong>，避免雇主日後反向主張承攬規避勞基法。鐘點費、結算日、勞健保提撥、加班費規定一次到位。</p>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">STEP 1</div>
+      <h3>填寫雙方資訊</h3>
+      <p>補習班 + 教師雙方資料 + 課程名稱 + 工作場所。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">STEP 2</div>
+      <h3>填寫工時與薪資</h3>
+      <p>排班方式 + 鐘點費 + 結算日 + 給付方式 + 試用期。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">STEP 3</div>
+      <h3>下載 docx 雙方簽署</h3>
+      <p>建議交律師審閱具體條文後雙方各執一份留存。</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="form-title">資訊填寫</h2>
+  <p class="form-sub">標示 <span style="color:var(--color-warn);">*</span> 為必填欄位。所有資料僅在您的瀏覽器處理，不會上傳。</p>
+
+  <div class="form-card">
+
+    <div class="law-callout">
+      <strong>⚠️ 雇傭 vs 承攬 補教業常見陷阱</strong><br>
+      若契約缺乏雇傭性質明確宣告，雇主可能於勞檢時主張「鐘點兼任 = 承攬」規避加班費、特休、勞健保等保障。本範本第一條依勞動部「勞動契約認定指導原則」明確宣告為雇傭契約 + 強制適用人格從屬性 / 經濟從屬性 / 組織從屬性綜合判斷。
+    </div>
+
+    <div class="form-section-label">甲方（雇主機構）資訊</div>
+
+    <div class="form-group">
+      <label class="form-label" for="cram_name">補習班全名<span class="required">*</span></label>
+      <input type="text" id="cram_name" class="form-input" placeholder="例：私立優秀文理短期補習班" required>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="license_no">立案字號<span class="required">*</span></label>
+        <input type="text" id="license_no" class="form-input" placeholder="例：桃教社字第○○○○○○○○○號" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="owner_name">代表人姓名<span class="required">*</span></label>
+        <input type="text" id="owner_name" class="form-input" placeholder="例：王大明" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="address">補習班地址<span class="required">*</span></label>
+      <input type="text" id="address" class="form-input" placeholder="例：桃園市中壢區中央西路○段○號○樓" required>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">乙方（鐘點兼任教師）資訊</div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="teacher_name">教師姓名<span class="required">*</span></label>
+        <input type="text" id="teacher_name" class="form-input" placeholder="例：李大華" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="teacher_id">身分證統一編號<span class="required">*</span></label>
+        <input type="text" id="teacher_id" class="form-input" placeholder="例：A123456789" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="teacher_address">戶籍地址<span class="required">*</span></label>
+      <input type="text" id="teacher_address" class="form-input" placeholder="例：桃園市桃園區中山路○○號" required>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">工作內容</div>
+
+    <div class="form-group">
+      <label class="form-label" for="course_name">課程名稱<span class="required">*</span></label>
+      <input type="text" id="course_name" class="form-input" placeholder="例：國中三年級數學進階班" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="work_location">工作場所<span class="required">*</span><span class="hint">如有多分校，須明定為限</span></label>
+      <input type="text" id="work_location" class="form-input" placeholder="例：本補習班中壢校區" required>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">契約期間與試用期</div>
+
+    <div class="form-group-row3">
+      <div class="form-group">
+        <label class="form-label" for="start_year">生效年（民國）<span class="required">*</span></label>
+        <input type="number" id="start_year" class="form-input" placeholder="115" min="100" max="200" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="start_month">月<span class="required">*</span></label>
+        <input type="number" id="start_month" class="form-input" placeholder="6" min="1" max="12" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="start_day">日<span class="required">*</span></label>
+        <input type="number" id="start_day" class="form-input" placeholder="1" min="1" max="31" required>
+      </div>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="contract_type">契約期限<span class="required">*</span><span class="hint">注意定期契約須符合§9 嚴格限制</span></label>
+        <select id="contract_type" class="form-select" required>
+          <option value="">請選擇</option>
+          <option value="不定期契約（自生效日起持續至雙方依法終止為止）">不定期契約（建議預設）</option>
+          <option value="定期契約（自生效日起至民國 ○○ 年 ○○ 月 ○○ 日止）">定期契約（須符合§9 要件）</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="probation_months">試用期月數<span class="required">*</span></label>
+        <input type="number" id="probation_months" class="form-input" placeholder="3" min="0" max="12" required>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">工時與排班</div>
+
+    <div class="form-group">
+      <label class="form-label" for="work_schedule">排班方式<span class="required">*</span></label>
+      <textarea id="work_schedule" class="form-textarea" placeholder="例：依甲方公告每月排班表，原則上週一至週五晚間 19:00-21:00、週六上午 9:00-12:00 授課。" required></textarea>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">薪資</div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label class="form-label" for="hourly_rate">每授課小時鐘點費<span class="required">*</span><span class="hint">新臺幣，整數</span></label>
+        <input type="number" id="hourly_rate" class="form-input" placeholder="800" min="183" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="payment_day">每月給付日<span class="required">*</span></label>
+        <input type="number" id="payment_day" class="form-input" placeholder="10" min="1" max="31" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="payment_method">給付方式<span class="required">*</span></label>
+      <select id="payment_method" class="form-select" required>
+        <option value="">請選擇</option>
+        <option value="銀行匯款至乙方指定帳戶">銀行匯款至乙方指定帳戶（建議預設）</option>
+        <option value="現金交付">現金交付</option>
+      </select>
+    </div>
+
+    <div class="form-divider"></div>
+    <div class="form-section-label">簽署日期</div>
+
+    <div class="form-group-row3">
+      <div class="form-group">
+        <label class="form-label" for="sign_year">年（民國）<span class="required">*</span></label>
+        <input type="number" id="sign_year" class="form-input" placeholder="115" min="100" max="200" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sign_month">月<span class="required">*</span></label>
+        <input type="number" id="sign_month" class="form-input" placeholder="5" min="1" max="12" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="sign_day">日<span class="required">*</span></label>
+        <input type="number" id="sign_day" class="form-input" placeholder="27" min="1" max="31" required>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="download-section">
+  <div class="download-card">
+    <h2 class="download-title">下載</h2>
+    <p class="download-sub">填妥上方表單後，點擊以下按鈕下載 docx。</p>
+    <div class="download-grid">
+      <button class="download-btn" id="btn-contract" type="button">
+        <span class="btn-name">教師勞動契約書（鐘點兼任 · 雇傭關係版 · draft 待律師審稿）</span>
+        <span class="btn-desc">依勞基法 §9 + 勞動契約認定指導原則製作　·　docx 格式</span>
+      </button>
+    </div>
+    <div id="status-msg" class="status-msg"></div>
+  </div>
+</section>
+
+<section class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>免責聲明｜</strong>本工具產出之文件為映依勞動基準法第九條、勞動部「勞動契約認定指導原則」及 A2 Deep Research 報告組裝之 draft 範本，<strong>尚未經律師霸服審稿</strong>。實際使用前，請依個案職務性質、實際排班、薪資結構等情形補充完整，並務必交由律師審閱具體條文（特別是第一條雇傭契約宣告、第四條鐘點費結構、第五條契約期限）。本工具不構成法律意見，亦不建立律師委任關係。本工具所有資料處理均在使用者瀏覽器內進行，不會傳送或儲存於任何伺服器。
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-row">
+    <a href="index.html">回首頁</a>　·　<a href="labor-check.html">勞檢應變</a>　·　<a href="cross-check.html">跳查照中心</a>　·　補教業法務支援站
+    <div class="footer-meta">
+      © 2026　·　測試版 v0.1　·　使用前請與律師確認
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.6/dist/pizzip-utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.50.0/build/docxtemplater.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+<script>
+const TEMPLATE = {
+  url: 'templates/labor-contract-template.docx',
+  filename: '教師勞動契約書_鐘點兼任.docx',
+  label: '教師勞動契約書'
+};
+
+const FIELDS = ['cram_name', 'license_no', 'address', 'owner_name',
+                'teacher_name', 'teacher_id', 'teacher_address',
+                'course_name', 'work_location',
+                'start_year', 'start_month', 'start_day',
+                'contract_type', 'probation_months',
+                'work_schedule',
+                'hourly_rate', 'payment_day', 'payment_method',
+                'sign_year', 'sign_month', 'sign_day'];
+
+const REQUIRED = FIELDS;
+
+function getStatus() { return document.getElementById('status-msg'); }
+function showStatus(msg, type) {
+  const el = getStatus();
+  el.textContent = msg;
+  el.className = 'status-msg show ' + type;
+}
+function clearStatus() { getStatus().className = 'status-msg'; }
+
+function pad2(s) {
+  s = String(s).trim();
+  return s.length === 1 ? '0' + s : s;
+}
+
+function collectData() {
+  const data = {};
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    let v = el ? el.value.trim() : '';
+    if (['start_month','start_day','sign_month','sign_day'].includes(id)) {
+      v = pad2(v);
+    }
+    data[id] = v;
+  });
+  return data;
+}
+
+function validate() {
+  const missing = [];
+  REQUIRED.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el || !el.value.trim()) {
+      const label = el && el.closest('.form-group') && el.closest('.form-group').querySelector('.form-label')
+        ? el.closest('.form-group').querySelector('.form-label').childNodes[0].textContent.trim().replace(/\*/g, '')
+        : id;
+      missing.push(label);
+    }
+  });
+  return missing;
+}
+
+async function loadTemplate(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('無法載入模板：' + url + '（HTTP ' + res.status + '）');
+  return await res.arrayBuffer();
+}
+
+async function generateAndDownload() {
+  clearStatus();
+  const missing = validate();
+  if (missing.length > 0) {
+    showStatus('還有 ' + missing.length + ' 個必填欄位未填：' + missing.slice(0, 3).join('、') + (missing.length > 3 ? '⋯⋯' : ''), 'err');
+    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  showStatus('正在生成 ' + TEMPLATE.label + ' ⋯⋯', 'ok');
+  try {
+    const buf = await loadTemplate(TEMPLATE.url);
+    const zip = new PizZip(buf);
+    const doc = new window.docxtemplater(zip, {
+      paragraphLoop: true, linebreaks: true,
+      delimiters: { start: '{', end: '}' }
+    });
+    doc.render(collectData());
+    const out = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    saveAs(out, TEMPLATE.filename);
+    showStatus('✅ ' + TEMPLATE.label + ' 下載完成（draft 版，建議交律師審稿後存底）', 'ok');
+  } catch (err) {
+    console.error(err);
+    let msg = err.message || String(err);
+    if (err.properties && err.properties.errors) {
+      msg += '｜詳細：' + err.properties.errors.map(e => e.message).join('；');
+    }
+    showStatus('❌ 生成失敗：' + msg, 'err');
+  }
+}
+
+document.getElementById('btn-contract').addEventListener('click', generateAndDownload);
+
+const STORAGE_KEY = 'cram-legal-labor-contract-form';
+function saveForm() {
+  const data = {};
+  document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+    data[el.id] = el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function loadForm() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+      if (data[el.id] !== undefined) el.value = data[el.id];
+    });
+  } catch (e) { console.warn('loadForm 失敗', e); }
+}
+document.querySelectorAll('.form-card input, .form-card select, .form-card textarea').forEach(el => {
+  el.addEventListener('change', saveForm);
+  if (el.tagName === 'INPUT' && el.type !== 'checkbox') el.addEventListener('input', saveForm);
+  if (el.tagName === 'TEXTAREA') el.addEventListener('input', saveForm);
+});
+loadForm();
+</script>
+
+</body>
+</html>
