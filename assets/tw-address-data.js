@@ -1,4 +1,4 @@
-// 台灣 22 縣市 + 鄉鎮市區資料 (W83f)
+// 台灣 22 縣市 + 鄉鎮市區資料
 // 來源：mask-map area-location.json + 補連江縣
 window.TW_ADDRESS = {
   "桃園市": [

@@ -1,5 +1,5 @@
 /**
- * 補教業法務支援站 - 共用表單工具 (W83f)
+ * 補教業法務支援站 - 共用表單工具
  *
  * 提供：
  * 1. initAddressSelector(cityId, districtId) — 縣市/區動態聯動（依 window.TW_ADDRESS）
@@ -67,7 +67,7 @@ function initAddressSelector(cityId, districtId) {
 
 /**
  * 民國年/月/日 select 初始化
- * yearRange: [起始, 結束]（民國年），預設 [113, 118]（W83f 律師指定）
+ * yearRange: [起始, 結束]（民國年），預設 [113, 118]（律師指定）
  */
 function initMinguoDateSelector(yearId, monthId, dayId, yearRange) {
   const yearEl = document.getElementById(yearId);
