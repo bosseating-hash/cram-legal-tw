@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補教業爭議釋疑 FAQ 互動查詢——退費、稽查、著作權、稅務、教師糾紛、個資、同業競爭、房租、加盟九大類常見爭議。白話結論 YES/NO/視情況 + 立即行動 SOP + 何時該找律師。">
+<title>爭議釋疑 FAQ 互動查詢｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-primary: #1e3a5f; --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
+  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
+  --color-amber: #b45309; --color-amber-bg: #fffbeb;
+  --color-bg: #fafafa; --color-bg-card: #ffffff;
+  --color-text: #1f2937; --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--color-primary); }
+.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
+.navbar-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
+.nav-back { font-size: 14px; color: var(--color-text-muted); text-decoration: none; }
+.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 56px 24px 44px; text-align: center; }
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 999px; font-size: 12.5px; letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500; }
+.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em; }
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 640px; margin: 0 auto; }
+
+.toolbar { max-width: 940px; margin: 0 auto; padding: 32px 24px 0; position: sticky; top: 57px; }
+.search-box { width: 100%; padding: 14px 18px; font-size: 15px; font-family: var(--font-sans); border: 1px solid var(--color-border); border-radius: 10px; background: white; box-shadow: var(--shadow-sm); }
+.search-box:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(176,141,62,0.12); }
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.filter-btn { font-size: 13px; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--color-border); background: white; color: var(--color-text-muted); cursor: pointer; transition: all 0.15s; font-family: var(--font-sans); }
+.filter-btn:hover { border-color: var(--color-accent); }
+.filter-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+.result-count { font-size: 13px; color: var(--color-text-muted); margin-top: 14px; }
+
+.faq-list { max-width: 940px; margin: 0 auto; padding: 18px 24px 0; }
+.faq-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; margin-bottom: 14px; box-shadow: var(--shadow-sm); overflow: hidden; }
+.faq-q { display: flex; align-items: flex-start; gap: 14px; padding: 20px 24px; cursor: pointer; user-select: none; }
+.faq-q:hover { background: #fcfcfd; }
+.faq-badges { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: flex-start; }
+.tag { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 5px; letter-spacing: 0.03em; white-space: nowrap; }
+.tag-cat { background: #eef2f7; color: var(--color-primary); }
+.tag-u-High { background: #fee2e2; color: #991b1b; }
+.tag-u-Medium { background: #ffedd5; color: #9a3412; }
+.tag-u-Low { background: #dcfce7; color: #166534; }
+.faq-q-text { flex: 1; font-size: 15.5px; font-weight: 500; line-height: 1.65; color: var(--color-text); }
+.faq-q-arrow { flex-shrink: 0; color: var(--color-text-muted); transition: transform 0.2s; font-size: 14px; margin-top: 4px; }
+.faq-card.open .faq-q-arrow { transform: rotate(180deg); }
+.faq-a { display: none; padding: 0 24px 24px; border-top: 1px solid var(--color-border); }
+.faq-card.open .faq-a { display: block; }
+.verdict { display: inline-block; font-family: var(--font-serif); font-weight: 700; font-size: 15px; padding: 6px 16px; border-radius: 8px; margin: 20px 0 8px; }
+.verdict-yes { background: var(--color-ok-bg); color: var(--color-ok); border: 1px solid #bbf7d0; }
+.verdict-no { background: var(--color-warn-bg); color: var(--color-warn); border: 1px solid #fecaca; }
+.verdict-depends { background: var(--color-amber-bg); color: var(--color-amber); border: 1px solid #fde68a; }
+.conclusion-text { font-size: 15px; line-height: 1.8; color: var(--color-text); margin-bottom: 18px; font-weight: 500; }
+.a-label { font-family: var(--font-serif); font-size: 13.5px; font-weight: 700; color: var(--color-accent); letter-spacing: 0.05em; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; }
+.legal-basis { font-size: 14px; line-height: 1.85; color: var(--color-text-muted); background: #f8fafc; border-radius: 8px; padding: 14px 18px; }
+.sop-list { list-style: none; counter-reset: sop; }
+.sop-list li { position: relative; padding: 6px 0 6px 34px; font-size: 14px; line-height: 1.7; counter-increment: sop; }
+.sop-list li::before { content: counter(sop); position: absolute; left: 0; top: 6px; width: 22px; height: 22px; background: var(--color-primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.faq-foot { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; align-items: stretch; }
+.gov-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--color-primary); text-decoration: none; padding: 9px 16px; border: 1px solid var(--color-border); border-radius: 8px; transition: all 0.15s; }
+.gov-link:hover { border-color: var(--color-accent); background: #fefbf3; }
+.lawyer-cta { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 14px 18px; margin-top: 16px; font-size: 13.5px; line-height: 1.7; color: #9a3412; }
+.lawyer-cta strong { color: #b45309; display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+.lawyer-cta a { color: #b45309; font-weight: 700; }
+.no-result { text-align: center; padding: 48px 24px; color: var(--color-text-muted); font-size: 15px; }
+
+.disclaimer { max-width: 940px; margin: 40px auto 0; padding: 0 24px; }
+.disclaimer-inner { background: #fef9e7; border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; font-size: 14px; line-height: 1.85; color: #715a13; }
+.disclaimer-inner strong { color: #5e4a0e; }
+
+footer { background: #1a1a1a; color: #9ca3af; padding: 36px 24px; text-align: center; font-size: 13px; line-height: 1.8; margin-top: 56px; }
+footer .footer-brand { color: white; font-family: var(--font-serif); font-size: 16px; margin-bottom: 6px; }
+footer .footer-version { margin-top: 8px; opacity: 0.55; font-size: 12px; letter-spacing: 0.08em; }
+
+@media (max-width: 720px) {
+  .subhero { padding: 44px 20px 34px; }
+  .subhero h1 { font-size: 26px; }
+  .toolbar { top: 56px; }
+  .faq-q { padding: 16px 18px; gap: 10px; }
+  .faq-a { padding: 0 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">樞紐工具　·　爭議釋疑 FAQ</div>
+    <h1>爭議釋疑 FAQ<br><span class="accent">互動查詢</span></h1>
+    <p class="lead">櫃檯被家長拍桌、教育局突襲稽查、收到出版社存證信函——先別慌。輸入關鍵字或點分類，先看「白話結論」安定情緒，再照「立即行動 SOP」一步步處理，並知道什麼時候該停手找律師。</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input type="text" class="search-box" id="search" placeholder="🔍 輸入關鍵字（如：退費、勞檢、影印考卷、負評、外籍老師…）">
+  <div class="filter-row" id="filter-row"></div>
+  <div class="result-count" id="result-count"></div>
+</div>
+
+<div class="faq-list" id="faq-list"></div>
+
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>⚠️ 免責聲明</strong>——本 FAQ 係將 2024–2026 補教業常見爭議之法規整理為白話參考，<strong>非針對具體個案之法律意見</strong>。各縣市自治條例、裁罰基準與個案事實認定不同，實際處理請以主管機關最新規定為準；遇標示「何時該找律師」之情境，請務必委請執業律師處理。所引法條為整理當時之現行法。
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <div>爭議釋疑 FAQ 互動查詢 v1.0　·　九大類 18 則常見爭議</div>
+  <div class="footer-version">退費 / 稽查訪查 / 著作權 / 稅務 / 教師糾紛 / 同業競爭 / 個資 / 房屋租賃 / 加盟</div>
+</footer>
+
+<script>
+// ============ FAQ 資料（補教業 2024-2026 常見爭議法規整理）============
+// verdict: yes / no / depends
+const FAQ = [
+  { id:1, cat:'退費', u:'High', top:true, verdict:'no',
+    q:'學生才剛報名繳錢、第一堂課都還沒上，家長就反悔要全額退費，我們能扣手續費嗎？',
+    concl:'NO（不能扣「手續費」，但合法可扣 5% 或 10% 違約金）。開課前退費有明確比例，補習班依法必須退還大部分學費。',
+    basis:'依各縣市《短期補習班管理規則》（以台北市為例第 9 條），學生於開課前第 60 天以前提出退費，補習班須退還總學費的 95%；於開課前 59 天到實際開課日當天提出，須退還 90%。法規不允許以「行政手續費」名義全額沒收，但賦予補習班扣除 5%–10% 作為補償的權利。',
+    sop:['翻出學生當初簽署的定型化契約，確認合約上的「實際開課日期」。','計算家長提出退費的日期距開課日還有幾天，套用當地教育局的退費比例（95% 或 90%）。','準備退費申請書，向家長溫和說明依教育局規定會扣除法定範圍內少許金額、其餘退還。','雙方簽署退費明細後，於規定期限內匯款，切勿以各種理由拖延退款惹怒家長。'],
+    link:'https://cpc.ey.gov.tw/Page/99E57A84ABE1694F/2ff45c5a-2226-483d-9441-9906ef4d7b30',
+    trigger:'家長堅持一毛都不能扣，並在補習班大聲咆哮、影響其他學生上課，或在網路上發布「這家補習班騙錢不退」的誹謗言論時。' },
+
+  { id:2, cat:'退費', u:'High', top:true, verdict:'depends',
+    q:'學生上了三個禮拜的課覺得跟不上要退費，家長帶人來拍桌要求全額退，該退多少？',
+    concl:'視情況（依上課時數比例而定）。只要上過課，絕對不用全額退費。',
+    basis:'依教育局統一準則：學生於實際開課日當天課程結束後、到第二次上課「前」提出退費，應退還 70%；已上到第二次課以後但未超過全期總時數的「三分之一」，退還 50%；一旦超過總時數三分之一，補習班依法「可以全數不予退還」。只要確實上課，家長即無權要求全額退費。',
+    sop:['調出該學生紙本或電子點名表，確認實際出席與缺席紀錄（缺席也算入已消耗課程）。','拿出補教法規與合約，指出「未達三分之一退 50%」或「逾三分之一不退費」的條文給家長看。','若符合退費標準，核算金額後辦理；若已超過三分之一，委婉但堅定告知依法無法退費。','可提替代方案（保留剩餘堂數至下學期、轉讓弟妹）以安撫情緒。'],
+    link:'https://cpc.ey.gov.tw/Page/99E57A84ABE1694F/2ff45c5a-2226-483d-9441-9906ef4d7b30',
+    trigger:'家長不接受法定退費比例，找來黑道背景人士施壓，或帶媒體記者到班抗議，威脅人身安全與商譽時。' },
+
+  { id:3, cat:'退費', u:'Medium', top:true, verdict:'yes',
+    q:'家長當初用資融公司（如中租）辦 24 期零利率繳學費，上兩個月要退費，剩下的貸款我們要幫他處理嗎？',
+    concl:'YES（必須連動解除）。消費者退費解約時，補習班必須將剩餘款項退給貸款機構以終止債權。',
+    basis:'依新北市法制局及消保法相關解釋，家長透過融資公司貸款付學費時，補習班其實在開課初就已從融資公司「一次拿到」全部學費。故家長與補習班合法解約時，補習班須負責把依比例算出的「未上課退費金額」直接退還給融資機構沖抵債務，家長才能真正免除後續繳款責任，不能要家長自己去跟融資公司討。',
+    sop:['拿出原貸款合約，確認配合的融資機構名稱與家長剩餘未繳期數。','依各縣市教育局退費標準，精算這名學生依法應退還多少剩餘學費。','由補習班行政主動聯繫融資機構，告知該生已退班，並將算出的退費金額匯還沖帳。','處理完畢列印單據並訊息告知家長，請家長自行確認下個月帳單是否已停止扣款。'],
+    link:'https://www.lawbank.com.tw/news/NewsContent.aspx?NID=122484',
+    trigger:'融資公司與補習班對手續費或違約金扣除比例認知嚴重分歧，導致融資公司持續向家長催債，家長進而向消保官申訴並提告補習班詐欺時。' },
+
+  { id:4, cat:'稽查訪查', u:'High', top:true, verdict:'no',
+    q:'教育局突然來稽查，看到角落有學生睡袋和點心表，說我們用補習班名義違法經營幼兒園要開罰 30 萬，怎麼辦？',
+    concl:'NO（絕對不能違規）。補習班立案絕對不能跨界提供幼兒園或安親班（課後照顧）的全日托育服務。',
+    basis:'依《幼兒教育及照顧法》第 51 條，未經許可擅自招收幼兒進行教保服務，重罰 6 萬至 30 萬元並勒令停辦。補習班的消防與空間標準較幼兒園寬鬆，教育局近年嚴格執法；監察院已糾正過去模糊地帶，現在只要現場查獲寢具、尿布或全日作息表，就會被認定為違法經營幼兒園。',
+    sop:['稽查當下務必配合人員作業，切勿阻擋、關門或爆發言語衝突，以免構成妨礙公務罪加一等。','立即移除場地內所有不屬於補習班短期才藝教學的物品（幼童床墊、睡袋、大型遊具）。','重新檢視招生物件，若招收 6 歲以下兒童須嚴格限於「短期才藝教學」，絕不可提供供餐與午休的「全日托育」。','若收到裁處罰單但認為認定事實有誤，需在法定期限內提出訴願。'],
+    link:'https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0070031',
+    trigger:'面臨高達 30 萬的連續罰款且即將被勒令停業，或教育局認定事實與實際狀況有重大出入，需律師協助蒐證並撰寫行政訴願書以保住招牌時。' },
+
+  { id:5, cat:'稽查訪查', u:'Medium', top:true, verdict:'no',
+    q:'我們是補習班立案，但幫國小生看功課、接送上下學，這不就是一般安親班嗎？這樣也會被罰嗎？',
+    concl:'YES（會被開罰）。補習班與兒童課後照顧中心（安親班）法規不同，不能混淆經營。',
+    basis:'法律上「短期補習班」與「兒童課後照顧服務中心（安親班）」完全不同。依規定補習班不得經營非補習業務；若以補習班名義大肆招攬「安親、接送、照顧」服務，甚至市招不符，教育局將視為違規經營。家長若發現投保的公共意外責任險與實際不符，也會引發糾紛。',
+    sop:['檢查對外所有廣告傳單、招牌、臉書貼文，拿掉「安親」「托育」「課後照顧」等字眼。','廣告文宣改主打「課業輔導」或「才藝進修」，回歸補習班合法立案科目。','確保場所內不會長時間留置學童進行非教學相關的純托育活動。','若確有強烈安親需求，評估場地是否符合更嚴格法規，另行申請「課後照顧中心」立案。'],
+    link:'https://www.doe.gov.taipei/News_Content.aspx?n=B3DDF0458F0FFC11&sms=72544237BBE4C5F6&s=99543AF70655ACA9',
+    trigger:'因交通接送或課後照顧過程中發生學童意外受傷，保險公司以「違規超範圍經營」為由拒絕理賠，補習班面臨家長鉅額求償時。' },
+
+  { id:6, cat:'著作權', u:'High', top:true, verdict:'no',
+    q:'為了幫學生段考總複習，我把南一、康軒、翰林的測驗卷印給全班寫，還做成 PDF 傳到家長 LINE 群組，出版社說要告侵權，會被抓去關嗎？',
+    concl:'NO（絕不合法）。補習班未經授權影印商業測驗卷或教材發給學生，是嚴重的刑事犯罪行為。',
+    basis:'依《著作權法》，學校老師為舉辦考試雖可「合理使用」影印考卷（第 54 條），但「補習班」是以營利為目的之機構，不適用教育機構合理使用條款。未經授權將坊間出版社試卷影印（重製權）並透過 LINE 傳送 PDF（公開傳輸權），已構成刑事犯罪。近期刑事局嚴厲打擊，查扣數量極多，出版社求償金額動輒數百萬至上億元。',
+    sop:['立即停止影印與散布，並移除已上傳到 LINE 群組／雲端的所有侵權 PDF 檔。','清點已影印、散布的數量與對象，誠實保留紀錄，切勿湮滅或串證。','主動或委請律師與出版社法務洽談授權或和解，切勿置之不理使損害擴大。','改採正版授權題庫、出版社合作授權方案或自編教材，徹底杜絕侵權來源。'],
+    link:'https://www.tipo.gov.tw/tw/cp-8559-408182-019bb-1.html',
+    trigger:'收到警察局要求做筆錄的通知書，或出版社法務部門寄來存證信函要求數百萬高額懲罰性賠償時，必須立刻找律師陪同處理刑事程序與和解談判。',
+    note:'（本則 DR 原文未列 SOP，行動步驟由結論與法源直接推得，建議律師複核。）' },
+
+  { id:7, cat:'著作權', u:'Low', top:false, verdict:'no',
+    q:'學生在自習室看書很安靜，我可以用櫃檯電腦接喇叭，連自己的 Spotify 播流行音樂當背景嗎？',
+    concl:'NO（需買版權）。補習班播放背景音樂屬於營業場所的「公開演出」，需向集管團體付費取得授權。',
+    basis:'補習班屬對外招生的營業場所，若在櫃檯、自習室、走廊播放串流平台（Spotify、KKBOX、Apple Music）或 YouTube 音樂，在《著作權法》上屬「公開演出」，並非課堂教學講解目的，不符合理使用。須向音樂著作權集管團體（如 MUST 中華音樂著作權協會）申請授權並繳年費，否則即屬侵權。',
+    sop:['立即停止在營業場所播放串流平台或 YouTube 的市售音樂。','若確實需要背景音樂，向 MUST 等集管團體申請「公開演出」授權並繳交年費。','或改用明確標示「可商業使用／免授權」之音樂來源。','保留授權證明文件備查，以備集管團體稽查。'],
+    link:'https://www.must.org.tw/tw/license/07.aspx',
+    trigger:'遭音樂版權集管團體稽查員現場偽裝錄音蒐證，並收到律師函要求繳交數萬至十幾萬元侵權和解金時。',
+    note:'（本則 DR 原文未列 SOP，行動步驟由結論與法源直接推得，建議律師複核。）' },
+
+  { id:8, cat:'稅務', u:'Medium', top:true, verdict:'yes',
+    q:'我們是公司名義登記的大型補習班，國稅局說補習費收入要補繳 5% 營業稅，不是說補習班免稅嗎？',
+    concl:'YES（免營業稅）。只要是「合法立案」的補習班，無論個人名義或公司組織，單純的學費收入都免徵營業稅。',
+    basis:'108 年財政部發布解釋令（台財稅字第 10804620670 號），明文確立基於課稅公平原則，只要經教育局「依法核准設立」辦理短期補習班業務之公司，其收取的補習費收入依《營業稅法》第 8 條規定同樣「免徵營業稅」，推翻了 106 年一度要對公司制補習班課稅的決定。',
+    sop:['準備教育局核發的最新「短期補習班立案證書」影本與負責人證件。','確認被國稅局查核的款項是「單純的教育勞務（學費）」，而非其他商品收入。','帶立案證書與帳冊，主動向該區國稅局稅務員說明法規依據（引 108 年函釋）。','提醒會計：雖免 5% 營業稅，但每年 5 月的「營利事業所得稅」仍須依規定計算申報。'],
+    link:'https://law-out.mof.gov.tw/LawContentSearch.aspx?id=GL010723',
+    trigger:'國稅局查帳人員不採納業者說明，堅持認定補習班有逃漏稅事實並開出鉅額補稅單及高額罰鍰，需會計師與稅務律師聯手提出復查或行政訴訟時。' },
+
+  { id:9, cat:'稅務', u:'High', top:true, verdict:'no',
+    q:'我們剛租店面開始招生收學費，但教育局立案證書還在跑流程沒下來，這樣國稅局查到會罰錢嗎？',
+    concl:'YES（會被重罰補稅）。未經核准立案就擅自招生收費，不適用免稅規定，必須課徵 5% 營業稅並處罰。',
+    basis:'補習費免營業稅的前提是「依法向教育主管機關申請核准立案」。若還沒拿到立案證書就以補習班名義偷跑招生、收取學費，這些收入將被視為一般營利行為，須依法開立統一發票並課徵 5% 營業稅。一旦被查獲未辦稅籍登記就營業，將面臨補稅與漏稅罰鍰。',
+    sop:['立即停止任何對外公開收費與招生行為，直到拿到教育局正式立案證書為止。','若已先收「預約金」或「劃位費」，不可大肆作帳宣揚，應視為預收款妥善保管。','加緊追蹤跑照業者或建築師進度，盡速取得立案資格。','萬一未立案期間已被查獲，立刻辦妥稅籍登記、補開發票並繳清 5% 營業稅以減輕罰則。'],
+    link:'https://jeffclean.com.tw/news/%E6%9C%AA%E7%AB%8B%E6%A1%88%E8%A3%9C%E7%BF%92%E7%8F%AD%E6%87%89%E4%BE%9D%E6%B3%95%E8%AA%B2%E5%BE%B5%E7%87%9F%E6%A5%AD%E7%A8%85',
+    trigger:'因未立案偷跑被檢舉，除面臨國稅局補稅處罰外，還被教育局依《補教法》勒令立即停辦並沒入器材設備，面臨無法繼續經營的絕境時。' },
+
+  { id:10, cat:'稅務', u:'Low', top:false, verdict:'yes',
+    q:'我們是合法立案補習班學費免稅，但也賣自編參考書、點讀筆、上課光碟給沒報名的外校學生，這部分要開發票嗎？',
+    concl:'YES（必須申報納稅）。販售書籍、光碟等實體物品屬於一般銷售貨物，無法免徵營業稅。',
+    basis:'補習班免徵營業稅的特權僅嚴格限於提供「教育勞務」（上課、解題的學費）。若從事販售書籍、DVD、教具、文具等行為，特別是賣給非本班學生，這部分屬於銷售貨物，依法仍應主動申報營業稅並開立統一發票，混在一起不報查帳時風險極高。',
+    sop:['將收入帳戶明確分類：「教育勞務（學費）收入」與「書籍商品販售收入」。','針對賣書、賣光碟的部分，向國稅局申請開立統一發票資格。','販售商品時確實開立發票給購買者，並按期繳納這部分營業稅。','不要把賣書收入灌水到免稅學費收入中，國稅局電腦系統會比對異常。'],
+    link:'https://www.fh-accounting.com/M84.html',
+    trigger:'國稅局認定補習班假借免稅學費之名、實質進行龐大金額商品買賣漏開發票，進而要求連補帶罰鉅款，需進行稅務行政救濟時。' },
+
+  { id:11, cat:'教師糾紛', u:'High', top:true, verdict:'no',
+    q:'最近很缺老師，我看一個外國人履歷不錯想明天就叫他來試教，應該等一個月後確定適用再把資料報給教育局就好吧？',
+    concl:'NO（絕對不行）。聘僱任何人接觸學生「前」，一定要先拿到良民證並上網通報教育局核准。',
+    basis:'為防範狼師，立法院已三讀修正《補習及進修教育法》第 9 條：補習班聘僱任何教職員工「前」（含短期試教、工讀生），都必須檢附名冊、學經歷及「最近三個月內的警察刑事紀錄證明（良民證）」報請主管機關核准；聘外籍老師第一次申請還要附「外國人原護照國開具的行為良好證明」。沒通報被查到最高可罰 25 萬元甚至廢止立案。',
+    sop:['面試時就明確告知所有應徵者，錄取前提是須自行去警察局申請最新「良民證」。','在沒拿到良民證並上教育局系統完成人員異動通報核准前，絕不能讓他進教室上課或接觸學生。','收到良民證時仔細審視，若發現有性侵害、性騷擾或妨害性自主前科，立刻依法拒絕錄用。','定期每月檢查班內現有全體教職員工資料，確認是否依規定建檔更新。'],
+    link:'https://www.edu.tw/News_Content.aspx?n=9E7AC85F1954DDA8&sms=169B8E91BB75571F&s=DC3A3CB821544837',
+    trigger:'因一時貪快未依法通報的老師在班內發生體罰、性騷擾學生的重大社會案件，導致補習班負責人面臨知情不報的連帶刑事責任與廢止立案危機時。' },
+
+  { id:12, cat:'教師糾紛', u:'Medium', top:true, verdict:'no',
+    q:'我們班很小，只有我和 2 個工讀大學生幫忙改考卷，總人數不到 5 人，應該不用幫他們保勞保吧？',
+    concl:'NO（必須保就業保險與勞退）。不到 5 人確實免強制勞保，但「就業保險」只要請 1 個人就必須強制投保。',
+    basis:'依規定僱用不到 5 人的補習班可不強制參加「勞保」。但《就業保險法》規定，只要僱用「1 名」員工（兼職、工讀生或全職），到職當天雇主就必須幫他申報參加「就業保險」並提撥 6% 勞工退休金。若沒保就保，一旦被勞保局查到，會被開罰應繳保險費的 10 倍罰鍰。',
+    sop:['立刻向勞動部勞保局申請成立補習班的「就業保險投保單位」與「勞工退休金提繳單位」。','未來只要有新老師或工讀生第一天上線打卡，當天務必上網幫他們加保就保與勞退。','發薪時清楚向工讀生說明薪資單扣除就保費用的原因，避免被誤會亂扣薪水。','若員工要求「不要幫我投保，把錢換現金給我」，請堅決拒絕，因為違法受重罰的永遠是雇主。'],
+    link:'https://www.mol.gov.tw/1607/1632/1640/16952/',
+    trigger:'員工離職後因雇主沒加保，導致他無法向勞保局請領失業給付，回頭依民法要求補習班賠償數萬元損失，且雙方在勞工局勞資爭議調解會上無法達成共識時。' },
+
+  { id:13, cat:'教師糾紛', u:'Medium', top:false, verdict:'depends',
+    q:'我們花資源培訓的名師突然離職，還在同一條街開了一家一模一樣的補習班把學生帶走，當初有簽競業禁止條款，可以告他賠錢嗎？',
+    concl:'視情況（看合約是否合法）。競業禁止條款必須要有給予老師「合理補償金（半薪）」才算有效。',
+    basis:'補習班常在勞動契約加入「離職後兩年內不得在同區域教書」的競業禁止條款。但依現行勞工法令與法院實務，雇主若要限制員工離職後工作權，必須在限制期間給予「合理補償」（依勞基法通常為離職前月平均工資的 50%）。若當初合約只有限制卻沒付半毛補償金，這個條款在法院會被判定無效。',
+    sop:['重新檢視與該名師簽訂的勞動契約，確認是否明訂競業禁止的「區域範圍、時間長短」，最重要的是有無發放「補償金」。','若合約合法有效且有付補償金，立刻寄發存證信函要求對方停止在禁止區域內教學，否則追討高額違約金。','盤點該老師是否順手帶走補習班內部「營業秘密」（未公開獨家教材、學生家長名冊），這部分可另外提告。','請律師重新審閱並修改現有全體老師的聘僱合約，確保未來競業條款絕對符合勞基法。'],
+    link:'https://www.mol.gov.tw/media/kfhiqyt5/%E7%B0%BD%E8%A8%82%E7%AB%B6%E6%A5%AD%E7%A6%81%E6%AD%A2%E5%8F%83%E8%80%83%E6%89%8B%E5%86%8A.pdf',
+    trigger:'名師帶走大批學生導致補習班面臨嚴重營運危機，且雙方簽署合約十分完備，需要律師立刻向法院聲請「假處分」強制禁止他在對面繼續開班授課時。' },
+
+  { id:14, cat:'同業競爭', u:'Medium', top:true, verdict:'yes',
+    q:'隔壁新開的補習班惡意找一堆假帳號在我們 Google 地圖狂刷一星負評，還捏造我們老師會打人，能告他們嗎？',
+    concl:'YES（可以提告）。惡意留不實負評涉及刑法誹謗罪及民法損害賠償，同業指使更違反公平法。',
+    basis:'在網路上捏造不實謠言攻擊店家，觸犯《刑法》第 310 條誹謗罪與第 309 條公然侮辱罪；依《民法》第 184、195 條，被攻擊的補習班可向留言者要求賠償「營業損失」與「名譽損害的精神慰撫金」。若能證明是競爭同業在背後出錢指使，這種故意中傷他人營業信譽的行為，更違反《公平交易法》的不正競爭條款。',
+    sop:['第一時間將所有一星負評、留言內容與帳號「截圖存證」，千萬不要急著跟對方在網路上情緒性對罵。','在留言下方以官方語氣客氣回覆：「本班查無此學生紀錄，若有誤會請親洽櫃檯，惡意造謠將保留法律追訴權。」此舉是寫給其他觀望的家長看的。','善用平台機制，向 Google 官方檢舉該評論為「惡意內容或利益衝突」要求審查下架。','收集最近幾期報名人數與營收下滑數據，作為日後向法院求償營業損失的具體證據。'],
+    link:'https://www.legis-pedia.com/article/consumers-loan-contract/1022',
+    trigger:'負評數量過於龐大且已嚴重影響當月招生與商譽，需委託律師向警察局報案「妨害名譽」，透過公權力查出假帳號背後 IP 位址，並向法院提出民事求償時。' },
+
+  { id:15, cat:'個資', u:'High', top:true, verdict:'no',
+    q:'我們向行銷公司買了一批本學區國小學生的家長電話名單來打招生電話，有家長抓狂去教育局檢舉我們違反個資法！',
+    concl:'NO（違規行為）。購買來歷不明的個資打招生電話，最高可處以停止招生處分。',
+    basis:'各地教育局三令五申，補教業者蒐集與利用個人資料必須嚴格符合《個資法》。若取得來歷不明的個資用於行銷，且首次撥打電話時沒有提供當事人「表示拒絕之方式」，一旦遭家長檢舉，教育局將從重裁處罰鍰；更嚴重者可直接對補習班處以「停止招生」的致命行政處分。',
+    sop:['立即停止使用該批購買的名單進行任何電話、LINE、簡訊行銷。','若有家長表明「不要再打來」，立刻在系統將該電話標記黑名單，絕不可交由其他業務再次撥打。','改採合法數位行銷（臉書精準廣告、Google 關鍵字、實體體驗課程），讓家長「主動」留下聯絡資料（Opt-in 授權）。','若教育局來函要求說明名單來源，誠實以對並展現已確實銷毀名單的改善誠意。'],
+    link:'https://www.doe.gov.taipei/News_Content.aspx?n=B3DDF0458F0FFC11&s=771B12B58557AE9C',
+    trigger:'遭教育局重罰鉅款，或面臨「停止招生」的極嚴厲處分將導致補習班倒閉，或多位家長聯合以《個資法》向法院提起團體訴訟要求精神賠償時。' },
+
+  { id:16, cat:'個資', u:'Low', top:false, verdict:'no',
+    q:'今年考上第一志願的學生很多，我們想把姓名和照片做成大紅布條掛門口、也發臉書粉專，直接貼出去沒關係吧？',
+    concl:'NO（必須取得同意）。公開學生肖像和全名作廣告宣傳，必須先拿到家長書面授權。',
+    basis:'學生的真實姓名與長相照片屬受《個資法》及《民法》肖像權保護的特徵。就算學生考得好，補習班要拿來當對外招生廣告（特定目的外使用）也必須取得當事人同意；國高中生多為未成年，依法還必須同時取得「法定代理人（家長）」同意。若為面子製作假榜單，更可能構成刑法詐欺與偽造文書罪。',
+    sop:['由法務或行政設計一份標準的「榜單宣傳與肖像授權同意書」，請考上好學校的學生帶回給家長簽名。','若家長不同意公開，必須把名字中間的字打馬賽克（如：王Ｏ明），且絕不可使用照片。','確保榜單資訊絕對真實，不可把別家補習班學生灌水到自己名下或誇大錄取人數。','若發現未授權照片已被貼出，接獲家長抗議時立刻撤下布條與網路貼文並誠心道歉。'],
+    link:'https://www.whjhs.tyc.edu.tw/news/',
+    trigger:'家長極度不滿隱私被侵犯，以個資法向補習班提告求償，或被競爭同業蒐證檢舉本班張貼不實假榜單、面臨刑法詐欺調查時。' },
+
+  { id:17, cat:'房屋租賃', u:'Medium', top:true, verdict:'depends',
+    q:'房東說店面租給我們開補習班可以，但他不願報稅，要求我們自己吸收每個月 10% 的租金扣繳憑單，這合理嗎？',
+    concl:'視情況（需依合約約定）。依法補習班有義務代扣 10% 租金稅款繳給國稅局，費用誰出看合約。',
+    basis:'依國稅局規定，補習班（身為扣繳義務人）向境內個人房東承租房屋，每次給付房租時必須先扣取 10% 稅款，並在次月 10 日前幫房東繳給國庫；若沒依法扣繳，會被處應扣未扣稅額 1 至 3 倍罰鍰。至於這 10% 是從原約定租金內扣（房東實拿變少）還是補習班額外幫房東出（租金未稅價），全看雙方簽訂的租賃契約怎麼談。',
+    sop:['確認房東身分（境內個人），給付租金時依法代扣 10% 稅款。','次月 10 日前將代扣的稅款向國庫繳納。','於租賃契約中明訂這 10% 由誰負擔（內扣或外加），白紙黑字避免日後爭議。','每年一月底前，主動向國稅局申報上一年度的扣（免）繳憑單。'],
+    link:'https://www.houseweb.com.tw/news/17697',
+    trigger:'補習班因不知法規未代扣繳，遭國稅局連補帶罰數十萬元，回頭向房東索討被拒絕，需透過民事訴訟向房東要求不當得利返還時。',
+    note:'（本則 DR 原文 SOP 部分缺漏，步驟 1–3 由結論與法源直接推得，建議律師複核。）' },
+
+  { id:18, cat:'加盟', u:'Medium', top:false, verdict:'depends',
+    q:'連鎖總部當初一直畫大餅叫我們加盟，收了高額加盟金後才發現裝潢規定一堆、還要強制買他們貴得要命的教材，可以要求退款嗎？',
+    concl:'視情況（看總部有無事前揭露資訊）。若加盟總部隱匿重要資訊，可依公平法檢舉並要求解約。',
+    basis:'依公平交易委員會頒布的加盟業主資訊揭露處理原則，加盟總部在簽約前有絕對義務向加盟店以書面充分揭露重要交易資訊，包含加盟金性質、後續必須購買的商品（專屬教材、雲端系統）、設備費用限制等，並給予合理的契約審閱期。若總部刻意隱瞞或誇大導致加盟主誤判而簽約，即違反公平法，最高可處鉅額罰款。',
+    sop:['簽約前要求總部以書面充分揭露加盟金性質、強制採購教材／設備費用、契約審閱期等重要資訊。','保留總部所有口頭與書面承諾、文宣及簡報，作為日後爭議的證據。','若已簽約後才發現總部刻意隱匿或誇大，向公平交易委員會提出檢舉。','涉及金額龐大或準備依民法解除加盟合約、求償退款時，委請律師處理。'],
+    link:'https://www.ftc.gov.tw/',
+    trigger:'已投入數百萬資金但總部完全不履行支援與輔導義務，準備依民法解除加盟合約，並向法院提告要求退還加盟金與賠償裝潢等龐大損失時。',
+    note:'（本則 DR 原文未列 SOP，行動步驟由結論與法源直接推得，建議律師複核。）' },
+];
+
+// ============ 渲染 ============
+const verdictMap = { yes:{cls:'verdict-yes',label:'YES'}, no:{cls:'verdict-no',label:'NO'}, depends:{cls:'verdict-depends',label:'視情況'} };
+const cats = ['全部', ...Array.from(new Set(FAQ.map(f => f.cat)))];
+let activeCat = '全部';
+let keyword = '';
+
+const filterRow = document.getElementById('filter-row');
+cats.forEach(c => {
+  const b = document.createElement('button');
+  b.className = 'filter-btn' + (c === '全部' ? ' active' : '');
+  b.textContent = c === '全部' ? '全部' : c + '（' + FAQ.filter(f => f.cat === c).length + '）';
+  b.dataset.cat = c;
+  b.addEventListener('click', () => {
+    activeCat = c;
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    render();
+  });
+  filterRow.appendChild(b);
+});
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function cardHtml(f) {
+  const v = verdictMap[f.verdict];
+  const sop = f.sop && f.sop.length ? `<div class="a-label">📋 立即行動 SOP</div><ol class="sop-list">${f.sop.map(s => `<li>${esc(s)}</li>`).join('')}</ol>` : '';
+  const note = f.note ? `<div style="font-size:12px;color:#9a3412;margin-top:6px;">${esc(f.note)}</div>` : '';
+  return `<div class="faq-card" data-id="${f.id}">
+    <div class="faq-q">
+      <div class="faq-badges"><span class="tag tag-cat">${esc(f.cat)}</span><span class="tag tag-u-${f.u}">${f.u==='High'?'高':f.u==='Medium'?'中':'低'}急</span></div>
+      <div class="faq-q-text">${esc(f.q)}</div>
+      <div class="faq-q-arrow">▼</div>
+    </div>
+    <div class="faq-a">
+      <span class="verdict ${v.cls}">${v.label}</span>
+      <div class="conclusion-text">${esc(f.concl)}</div>
+      <div class="a-label">⚖️ 法規白話翻譯</div>
+      <div class="legal-basis">${esc(f.basis)}</div>
+      ${sop}${note}
+      <div class="faq-foot">
+        <a class="gov-link" href="${f.link}" target="_blank" rel="noopener">🔗 官方法源／查詢</a>
+      </div>
+      <div class="lawyer-cta"><strong>⚠️ 何時該停手找律師</strong>${esc(f.trigger)}　<a href="./attorney-letter-form.html">需要寄律師函／存證信函？→</a></div>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const list = document.getElementById('faq-list');
+  const kw = keyword.trim().toLowerCase();
+  const filtered = FAQ.filter(f => {
+    const catOk = (activeCat === '全部') || (f.cat === activeCat);
+    const kwOk = !kw || (f.q + f.concl + f.basis + f.cat).toLowerCase().includes(kw);
+    return catOk && kwOk;
+  });
+  document.getElementById('result-count').textContent = `共 ${filtered.length} 則`;
+  list.innerHTML = filtered.length ? filtered.map(cardHtml).join('') : '<div class="no-result">找不到符合的爭議類型，試試其他關鍵字，或點「全部」瀏覽。</div>';
+  list.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+}
+
+document.getElementById('search').addEventListener('input', e => { keyword = e.target.value; render(); });
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="補教業聘僱合規包產生器——選擇職務類型（鐘點承攬／全職／行政助教／工讀生／外籍），線上填表下載聘僱契約 docx。內含勞基§9-1 競業禁止五要件檢核與補教業判決見解。資料純前端處理，不上傳。">
+<title>聘僱合規包產生器｜補教業法務支援站</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/form-helpers.css">
+
+<style>
+:root {
+  --color-primary: #1e3a5f; --color-primary-dark: #142840;
+  --color-primary-light: #2c4f7c; --color-secondary: #1b3a3a;
+  --color-accent: #b08d3e; --color-accent-light: #d4b25a;
+  --color-warn: #b91c1c; --color-warn-bg: #fef2f2;
+  --color-ok: #15803d; --color-ok-bg: #f0fdf4;
+  --color-test: #92400e; --color-test-bg: #fef3c7;
+  --color-bg: #fafafa; --color-bg-card: #ffffff;
+  --color-text: #1f2937; --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.85; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--color-primary); }
+.navbar { position: sticky; top: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100; padding: 14px 24px; }
+.navbar-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--font-serif); font-weight: 700; color: var(--color-primary); font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+.brand .brand-mark { display: inline-block; width: 6px; height: 18px; background: var(--color-accent); margin-right: 10px; vertical-align: -3px; }
+.nav-back { font-size: 14px; color: var(--color-text-muted); text-decoration: none; }
+.subhero { background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-secondary) 100%); color: white; padding: 56px 24px 48px; text-align: center; }
+.subhero-inner { max-width: 820px; margin: 0 auto; }
+.subhero-tag { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 16px; border-radius: 999px; font-size: 12.5px; letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500; }
+.subhero h1 { font-family: var(--font-serif); font-size: 36px; font-weight: 900; line-height: 1.4; margin-bottom: 14px; letter-spacing: 0.02em; }
+.subhero h1 .accent { color: var(--color-accent-light); }
+.subhero .lead { font-size: 16px; line-height: 1.85; opacity: 0.92; max-width: 660px; margin: 0 auto; }
+
+.type-selector { max-width: 940px; margin: 0 auto; padding: 48px 24px 0; }
+.type-title { font-family: var(--font-serif); font-size: 22px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+.type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.type-card { background: white; border: 2px solid var(--color-border); border-radius: 10px; padding: 18px 20px; cursor: pointer; transition: all 0.15s; }
+.type-card:hover { border-color: var(--color-accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.type-card.active { border-color: var(--color-accent); background: #fefbf3; box-shadow: 0 0 0 4px rgba(176,141,62,0.12); }
+.type-card .type-num { font-family: var(--font-serif); font-size: 11.5px; letter-spacing: 0.12em; font-weight: 700; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+.type-card.lv-yellow .type-num { background: #fef3c7; color: #92400e; }
+.type-card.lv-orange .type-num { background: #ffedd5; color: #9a3412; }
+.type-card.lv-red .type-num { background: #fee2e2; color: #991b1b; }
+.type-card.lv-blue .type-num { background: #dbeafe; color: #1e40af; }
+.type-card.lv-purple .type-num { background: #ede9fe; color: #5b21b6; }
+.type-card.lv-green .type-num { background: #dcfce7; color: #166534; }
+.type-card h3 { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+.type-card p { font-size: 13px; line-height: 1.65; color: var(--color-text-muted); }
+
+.form-section { max-width: 940px; margin: 0 auto; padding: 36px 24px 0; }
+.form-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
+.form-group { margin-bottom: 22px; }
+.form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+@media (max-width: 600px) { .form-group-row, .form-group-row3 { grid-template-columns: 1fr; } }
+.form-label { display: block; font-size: 13.5px; font-weight: 500; color: var(--color-text); margin-bottom: 6px; }
+.form-label .required { color: var(--color-warn); margin-left: 3px; }
+.form-label .hint { font-size: 12px; color: var(--color-text-muted); font-weight: 400; margin-left: 6px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 10px 14px; font-size: 14.5px; font-family: var(--font-sans); color: var(--color-text); background: white; border: 1px solid var(--color-border); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; }
+.form-textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(176, 141, 62, 0.12); }
+.form-divider { height: 1px; background: var(--color-border); margin: 28px 0; }
+.form-section-label { font-family: var(--font-serif); font-size: 16px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+.field-note { font-size: 12.5px; color: var(--color-text-muted); background: #f8fafc; border-left: 3px solid var(--color-accent); padding: 8px 12px; border-radius: 0 6px 6px 0; margin-top: -8px; margin-bottom: 14px; line-height: 1.65; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 10px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 14px 16px; }
+.checkbox-row input { margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0; }
+.checkbox-row label { font-size: 13.5px; line-height: 1.7; color: #9a3412; }
+
+.dynamic-section { display: none; }
+.dynamic-section.active { display: block; }
+
+.download-section { max-width: 940px; margin: 0 auto; padding: 32px 24px 0; }
+.download-card { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow-md); }
+.download-title { font-family: var(--font-serif); font-size: 19px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; }
+.download-sub { font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 22px; }
+.download-btn { display: flex; align-items: center; gap: 12px; background: var(--color-primary); color: white; border: none; border-radius: 10px; padding: 18px 22px; font-family: var(--font-sans); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.15s; box-shadow: var(--shadow-sm); width: 100%; justify-content: center; }
+.download-btn:hover:not(:disabled) { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.download-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.download-btn.secondary { background: white; color: var(--color-primary); border: 1.5px solid var(--color-primary); margin-top: 12px; }
+.download-btn.secondary:hover:not(:disabled) { background: #f8fafc; }
+.download-msg { margin-top: 16px; padding: 14px 18px; border-radius: 8px; font-size: 14px; line-height: 1.7; }
+.download-msg.ok { background: var(--color-ok-bg); border: 1px solid #bbf7d0; color: var(--color-ok); }
+.download-msg.warn { background: var(--color-warn-bg); border: 1px solid #fecaca; color: var(--color-warn); }
+
+/* 參考內容區 */
+.ref-section { max-width: 940px; margin: 48px auto 0; padding: 0 24px; }
+.ref-block { background: white; border: 1px solid var(--color-border); border-radius: 12px; padding: 28px 30px; box-shadow: var(--shadow-sm); margin-bottom: 22px; }
+.ref-block h2 { font-family: var(--font-serif); font-size: 19px; color: var(--color-primary); font-weight: 700; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid var(--color-accent); }
+.ref-block .ref-sub { font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 18px; padding-left: 12px; }
+.req-item { display: flex; gap: 14px; padding: 14px 0; border-top: 1px dashed var(--color-border); }
+.req-item:first-of-type { border-top: none; }
+.req-num { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--color-primary); color: white; font-family: var(--font-serif); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.req-text { font-size: 14px; line-height: 1.7; }
+.req-text strong { color: var(--color-primary); }
+.case-card { background: #f8fafc; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; border-left: 3px solid var(--color-accent); }
+.case-card .case-no { font-size: 12.5px; font-weight: 700; color: var(--color-accent); letter-spacing: 0.02em; margin-bottom: 6px; }
+.case-card .case-body { font-size: 13.5px; line-height: 1.75; color: var(--color-text); }
+.danger-grid { display: grid; gap: 12px; }
+.danger-item { background: var(--color-warn-bg); border: 1px solid #fecaca; border-radius: 8px; padding: 14px 16px; font-size: 13.5px; line-height: 1.7; color: #7f1d1d; }
+.danger-item strong { color: var(--color-warn); }
+.link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.link-card { display: block; background: #f8fafc; border: 1px solid var(--color-border); border-radius: 8px; padding: 14px 16px; text-decoration: none; transition: all 0.15s; }
+.link-card:hover { border-color: var(--color-accent); background: #fefbf3; }
+.link-card .lc-title { font-size: 14px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px; }
+.link-card .lc-desc { font-size: 12.5px; color: var(--color-text-muted); line-height: 1.6; }
+
+.disclaimer { max-width: 940px; margin: 36px auto 0; padding: 0 24px; }
+.disclaimer-inner { background: #fef9e7; border: 1px solid #f1d77a; border-radius: 10px; padding: 22px 26px; font-size: 14px; line-height: 1.85; color: #715a13; }
+.disclaimer-inner strong { color: #5e4a0e; }
+
+footer { background: #1a1a1a; color: #9ca3af; padding: 36px 24px; text-align: center; font-size: 13px; line-height: 1.8; margin-top: 64px; }
+footer .footer-brand { color: white; font-family: var(--font-serif); font-size: 16px; margin-bottom: 6px; }
+footer .footer-version { margin-top: 8px; opacity: 0.55; font-size: 12px; letter-spacing: 0.08em; }
+
+@media (max-width: 720px) {
+  .subhero { padding: 44px 20px 36px; }
+  .subhero h1 { font-size: 26px; }
+  .form-card, .ref-block { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark"></span>補教業法務支援站</a>
+    <a class="nav-back" href="./index.html">← 回首頁</a>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="subhero-inner">
+    <div class="subhero-tag">第二梯隊　·　聘僱合規包</div>
+    <h1>聘僱合規包<br><span class="accent">產生器</span></h1>
+    <p class="lead">補教業勞動力複雜——鐘點承攬、全職、行政助教、工讀生、外籍師。先選對「法律身分」，再產出對應的聘僱契約 docx，避免「假承攬真僱傭」的補稅與罰鍰骨牌效應。每份契約都含競業禁止、營業秘密、學生個資歸屬、智財權等核心防禦條款。</p>
+  </div>
+</header>
+
+<section class="type-selector">
+  <div class="type-title">步驟 1　·　選擇職務類型</div>
+  <div class="type-grid" id="type-grid">
+    <div class="type-card lv-yellow" data-type="hourly">
+      <div class="type-num">類型 ①　·　承攬</div>
+      <h3>鐘點教師（承攬）</h3>
+      <p>以承攬合作關係聘鐘點師。契約刻意排除指揮監督、考核、固定排班等從屬性字眼，避免被認定為僱傭。</p>
+    </div>
+    <div class="type-card lv-red" data-type="fulltime">
+      <div class="type-num">類型 ②　·　僱傭</div>
+      <h3>全職教師</h3>
+      <p>典型不定期僱傭契約。完整 25 條含工時、競業禁止、營業秘密、招生獎金恩惠性約定、智財歸屬。</p>
+    </div>
+    <div class="type-card lv-blue" data-type="admin">
+      <div class="type-num">類型 ③　·　僱傭</div>
+      <h3>行政助教</h3>
+      <p>一般勞工。強化變形工時、加班費基準、出勤紀錄保管義務與招生個資保密。</p>
+    </div>
+    <div class="type-card lv-green" data-type="parttime">
+      <div class="type-num">類型 ④　·　部分工時</div>
+      <h3>工讀生（含未成年）</h3>
+      <p>部分工時僱傭。勾選「未成年」自動加產法定代理人同意書，並寫入禁止夜間、超時工作條款。</p>
+    </div>
+    <div class="type-card lv-purple" data-type="foreign">
+      <div class="type-num">類型 ⑤　·　外籍</div>
+      <h3>外籍教師</h3>
+      <p>受就業服務法雙重管轄。契約掛鉤工作許可：喪失合法居留即無條件終止、免資遣費。</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="form-card">
+    <!-- 甲方 -->
+    <div class="form-section-label">步驟 2　·　甲方（雇主）資料</div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">補習班名稱<span class="required">*</span></label>
+        <input type="text" class="form-input" id="cram_name" value="私立OO文理短期補習班" placeholder="（請改成貴補習班全名）">
+      </div>
+      <div>
+        <label class="form-label">負責人<span class="required">*</span></label>
+        <input type="text" class="form-input" id="cram_owner" placeholder="例：王大明">
+      </div>
+    </div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">統一編號<span class="hint">（選填）</span></label>
+        <input type="text" class="form-input" id="cram_taxid" placeholder="例：12345678">
+      </div>
+      <div>
+        <label class="form-label">補習班地址<span class="required">*</span></label>
+        <input type="text" class="form-input" id="cram_address" placeholder="例：桃園市中壢區中正路 100 號 3 樓">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- 乙方 -->
+    <div class="form-section-label">步驟 3　·　乙方（受僱人）資料</div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">姓名<span class="required">*</span></label>
+        <input type="text" class="form-input" id="employee_name" placeholder="例：陳小琪">
+      </div>
+      <div>
+        <label class="form-label">身分證字號<span class="hint">（可留 OOOOOO 遮罩）</span></label>
+        <input type="text" class="form-input" id="employee_id" placeholder="例：A123456789">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- ============ 動態：僱傭版（全職/行政/工讀/外籍） ============ -->
+    <div class="dynamic-section" id="form-standard">
+      <div class="form-section-label">步驟 4　·　契約條件</div>
+      <div class="form-group">
+        <label class="form-label">職稱<span class="required">*</span></label>
+        <input type="text" class="form-input" id="st_job_title" placeholder="例：專任數學教師">
+      </div>
+      <div class="form-group">
+        <label class="form-label">工作地點／分班<span class="required">*</span></label>
+        <input type="text" class="form-input" id="st_work_location" value="本班（中壢總部）" placeholder="例：本班中壢總部">
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">薪資型態<span class="required">*</span></label>
+          <select class="form-select" id="st_salary_type">
+            <option value="月薪">月薪（每月固定）</option>
+            <option value="時薪">時薪（按時計酬）</option>
+          </select>
+        </div>
+        <div><label class="form-label">金額（新台幣）<span class="required">*</span></label><input type="text" class="form-input" id="st_salary_amount" placeholder="例：35,000"></div>
+        <div><label class="form-label">每月給付日<span class="required">*</span></label>
+          <select class="form-select" id="st_pay_day">
+            <option value="五">5 日</option><option value="十">10 日</option>
+            <option value="十五">15 日</option><option value="二十">20 日</option>
+            <option value="二十五">25 日</option><option value="月底">月底前</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">起始民國年<span class="required">*</span></label><select class="form-select" id="st_start_year"></select></div>
+        <div><label class="form-label">月<span class="required">*</span></label><select class="form-select" id="st_start_month"></select></div>
+        <div><label class="form-label">日<span class="required">*</span></label><select class="form-select" id="st_start_day"></select></div>
+      </div>
+
+      <!-- 未成年（僅工讀生顯示） -->
+      <div class="form-group" id="minor-row" style="display:none;">
+        <div class="checkbox-row">
+          <input type="checkbox" id="st_is_minor">
+          <label for="st_is_minor"><strong>本工讀生未滿 18 歲</strong>——勾選後將額外產生「法定代理人同意書」，並於契約寫入禁止夜間（20:00–翌晨 6:00）與超時工作之保護條款（勞基§45–48）。未備同意書受勞檢必罰。</label>
+        </div>
+      </div>
+
+      <div class="form-section-label" style="margin-top:28px;">競業禁止（選填，名師／掌握核心資源者建議填）</div>
+      <div class="field-note">⚠️ 勞基§9-1 鐵律：競業禁止<strong>必須按月給付離職前月平均工資 50% 補償金</strong>，否則條款無效。本契約已內含 50% 補償文字，請務必落實給付。</div>
+      <div class="form-group form-group-row">
+        <div><label class="form-label">限制月數<span class="hint">（≤24，建議 6–12）</span></label><input type="text" class="form-input" id="st_noncompete_period" placeholder="例：12"></div>
+        <div><label class="form-label">限制區域<span class="hint">（須限招生範圍內）</span></label><input type="text" class="form-input" id="st_noncompete_area" placeholder="例：桃園市中壢區範圍內"></div>
+      </div>
+
+      <div class="form-section-label" style="margin-top:28px;">最低服務年限（選填，僅在確有專業培訓支出時）</div>
+      <div class="field-note">勞基§15-1：須雇主確有「專業技術培訓」實質支出或合理補償，否則條款無效。若無培訓支出，三欄留空即可（契約附註提醒可刪本條）。</div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">培訓月數</label><input type="text" class="form-input" id="st_training_months" placeholder="例：3"></div>
+        <div><label class="form-label">服務年限（年）</label><input type="text" class="form-input" id="st_service_years" placeholder="例：2"></div>
+        <div><label class="form-label">違約金（新台幣）</label><input type="text" class="form-input" id="st_penalty_service" placeholder="例：50,000"></div>
+      </div>
+    </div>
+
+    <!-- ============ 動態：鐘點承攬版 ============ -->
+    <div class="dynamic-section" id="form-hourly">
+      <div class="form-section-label">步驟 4　·　承攬條件</div>
+      <div class="field-note">⚠️ 承攬鐵律：契約已刻意排除指揮監督、考核、固定排班等字眼。實務上若仍對鐘點師遲到扣款、強制排班、要求參加行政會議，仍會被勞動局／法院依「從屬性測試」重新認定為僱傭，須溯及補繳勞健保、6% 勞退與資遣費。</div>
+      <div class="form-group">
+        <label class="form-label">授課課程／科目<span class="required">*</span></label>
+        <input type="text" class="form-input" id="hr_course_subject" placeholder="例：高中物理週末班">
+      </div>
+      <div class="form-group form-group-row">
+        <div><label class="form-label">鐘點費（每小時新台幣）<span class="required">*</span></label><input type="text" class="form-input" id="hr_hourly_rate" placeholder="例：800"></div>
+        <div></div>
+      </div>
+      <div class="form-group form-group-row3">
+        <div><label class="form-label">起始民國年<span class="required">*</span></label><select class="form-select" id="hr_start_year"></select></div>
+        <div><label class="form-label">月<span class="required">*</span></label><select class="form-select" id="hr_start_month"></select></div>
+        <div><label class="form-label">日<span class="required">*</span></label><select class="form-select" id="hr_start_day"></select></div>
+      </div>
+      <div class="form-section-label" style="margin-top:28px;">競業禁止（選填，鐘點名師掌握核心資源者建議填）</div>
+      <div class="field-note">⚠️ 即使是承攬鐘點師，若約定競業禁止，仍<strong>必須給付不低於離職前平均月報酬 50% 補償金</strong>才有效（契約已內含此文字）。</div>
+      <div class="form-group form-group-row">
+        <div><label class="form-label">限制月數<span class="hint">（≤24）</span></label><input type="text" class="form-input" id="hr_noncompete_period" placeholder="例：6"></div>
+        <div><label class="form-label">限制區域</label><input type="text" class="form-input" id="hr_noncompete_area" placeholder="例：桃園市中壢區範圍內"></div>
+      </div>
+    </div>
+
+    <!-- ============ 共用：管轄 + 簽署日 ============ -->
+    <div class="form-divider"></div>
+    <div class="form-section-label">步驟 5　·　管轄與簽署</div>
+    <div class="form-group form-group-row">
+      <div>
+        <label class="form-label">合意管轄地方法院<span class="required">*</span></label>
+        <input type="text" class="form-input" id="court" value="桃園" placeholder="例：桃園（即臺灣桃園地方法院）">
+      </div>
+      <div></div>
+    </div>
+    <div class="form-group form-group-row3">
+      <div><label class="form-label">簽約民國年<span class="required">*</span></label><select class="form-select" id="sign_year"></select></div>
+      <div><label class="form-label">月<span class="required">*</span></label><select class="form-select" id="sign_month"></select></div>
+      <div><label class="form-label">日<span class="required">*</span></label><select class="form-select" id="sign_day"></select></div>
+    </div>
+  </div>
+</section>
+
+<section class="download-section">
+  <div class="download-card">
+    <div class="download-title">步驟 6　·　產生聘僱契約</div>
+    <p class="download-sub">點下按鈕立即下載 docx。本工具於瀏覽器端執行，您填寫的資料不會上傳到任何伺服器。下載後請務必委請律師依貴班實際情形審閱、調整具體條文後再簽署。</p>
+    <button class="download-btn" id="download-btn" disabled>
+      <span>📥</span>
+      <span>請先於步驟 1 選擇職務類型</span>
+    </button>
+    <button class="download-btn secondary" id="download-minor-btn" style="display:none;">
+      <span>📎</span>
+      <span>另下載「法定代理人同意書」</span>
+    </button>
+    <div id="download-msg"></div>
+  </div>
+</section>
+
+<!-- ============ 參考內容 ============ -->
+<section class="ref-section">
+
+  <div class="ref-block">
+    <h2>競業禁止有效性　·　勞基§9-1 五大法定要件</h2>
+    <div class="ref-sub">缺任一要件，依勞基§71 該條款「絕對無效」。產生契約前請逐項自我檢核。</div>
+    <div class="req-item"><div class="req-num">1</div><div class="req-text"><strong>雇主有應受保護之正當營業利益</strong>——須有不為公眾所知的獨家教材、解題模組、未公開學生與家長名單。一般教學技巧或業界通用資訊不算。</div></div>
+    <div class="req-item"><div class="req-num">2</div><div class="req-text"><strong>勞工職務能接觸或使用該營業利益</strong>——編核心教材的教師、掌握招生名單的行政主任符合；僅打掃、排桌椅、發傳單的基層工讀生，對其約定競業禁止無效。</div></div>
+    <div class="req-item"><div class="req-num">3</div><div class="req-text"><strong>期間、區域、職業活動範圍合理</strong>——期間最長 2 年（補教業實務多認 6–12 個月合理）；區域須限原班實際招生範圍；職業活動限「同類補習教育業務」。</div></div>
+    <div class="req-item"><div class="req-num">4</div><div class="req-text"><strong>對勞工因不從事競業所受損失有合理補償</strong>——每月補償金不得低於離職時月平均工資的 <strong>50%</strong>，且須約定離職後按月或一次給付。寫「已內含於平時薪資」者無效。</div></div>
+    <div class="req-item"><div class="req-num">5</div><div class="req-text"><strong>補償金瑕疵不可治癒</strong>——簽署時若欠缺合理補償金約定，合約自始無效，無法靠雇主事後單方宣稱願付而「治癒」。</div></div>
+  </div>
+
+  <div class="ref-block">
+    <h2>補教業競業禁止　·　法院判決見解</h2>
+    <div class="ref-sub">以下判決顯示：即使是領鐘點費的補習班教師，基於累積的學生信賴（商譽），雇主仍可合法約定競業禁止。</div>
+    <div class="case-card">
+      <div class="case-no">臺灣臺中地方法院 106 年度訴字第 2864 號民事判決（高點補習班案）</div>
+      <div class="case-body">補習班約定專任教師於合約終止後 4 個月內不得受僱於競爭機構，否則須付年度鐘點費二倍違約金。法院判決<strong>競業禁止條款有效</strong>：該師任職 6 年累積行政法補教界聲望與學生信賴，離職後至競爭機構任教將輕易憑藉原班建立之知名度招徠學生；4 個月限制期間極短，屬合理適當。確立「以鐘點費為主的補習班教師」亦可合法約定競業禁止。</div>
+    </div>
+    <div class="case-card">
+      <div class="case-no">最高法院 111 年度台上字第 1831 號民事判決（補償金標準）</div>
+      <div class="case-body">最高法院釐清：競業禁止對象不限高薪高階勞工，<strong>領一般薪資的中階員工（如補習班教師）同樣可成為合法拘束對象</strong>；補償金合理性只須以勞工「本身」為考量，無須擴及「維持家庭成員生活所需」。只要補償未低於半薪下限，即合法有效。</div>
+    </div>
+  </div>
+
+  <div class="ref-block">
+    <h2>立即委請律師的 5 大危險徵兆</h2>
+    <div class="ref-sub">合規包能解決約八成標準化需求；以下情境風險已超出範本所能涵蓋，切勿自行套用，務必律師介入。</div>
+    <div class="danger-grid">
+      <div class="danger-item"><strong>1. 「承攬制」鐘點師索取在職證明或非自願離職單</strong>——承攬無此概念，強烈暗示其已諮詢勞工局、正蒐證主張僱傭關係存在，準備追討勞退、加班費、資遣費。</div>
+      <div class="danger-item"><strong>2. 招牌名師合約將到期，且傳聞頻繁接觸競爭同業</strong>——名師有客製獎金結構、自帶獨家教材與家長人脈，標準競業條款不足，須量身訂做高額違約金協議，必要時聲請假處分。</div>
+      <div class="danger-item"><strong>3. 勞檢局發函將就工時、出勤、工讀生管理專案檢查</strong>——若內部長期未核實打卡、積欠加班費、未成年違規排班，切勿偽造打卡（涉刑法偽造文書），須律師與勞資顧問進駐盤點。</div>
+      <div class="danger-item"><strong>4. 引進外籍業師，或外師宣稱即將轉換居留簽證身分</strong>——非法容留／聘僱無工作許可外國人，雇主面臨 15 萬至 75 萬罰鍰，五年內再犯可處 3 年以下有期徒刑。須律師審查居留證字號與許可公文真偽。</div>
+      <div class="danger-item"><strong>5. 補習班併購、頂讓，或因少子化大幅縮編解僱多名員工</strong>——涉企業併購法、大量解僱勞工保護法、勞基§11 經濟性解僱，須律師規劃解僱計畫書與資遣費，否則易引發集體勞資糾紛。</div>
+    </div>
+  </div>
+
+  <div class="ref-block">
+    <h2>一鍵跳查　·　官方查詢端點</h2>
+    <div class="ref-sub">聘僱決策前即時比對最權威法規動態。</div>
+    <div class="link-grid">
+      <a class="link-card" href="https://laws.mol.gov.tw" target="_blank" rel="noopener">
+        <div class="lc-title">勞動部勞動法規查詢系統</div>
+        <div class="lc-desc">承攬 vs 僱傭實質認定、人格／組織／經濟從屬性指標與歷年解釋令。</div>
+      </a>
+      <a class="link-card" href="https://ezworktaiwan.wda.gov.tw" target="_blank" rel="noopener">
+        <div class="lc-title">外國人在臺工作服務網</div>
+        <div class="lc-desc">外師工作許可申請、外國專業人才延攬及僱用法、線上申辦系統。</div>
+      </a>
+      <a class="link-card" href="https://www.bli.gov.tw" target="_blank" rel="noopener">
+        <div class="lc-title">勞動部勞工保險局 e 化服務</div>
+        <div class="lc-desc">到職當日線上加保、投保薪資分級表、部分工時投保級距查詢。</div>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>⚠️ 法律免責聲明</strong>——本產生器之契約範本係依勞動基準法等規定與深度法律研究整理而成的<strong>一般性參考範本初稿，尚未經律師逐案審閱把關</strong>，<strong>不構成個案法律意見</strong>。補教業勞動關係高度複雜（如假承攬真僱傭之認定、競業禁止有效性、最低服務年限要件），實際使用前務必依貴補習班具體營運情形補充，並交由律師審閱具體條文後再簽署。本工具所有資料處理均在使用者瀏覽器內進行，不會傳送或儲存於任何伺服器。
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">補教業法務支援站</div>
+  <div>聘僱合規包產生器 v1.0</div>
+  <div class="footer-version">5 職務類型（鐘點承攬 / 全職 / 行政助教 / 工讀生 / 外籍）· 含勞基§9-1 競業五要件檢核</div>
+</footer>
+
+<script src="https://unpkg.com/pizzip@3.1.6/dist/pizzip.min.js"></script>
+<script src="https://unpkg.com/pizzip@3.1.6/dist/pizzip-utils.min.js"></script>
+<script src="https://unpkg.com/docxtemplater@3.50.0/build/docxtemplater.js"></script>
+<script src="assets/form-helpers.js"></script>
+<script>
+// ============ 民國年/月/日下拉填充 ============
+const ROC = new Date().getFullYear() - 1911;
+function fillMinguo(yId, mId, dId) {
+  const y = document.getElementById(yId), m = document.getElementById(mId), d = document.getElementById(dId);
+  y.innerHTML = '<option value="">請選擇</option>';
+  for (let yy = ROC + 1; yy >= ROC - 6; yy--) y.innerHTML += `<option value="${yy}"${yy===ROC?' selected':''}>${yy}</option>`;
+  m.innerHTML = '<option value="">請選擇</option>';
+  for (let mm = 1; mm <= 12; mm++) m.innerHTML += `<option value="${mm}">${mm}</option>`;
+  d.innerHTML = '<option value="">請選擇</option>';
+  for (let dd = 1; dd <= 31; dd++) d.innerHTML += `<option value="${dd}">${dd}</option>`;
+}
+fillMinguo('st_start_year', 'st_start_month', 'st_start_day');
+fillMinguo('hr_start_year', 'hr_start_month', 'hr_start_day');
+fillMinguo('sign_year', 'sign_month', 'sign_day');
+const now = new Date();
+['sign_month'].forEach(id => document.getElementById(id).value = now.getMonth() + 1);
+['sign_day'].forEach(id => document.getElementById(id).value = now.getDate());
+
+// ============ 職務類型切換 ============
+const typeCards = document.querySelectorAll('.type-card');
+const downloadBtn = document.getElementById('download-btn');
+const downloadMinorBtn = document.getElementById('download-minor-btn');
+const minorRow = document.getElementById('minor-row');
+let currentType = null;
+
+const typeMeta = {
+  hourly:   { label: '鐘點教師授課承攬契約書', section: 'form-hourly',   template: 'employment-hourly-template.docx',   jobDefault: null },
+  fulltime: { label: '專任教師聘僱契約書',     section: 'form-standard', template: 'employment-standard-template.docx', jobDefault: '專任教師' },
+  admin:    { label: '行政助教聘僱契約書',     section: 'form-standard', template: 'employment-standard-template.docx', jobDefault: '行政助理／助教' },
+  parttime: { label: '工讀生部分工時契約書',   section: 'form-standard', template: 'employment-standard-template.docx', jobDefault: '工讀生' },
+  foreign:  { label: '外籍教師聘僱契約書',     section: 'form-standard', template: 'employment-standard-template.docx', jobDefault: '外籍語文教師' },
+};
+
+typeCards.forEach(card => {
+  card.addEventListener('click', () => {
+    typeCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    currentType = card.dataset.type;
+    const meta = typeMeta[currentType];
+    document.querySelectorAll('.dynamic-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(meta.section).classList.add('active');
+    // 未成年列只在工讀生顯示
+    minorRow.style.display = (currentType === 'parttime') ? 'block' : 'none';
+    if (currentType !== 'parttime') { document.getElementById('st_is_minor').checked = false; downloadMinorBtn.style.display = 'none'; }
+    // 預填職稱
+    if (meta.jobDefault) { const jt = document.getElementById('st_job_title'); if (!jt.value) jt.value = meta.jobDefault; }
+    downloadBtn.disabled = false;
+    downloadBtn.innerHTML = `<span>📥</span><span>下載「${meta.label}」docx</span>`;
+  });
+});
+
+// 未成年勾選 → 顯示同意書下載鈕
+document.getElementById('st_is_minor').addEventListener('change', e => {
+  downloadMinorBtn.style.display = e.target.checked ? 'flex' : 'none';
+});
+
+// URL query 自動選類型（index 磁磚或其他頁連結用）
+const urlType = new URLSearchParams(location.search).get('type');
+if (urlType && typeMeta[urlType]) {
+  const t = document.querySelector(`.type-card[data-type="${urlType}"]`);
+  if (t) { t.click(); setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100); }
+}
+
+// ============ docx 產生 ============
+function loadFile(url, cb) { PizZipUtils.getBinaryContent(url, cb); }
+function showMsg(text, kind) {
+  const msg = document.getElementById('download-msg');
+  msg.className = 'download-msg ' + kind;
+  msg.textContent = text;
+}
+function v(id, fallback) { const el = document.getElementById(id); return (el && el.value.trim()) ? el.value.trim() : fallback; }
+
+function commonData() {
+  return {
+    cram_name: v('cram_name', '【填寫補習班名稱】'),
+    cram_owner: v('cram_owner', '【填寫負責人】'),
+    cram_address: v('cram_address', '【填寫補習班地址】'),
+    cram_taxid: v('cram_taxid', '＿＿＿＿＿＿＿＿'),
+    employee_name: v('employee_name', '【填寫姓名】'),
+    employee_id: v('employee_id', '＿＿＿＿＿＿＿＿＿＿'),
+    court: v('court', '桃園'),
+    sign_year: v('sign_year', '＿＿＿'), sign_month: v('sign_month', '＿＿'), sign_day: v('sign_day', '＿＿'),
+  };
+}
+
+function renderDoc(templateFile, data, filename, okMsg) {
+  loadFile('templates/' + templateFile, (error, content) => {
+    if (error) { showMsg('範本載入失敗：' + error.message + '（請確認 templates/' + templateFile + ' 已上傳）', 'warn'); return; }
+    try {
+      const zip = new PizZip(content);
+      const doc = new docxtemplater(zip, { delimiters: { start: '{', end: '}' }, paragraphLoop: true, linebreaks: true });
+      doc.render(data);
+      const blob = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = filename; a.click(); URL.revokeObjectURL(a.href);
+      showMsg(okMsg, 'ok');
+    } catch (e) { showMsg('產生失敗：' + e.message, 'warn'); console.error(e); }
+  });
+}
+
+downloadBtn.addEventListener('click', () => {
+  if (!currentType) return;
+  showMsg('產生中...', 'ok');
+  const meta = typeMeta[currentType];
+  let data;
+  if (currentType === 'hourly') {
+    data = Object.assign(commonData(), {
+      course_subject: v('hr_course_subject', '【填寫授課課程】'),
+      hourly_rate: v('hr_hourly_rate', '＿＿＿＿'),
+      start_year: v('hr_start_year', '＿＿＿'), start_month: v('hr_start_month', '＿＿'), start_day: v('hr_start_day', '＿＿'),
+      noncompete_period: v('hr_noncompete_period', '＿＿'),
+      noncompete_area: v('hr_noncompete_area', '甲方所在之同一縣市範圍內'),
+    });
+  } else {
+    const salaryType = v('st_salary_type', '月薪');
+    const amount = v('st_salary_amount', '＿＿＿＿＿');
+    const salary_desc = (salaryType === '時薪')
+      ? `按時計酬，每小時新台幣 ${amount} 元`
+      : `每月新台幣 ${amount} 元`;
+    data = Object.assign(commonData(), {
+      job_title: v('st_job_title', '【填寫職稱】'),
+      work_location: v('st_work_location', '本班'),
+      salary_desc: salary_desc,
+      pay_day: v('st_pay_day', '五'),
+      noncompete_period: v('st_noncompete_period', '＿＿'),
+      noncompete_area: v('st_noncompete_area', '甲方所在之同一縣市範圍內'),
+      training_months: v('st_training_months', '＿＿'),
+      service_years: v('st_service_years', '＿＿'),
+      penalty_service: v('st_penalty_service', '＿＿＿＿＿'),
+      start_year: v('st_start_year', '＿＿＿'), start_month: v('st_start_month', '＿＿'), start_day: v('st_start_day', '＿＿'),
+    });
+  }
+  const fn = `${meta.label}_${data.cram_name}_${data.sign_year}${data.sign_month}${data.sign_day}.docx`;
+  renderDoc(meta.template, data,  fn,
+    `✅ 已下載「${meta.label}」。這是參考範本初稿，務必委請律師依貴班實際情形審閱、調整條文後再簽署。`);
+});
+
+// 法定代理人同意書
+downloadMinorBtn.addEventListener('click', () => {
+  showMsg('產生同意書中...', 'ok');
+  const data = {
+    cram_name: v('cram_name', '【填寫補習班名稱】'),
+    job_title: v('st_job_title', '工讀生'),
+    employee_name: v('employee_name', '【填寫姓名】'),
+    employee_id: v('employee_id', '＿＿＿＿＿＿＿＿＿＿'),
+  };
+  renderDoc('minor-consent-template.docx', data,
+    `法定代理人同意書_${data.employee_name}.docx`,
+    '✅ 已下載「法定代理人同意書」。請交由未成年工讀生之家長（法定代理人）親簽，並附身分證影本歸檔備查。');
+});
+</script>
+
+</body>
+</html>
